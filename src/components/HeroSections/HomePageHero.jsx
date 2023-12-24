@@ -64,7 +64,8 @@ function WatchSwiper({ topProucts }) {
     slidesToShow: 1,
     slidesToScroll: 1,
     onSwipe: onSwipe,
-    dots: false,
+    appendDots: appendDotsFunc,
+    dots: true,
     arrows: false,
   };
 
@@ -87,8 +88,25 @@ function WatchSwiper({ topProucts }) {
     }, 1000);
   }
 
+  function appendDotsFunc(e) {
+    return (
+      <>
+        <div className="bottom-5 -mt- ml- md:flex gap-x-2">
+          {e.map((p) => (
+            <span
+              key={p.key}
+              className={`${
+                p.props.className === "" && "!bg-EerieBlack-100"
+              } p-1 bg-Buff-400 rounded-full transition-all`}
+            ></span>
+          ))}
+        </div>
+      </>
+    );
+  }
+
   return (
-    <div className="w-screen h-screen relative sm:container sm:mx-auto sm:h-[500px] 2xl:max-w-6xl flex items-center justify-center md:justify-start mb-16">
+    <div className="w-screen h-screen relative sm:container sm:mx-auto sm:h-[450px] 2xl:max-w-6xl flex items-center justify-center md:justify-start mb-16">
       {/* background video  */}
       <video
         autoPlay
@@ -116,7 +134,7 @@ function WatchSwiper({ topProucts }) {
           status === "onSwipe"
             ? "bg-opacity-40 backdrop-blur-0"
             : "bg-opacity-60 backdrop-blur-sm"
-        } bg-white-90 w-11/12 md:w-2/5 md:h-full md:flex items-center justify-center px-4 py-2 z-20 rounded-md md:bg-opacity-0 md:px-0 md:py-0 md:backdrop-blur-0`}
+        } bg-white-90 w-11/12 md:w-1/3 md:h-full md:flex items-center justify-center px-4 py-2 z-20 rounded-md md:bg-opacity-0 md:px-0 md:py-0 md:backdrop-blur-0`}
       >
         {topProucts.length > 0 && (
           <div>
@@ -124,7 +142,7 @@ function WatchSwiper({ topProucts }) {
             <>
               <Slider
                 {...settings}
-                className="bg-white-100 backdrop-blur-sm bg-opacity-25 md:bg-opacity-0 rounded-md md:max-w-xs px-4 py-2 md:mt-40"
+                className="bg-white-100 backdrop-blur-sm bg-opacity-25 md:bg-opacity-10 rounded-md md:max-w-xs px-4 py-2 md:mt-40"
               >
                 {topProucts.map((product) => (
                   <img
@@ -133,10 +151,25 @@ function WatchSwiper({ topProucts }) {
                     alt={product.name}
                     className={`${
                       status !== "loaded" && "animate-spin duration-500"
-                    } w-44 h-44 object-contain md:h-full`}
+                    } w-44 h-44 object-contain md:h-60`}
                   />
                 ))}
               </Slider>
+              {/* pagination dots */}
+              {/* <div className="bottom-5 -mt-3 ml-3 hidden md:flex gap-x-1.5">
+                {topProucts.map((p, index) => {
+                  console.log(index, selectedWatch);
+
+                  return (
+                    <span
+                      key={p.id}
+                      className={`${
+                        index === selectedWatch && "!bg-black"
+                      } p-1 bg-white-100 rounded-full`}
+                    ></span>
+                  );
+                })}
+              </div> */}
             </>
             {/* description  */}
             <div className="w-full text-center py-4 px-2 flex flex-col justify-center items-center gap-y-2 md:invisible">

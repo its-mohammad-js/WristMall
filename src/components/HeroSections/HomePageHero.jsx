@@ -37,6 +37,7 @@ function WatchSwiper({ topProucts }) {
     currentBg: "",
     nextBg: "",
   });
+  const imageRef = useRef(null);
 
   useEffect(() => {
     if (topProucts.length && topProucts[selectedWatch.current]) {
@@ -82,7 +83,7 @@ function WatchSwiper({ topProucts }) {
       }
 
       setStatus("loaded");
-    }, 800);
+    }, 1000);
   }
 
   return (
@@ -129,7 +130,9 @@ function WatchSwiper({ topProucts }) {
                     key={product.id}
                     src={product.thumbnail}
                     alt={product.name}
-                    className="w-44 h-44 object-contain"
+                    className={`${
+                      status !== "loaded" && "animate-spin duration-500"
+                    } w-44 h-44 object-contain`}
                   />
                 ))}
               </Slider>

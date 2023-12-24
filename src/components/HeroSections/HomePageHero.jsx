@@ -62,30 +62,31 @@ function WatchSwiper({ topProucts }) {
     // listen for Swiper events using addEventListener
     swiperElRef.current.addEventListener("swiperprogress", (e) => {
       const [swiper, progress] = e.detail;
-      // console.log(swiper);
+      setStatus("onSwipe");
 
       if (progress === 0) {
-        console.log("first watch");
         setSelectedWatch(0);
       }
       if (progress === 0.5) {
-        console.log("second watch");
         setSelectedWatch(1);
       }
       if (progress === 1) {
-        console.log("last watch");
         setSelectedWatch(2);
       }
     });
 
     swiperElRef.current.addEventListener("swiperslidechange", (e) => {
       const [swiper, progress] = e.detail;
-
+      setStatus("loaded");
       // console.log("slide changed");
     });
 
     // console.log(selectedWatch);
   }, []);
+
+  useEffect(() => {
+    console.log(status);
+  }, [status]);
 
   return (
     <div className="w-screen h-screen relative sm:container sm:mx-auto sm:h-[500px] 2xl:max-w-6xl flex items-center justify-center md:justify-start mb-16">
@@ -102,11 +103,10 @@ function WatchSwiper({ topProucts }) {
       <div className="absolute z-10 w-full flex justify-center items-center px-8">
         <h1
           className={`${
-            status === "onSwipe" ? "animate-typing" : "hidden"
+            status === "onSwipe" && "animate-typing"
           } text-xl line-clamp-1 neon-title text-center overflow-hidden whitespace-nowrap`}
         >
-          {topProucts[selectedWatch.current] &&
-            topProucts[selectedWatch.current].name}
+          {topProucts[selectedWatch] && topProucts[selectedWatch].name}
         </h1>
       </div>
 

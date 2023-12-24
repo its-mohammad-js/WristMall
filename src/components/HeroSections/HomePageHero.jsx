@@ -29,7 +29,6 @@ function WatchSwiper({ topProucts }) {
   // selected product state (index)
   // const [selectedWatch, setSelectedWatch] = useState(1);
   let selectedWatch = useRef(0);
-
   // animation status => loaded || onSwipe
   const [status, setStatus] = useState("loaded");
   // background color state
@@ -106,13 +105,13 @@ function WatchSwiper({ topProucts }) {
       >
         <swiper-container
           slides-per-view="1"
-          speed="100"
-          loop="false"
-          css-mode="true"
+          speed="1200"
+          autoPlay="true"
+          css-mode="false"
         >
           {topProucts.map((product) => (
             <swiper-slide key={product.id}>
-              <img src={product.thumbnail} alt="" />
+              <img src={product.thumbnail} alt="" loading="lazy" />
             </swiper-slide>
           ))}
         </swiper-container>

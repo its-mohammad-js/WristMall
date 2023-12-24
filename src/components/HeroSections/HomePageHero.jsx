@@ -39,17 +39,17 @@ function WatchSwiper({ topProucts }) {
   });
 
   // useEffect(() => {
-  //   if (topProucts.length && topProucts[selectedWatch]) {
+  //   if (topProucts.length && topProucts[selectedWatch.current]) {
   //     setBg((prev) => {
   //       if (selectedWatch.current >= 2) {
   //         return {
-  //           currentBg: topProucts[selectedWatch].secondaryColor,
+  //           currentBg: topProucts[selectedWatch.current].secondaryColor,
   //           nextBg: topProucts[0].secondaryColor,
   //         };
   //       } else {
   //         return {
-  //           currentBg: topProucts[selectedWatch].secondaryColor,
-  //           nextBg: topProucts[selectedWatch + 1].secondaryColor,
+  //           currentBg: topProucts[selectedWatch.current].secondaryColor,
+  //           nextBg: topProucts[selectedWatch.current + 1].secondaryColor,
   //         };
   //       }
   //     });
@@ -87,10 +87,6 @@ function WatchSwiper({ topProucts }) {
     }, 1000);
   }
 
-  useEffect(() => {
-    console.log(bg);
-  }, [bg]);
-
   return (
     <div className="w-screen h-screen relative sm:container sm:mx-auto sm:h-[500px] 2xl:max-w-6xl flex items-center justify-center md:justify-start mb-16">
       {/* background video  */}
@@ -98,16 +94,16 @@ function WatchSwiper({ topProucts }) {
         autoPlay
         loop
         muted
-        className="h-screen w-screen md:w-1/3 md:h-full object-cover absolute"
+        className="h-screen w-screen md:h-full object-cover absolute"
       >
         <source src="./sample.webm" />
       </video>
 
       {/* typing text animation */}
-      <div className="absolute z-10 w-full flex justify-center items-center px-8 md:hidden">
+      <div className="absolute z-10 w-full flex justify-center items-center px-8">
         <h1
           className={`${
-            status === "onSwipe" && "animate-typing"
+            status === "onSwipe" ? "animate-typing duration-1000" : "hidden"
           } text-xl line-clamp-1 neon-title text-center overflow-hidden whitespace-nowrap`}
         >
           {topProucts[selectedWatch] && topProucts[selectedWatch].name}
@@ -120,7 +116,7 @@ function WatchSwiper({ topProucts }) {
           status === "onSwipe"
             ? "bg-opacity-40 backdrop-blur-0"
             : "bg-opacity-60 backdrop-blur-sm"
-        } bg-white-90 w-11/12 md:w-1/3 md:h-full md:flex items-center justify-center px-4 py-2 z-20 rounded-md md:bg-opacity-0 md:px-0 md:py-0 md:backdrop-blur-0`}
+        } bg-white-90 w-11/12 md:w-2/5 md:h-full md:flex items-center justify-center px-4 py-2 z-20 rounded-md md:bg-opacity-0 md:px-0 md:py-0 md:backdrop-blur-0`}
       >
         {topProucts.length > 0 && (
           <div>
@@ -128,7 +124,7 @@ function WatchSwiper({ topProucts }) {
             <>
               <Slider
                 {...settings}
-                className="bg-white-100 md:bg-opacity-0 md:p-0 backdrop-blur-sm bg-opacity-25 rounded-md md:max-w-xs px-4 py-2"
+                className="bg-white-100 backdrop-blur-sm bg-opacity-25 md:bg-opacity-0 rounded-md md:max-w-xs px-4 py-2 md:mt-40"
               >
                 {topProucts.map((product) => (
                   <img
@@ -137,13 +133,13 @@ function WatchSwiper({ topProucts }) {
                     alt={product.name}
                     className={`${
                       status !== "loaded" && "animate-spin duration-500"
-                    } w-44 h-44 md:w-40 md:h-60 object-contain`}
+                    } w-44 h-44 object-contain md:h-full`}
                   />
                 ))}
               </Slider>
             </>
             {/* description  */}
-            <div className="w-full text-center py-4 px-2 flex flex-col justify-center items-center gap-y-2 md:hidden">
+            <div className="w-full text-center py-4 px-2 flex flex-col justify-center items-center gap-y-2 md:invisible">
               {/* title */}
               <h2
                 className={`${
@@ -153,12 +149,16 @@ function WatchSwiper({ topProucts }) {
                 {topProucts[selectedWatch].name}
               </h2>
               {/* price */}
-              <p className="bg-black text-white-100 px-2 py-1 rounded-full transition-all ">
-                ${topProucts[selectedWatch].price}
+              <p
+                className={`${
+                  status === "onSwipe" && "animate-pulse w-20 h-8"
+                } bg-black text-white-100 px-2 py-1 rounded-full transition-all`}
+              >
+                {status === "loaded" && `$${topProucts[selectedWatch].price}`}
               </p>
             </div>
             {/* card buttons */}
-            <div className="flex items-center justify-center md:justify-between gap-x-2 md:hidden">
+            <div className="flex items-center justify-center md:justify-between gap-x-2 md:invisible">
               <button className="bg-black text-white-100 px-4 py-2 rounded-md flex-1 ">
                 Show Detail
               </button>
@@ -166,17 +166,6 @@ function WatchSwiper({ topProucts }) {
           </div>
         )}
       </div>
-
-      {/* desktop details */}
-      {/* <div className="bg-red-50 w-2/3 h-full hidden md:flex">
-        <div
-          style={{ backgroundColor: bg.currentBg }}
-          className="w-full h-full"
-        >
-          hey
-        </div>
-        <div className=""></div>
-      </div> */}
     </div>
   );
 }

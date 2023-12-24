@@ -30,9 +30,6 @@ function HomePageHero() {
 function WatchSwiper({ topProucts }) {
   // selected product state (index)
   const [selectedWatch, setSelectedWatch] = useState(0);
-  // let selectedWatch = useRef(0);
-  const swiperElRef = useRef(null);
-
   // animation status => loaded || onSwipe
   const [status, setStatus] = useState("loaded");
   // background color state
@@ -59,40 +56,34 @@ function WatchSwiper({ topProucts }) {
     }
   }, [status]);
 
-  useEffect(() => {
-    if (!swiperElRef.current) return;
-    // listen for Swiper events using addEventListener
-    swiperElRef.current.addEventListener("swiperprogress", (e) => {
-      const [swiper, progress] = e.detail;
-
-      setStatus("onSwipe");
-
-      if (progress === 0) {
-        setSelectedWatch(0);
-      }
-      if (progress === 0.5) {
-        setSelectedWatch(1);
-      }
-      if (progress === 1) {
-        setSelectedWatch(2);
-      }
-    });
-
-    swiperElRef.current.addEventListener("swiperslidechange", (e) => {
-      setStatus("loaded");
-    });
-  }, []);
-
   const settings = {
     dots: true,
     infinite: true,
     speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    onSwipe: (e) => console.log(e),
+    onSwipe: onSwipe,
     dots: false,
     arrows: false,
   };
+
+  function onSwipe(e) {
+    setStatus("onSwipe");
+
+    setTimeout(() => {
+      if (e === "left") {
+        if (selectedWatch === 2) setSelectedWatch(0);
+
+        setSelectedWatch((prev) => prev + 1);
+      } else if (e === "right") {
+        if (selectedWatch === 0) setSelectedWatch(2);
+
+        setSelectedWatch((prev) => prev - 1);
+      }
+
+      setStatus("loaded");
+    }, 800);
+  }
 
   return (
     <div className="w-screen h-screen relative sm:container sm:mx-auto sm:h-[500px] 2xl:max-w-6xl flex items-center justify-center md:justify-start mb-16">
@@ -128,22 +119,23 @@ function WatchSwiper({ topProucts }) {
         {topProucts.length > 0 && (
           <div>
             {/* image container */}
-            {/* <div
-              className={`flex px-4 py-2 bg-white-100 bg-opacity-20 md:bg-opacity-0 rounded-lg`}
-            > */}
-            <Slider {...settings} className="bg-red-400 md:max-w-xs px-4 py-2">
-              {topProucts.map((product) => (
-                <img
-                  key={product.id}
-                  src={product.thumbnail}
-                  alt={product.name}
-                  className="w-44 h-44 object-contain"
-                />
-              ))}
-            </Slider>
-            {/* </div> */}
+            <>
+              <Slider
+                {...settings}
+                className="bg-white-100 backdrop-blur-sm bg-opacity-25 rounded-md md:max-w-xs px-4 py-2"
+              >
+                {topProucts.map((product) => (
+                  <img
+                    key={product.id}
+                    src={product.thumbnail}
+                    alt={product.name}
+                    className="w-44 h-44 object-contain"
+                  />
+                ))}
+              </Slider>
+            </>
             {/* description  */}
-            <div className="w-full text-center py-4 px-2 flex flex-col justify-center items-center gap-y-2 md:hidden">
+            <div className="w-full text-center py-4 px-2 flex flex-col justify-center items-center gap-y-2">
               {/* title */}
               <h2
                 className={`${
@@ -158,11 +150,10 @@ function WatchSwiper({ topProucts }) {
               </p>
             </div>
             {/* card buttons */}
-            <div className="flex items-center justify-center md:justify-between gap-x-2 md:hidden">
+            <div className="flex items-center justify-center md:justify-between gap-x-2">
               <button className="bg-black text-white-100 px-4 py-2 rounded-md flex-1 ">
                 show detail
               </button>
-              <div className="hidden md:block">....</div>
             </div>
           </div>
         )}

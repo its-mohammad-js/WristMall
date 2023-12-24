@@ -58,25 +58,25 @@ function WatchSwiper({ topProucts }) {
   }, [status]);
 
   useEffect(() => {
-    if (topProucts.length)
-      // listen for Swiper events using addEventListener
-      swiperElRef.current.addEventListener("swiperprogress", (e) => {
-        const [swiper, progress] = e.detail;
-        // console.log(swiper);
+    if (!swiperElRef.current) return;
+    // listen for Swiper events using addEventListener
+    swiperElRef.current.addEventListener("swiperprogress", (e) => {
+      const [swiper, progress] = e.detail;
+      // console.log(swiper);
 
-        if (progress === 0) {
-          console.log("first watch");
-          setSelectedWatch(0);
-        }
-        if (progress === 0.5) {
-          console.log("second watch");
-          setSelectedWatch(1);
-        }
-        if (progress === 1) {
-          console.log("last watch");
-          setSelectedWatch(2);
-        }
-      });
+      if (progress === 0) {
+        console.log("first watch");
+        setSelectedWatch(0);
+      }
+      if (progress === 0.5) {
+        console.log("second watch");
+        setSelectedWatch(1);
+      }
+      if (progress === 1) {
+        console.log("last watch");
+        setSelectedWatch(2);
+      }
+    });
 
     swiperElRef.current.addEventListener("swiperslidechange", (e) => {
       const [swiper, progress] = e.detail;
@@ -163,12 +163,12 @@ function WatchSwiper({ topProucts }) {
                 show detail
               </button>
               <div className="hidden md:block">....</div>
-              <button
+              {/* <button
                 disabled={status === "onSwipe"}
                 className="bg-black text-white-100 md:text-4xl px-4 py-2.5 rounded-md text-lg"
               >
                 <FaArrowRight />
-              </button>
+              </button> */}
             </div>
           </div>
         )}

@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../rudex/products/productActions";
-import { FaArrowRight } from "react-icons/fa";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 function HomePageHero() {
   //  products state
@@ -62,6 +64,7 @@ function WatchSwiper({ topProucts }) {
     // listen for Swiper events using addEventListener
     swiperElRef.current.addEventListener("swiperprogress", (e) => {
       const [swiper, progress] = e.detail;
+
       setStatus("onSwipe");
 
       if (progress === 0) {
@@ -76,21 +79,24 @@ function WatchSwiper({ topProucts }) {
     });
 
     swiperElRef.current.addEventListener("swiperslidechange", (e) => {
-      const [swiper, progress] = e.detail;
       setStatus("loaded");
-      // console.log("slide changed");
     });
-
-    // console.log(selectedWatch);
   }, []);
 
-  useEffect(() => {
-    console.log(status);
-  }, [status]);
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    onSwipe: (e) => console.log(e),
+    dots: false,
+    arrows: false,
+  };
 
   return (
     <div className="w-screen h-screen relative sm:container sm:mx-auto sm:h-[500px] 2xl:max-w-6xl flex items-center justify-center md:justify-start mb-16">
-      {/* animate background color */}
+      {/* background video  */}
       <video
         autoPlay
         loop
@@ -99,6 +105,7 @@ function WatchSwiper({ topProucts }) {
       >
         <source src="./sample.webm" />
       </video>
+
       {/* typing text animation */}
       <div className="absolute z-10 w-full flex justify-center items-center px-8">
         <h1
@@ -116,31 +123,24 @@ function WatchSwiper({ topProucts }) {
           status === "onSwipe"
             ? "bg-opacity-40 backdrop-blur-0"
             : "bg-opacity-60 backdrop-blur-sm"
-        } bg-white-100 w-11/12 md:w-2/5 md:h-full md:flex items-center justify-center px-4 py-2 z-20 rounded-md md:bg-opacity-0 md:px-0 md:py-0 md:backdrop-blur-0`}
+        } bg-white-90 w-11/12 md:w-2/5 md:h-full md:flex items-center justify-center px-4 py-2 z-20 rounded-md md:bg-opacity-0 md:px-0 md:py-0 md:backdrop-blur-0`}
       >
         {topProucts.length > 0 && (
           <div>
             {/* image container */}
             {/* <div
-              className={`flex justify-center items-center px-4 py-2 bg-white-100 bg-opacity-20 md:bg-opacity-0 transition-all rounded-lg`}
+              className={`flex px-4 py-2 bg-white-100 bg-opacity-20 md:bg-opacity-0 rounded-lg`}
             > */}
-            <swiper-container
-              ref={swiperElRef}
-              slides-per-view="1"
-              speed="1000"
-              autoPlay="true"
-              css-mode="false"
-            >
+            <Slider {...settings} className="bg-red-400 md:max-w-xs px-4 py-2">
               {topProucts.map((product) => (
-                <swiper-slide key={product.id}>
-                  <img
-                    src={product.thumbnail}
-                    alt={product.name}
-                    className=""
-                  />
-                </swiper-slide>
+                <img
+                  key={product.id}
+                  src={product.thumbnail}
+                  alt={product.name}
+                  className="w-44 h-44 object-contain"
+                />
               ))}
-            </swiper-container>
+            </Slider>
             {/* </div> */}
             {/* description  */}
             <div className="w-full text-center py-4 px-2 flex flex-col justify-center items-center gap-y-2 md:hidden">
@@ -163,12 +163,6 @@ function WatchSwiper({ topProucts }) {
                 show detail
               </button>
               <div className="hidden md:block">....</div>
-              {/* <button
-                disabled={status === "onSwipe"}
-                className="bg-black text-white-100 md:text-4xl px-4 py-2.5 rounded-md text-lg"
-              >
-                <FaArrowRight />
-              </button> */}
             </div>
           </div>
         )}
@@ -178,31 +172,3 @@ function WatchSwiper({ topProucts }) {
 }
 
 export default HomePageHero;
-
-// <div
-//   className={`${
-//     status === "onSwipe"
-//       ? "bg-opacity-40 backdrop-blur-0"
-//       : "bg-opacity-60 backdrop-blur-sm"
-//   } bg-white-100 w-11/12 md:w-2/5 md:h-full md:flex items-center justify-center px-4 py-2 z-20 rounded-md md:bg-opacity-0 md:px-0 md:py-0 md:backdrop-blur-0`}
-// >
-//   <swiper-container
-//     ref={swiperElRef}
-//     slides-per-view="1"
-//     speed="1000"
-//     autoPlay="true"
-//     css-mode="false"
-//   >
-//     {topProucts.map((product) => (
-//       <swiper-slide key={product.id}>
-//         <img src={product.thumbnail} alt={product.name} />
-
-//         {/* <span>{product.price}</span> */}
-
-//         {/* <p>{product.name}</p> */}
-//       </swiper-slide>
-//     ))}
-//   </swiper-container>
-
-//   <p>{topProucts[selectedWatch].name}</p>
-// </div>;

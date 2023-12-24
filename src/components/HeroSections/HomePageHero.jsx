@@ -105,7 +105,7 @@ function WatchSwiper({ topProucts }) {
       >
         <swiper-container
           slides-per-view="1"
-          speed="1200"
+          speed="1000"
           autoPlay="true"
           css-mode="false"
         >

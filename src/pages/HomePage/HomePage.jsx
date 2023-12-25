@@ -3,6 +3,9 @@ import HomePageHero from "../../components/HeroSections/HomePageHero";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../rudex/products/productActions";
 import Slider from "react-slick";
+import { TbTruckDelivery } from "react-icons/tb";
+import { BsWatch } from "react-icons/bs";
+import { FaMoneyBillWave } from "react-icons/fa";
 
 function HomePage() {
   //  products state
@@ -78,8 +81,8 @@ function OverviewSection({ productsData }) {
             )}
           </Slider>
         </div>
-        <div className="md:w-2/3">
-          <p className="text-white-100 mt-4 text-base">
+        <div className="md:w-2/3 flex flex-col items-center">
+          <p className="text-white-100 mt-4 text-base ">
             Welcome to Wrist Mall, where time meets style! ⌚️ Step into a world
             of exquisite timepieces that redefine luxury and elegance. Our
             collection boasts a fusion of classic and contemporary designs,
@@ -94,6 +97,21 @@ function OverviewSection({ productsData }) {
               style! ⏱️
             </span>
           </p>
+
+          <div className="w-full flex flex-col gap-y-4 md:flex-row items-center justify-between px-4 py-3 md:py-10 md:mt-5">
+            <p className="text-5xl flex flex-col md:flex-row text-Buff-300 items-center gap-x-2 cursor-pointer group">
+              <TbTruckDelivery className="group-hover:-translate-y-3 transition-all" />
+              <span className="!text-lg">Delivery</span>
+            </p>
+            <p className="text-5xl flex flex-col md:flex-row text-Buff-300 items-center gap-x-2 cursor-pointer group">
+              <BsWatch className="group-hover:-translate-y-3 transition-all" />
+              <span className="!text-lg">Unique Products</span>
+            </p>
+            <p className="text-5xl flex flex-col md:flex-row text-Buff-300 items-center gap-x-2 cursor-pointer group">
+              <FaMoneyBillWave className="group-hover:-translate-y-3 transition-all" />
+              <span className="!text-lg">Expert Advice </span>
+            </p>
+          </div>
         </div>
       </div>
     </div>

@@ -35,7 +35,6 @@ function WatchSwiper({ topProucts }) {
 
   // slick.js settings
   const settings = {
-    dots: true,
     infinite: true,
     speed: 1000,
     slidesToShow: 1,
@@ -235,7 +234,7 @@ function WatchSwiper({ topProucts }) {
                     )
                   )}
                   <li className="border-b-2 border-white-99 ">
-                    prive : ${topProucts[selectedWatch].price}
+                    price : ${topProucts[selectedWatch].price}
                   </li>
                 </ul>
               </div>

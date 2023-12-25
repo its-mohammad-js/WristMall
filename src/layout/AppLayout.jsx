@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar/Navbar";
 function AppLayout({ children }) {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       {children}
       <Footer />
     </>

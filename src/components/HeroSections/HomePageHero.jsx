@@ -133,7 +133,7 @@ function WatchSwiper({ topProucts }) {
                     alt={product.name}
                     className={`${
                       status !== "loaded" && "animate-spin duration-500"
-                    } w-44 h-44 object-contain md:h-60`}
+                    } w-44 h-44 object-contain md:h-56 md:w-fit`}
                   />
                 ))}
               </Slider>
@@ -167,7 +167,7 @@ function WatchSwiper({ topProucts }) {
         )}
       </div>
 
-      {/*  */}
+      {/* details section (desktop vision) */}
       <div
         className={`${
           status === "onSwipe"
@@ -187,14 +187,14 @@ function WatchSwiper({ topProucts }) {
             ></div>
 
             <div className="w-full h-full absolute">
-              <div id="wrapper" className="w-full h-full ">
+              <div id="wrapper" className="w-full h-full">
                 <div
                   style={{
                     backgroundColor: topProucts[selectedWatch].secondaryColor,
                   }}
                   className={`${
                     status === "onSwipe" && "animate-swapeOut"
-                  } w-52 h-52 rounded-full -z-20 -ml-20`}
+                  } w-52 h-52 rounded-full -z-20 -ml-20 transition-all`}
                 ></div>
                 <div
                   style={{
@@ -202,7 +202,7 @@ function WatchSwiper({ topProucts }) {
                   }}
                   className={`${
                     status === "onSwipe" && "animate-swapeIn"
-                  } w-52 h-52 rounded-full -z-20 float-right`}
+                  } w-40 h-40 rounded-full -z-20 float-right mt-5 transition-all`}
                 ></div>
               </div>
             </div>
@@ -214,11 +214,14 @@ function WatchSwiper({ topProucts }) {
                   : "visible opacity-100"
               } z-20 bg-EerieBlack-600 mt-4 bg-opacity-75 backdrop-blur-md border-[2px] border-white-100 ring-[3px] ring-Buff-400 w-full mx-16 transition-all text-white-100 px-4 py-2 rounded-md`}
             >
-              <h2 className="text-center text-xl">
+              <h2
+                style={{ color: topProucts[selectedWatch].secondaryColor }}
+                className="text-center text-xl transition-all"
+              >
                 {topProucts[selectedWatch].name}
               </h2>
 
-              <p className="line-clamp-4">
+              <p className="line-clamp-4 text-sm mt-1">
                 {topProucts[selectedWatch].description}
               </p>
 
@@ -231,8 +234,15 @@ function WatchSwiper({ topProucts }) {
                       </li>
                     )
                   )}
+                  <li className="border-b-2 border-white-99 ">
+                    prive : ${topProucts[selectedWatch].price}
+                  </li>
                 </ul>
               </div>
+
+              <button className="bg-Buff-500 px-2 py-1 rounded-md text-white-100 border-b-2 hover:border-Buff-500 text-sm transition-all">
+                Show Details
+              </button>
             </div>
           </>
         )}

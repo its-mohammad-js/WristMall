@@ -28,81 +28,24 @@ export default {
         },
       },
       keyframes: {
-        swapeOut: {
-          "0%": {
-            transform: "translate(0px, 0) rotate(60deg)",
-            opacity: 0.2,
-          },
-          "20%": {
-            transform: "translate(60px, 0) rotate(120deg)",
-            opacity: 0.2,
-          },
-          "40%": {
-            transform: "translate(120px, 0) rotate(180deg)",
-            opacity: 0.2,
-          },
-          "60%": {
-            transform: "translate(180px, 0) rotate(240deg)",
-            opacity: 0.2,
-          },
-          "80%": {
-            transform: "translate(240px, 0) rotate(300deg)",
-            opacity: 0.2,
-          },
-          "100%": {
-            transform: "translate(300px, 0) rotate(360deg)",
-            opacity: 0,
-            display: "none",
-          },
-        },
-        swapeIn: {
-          "0%": {
-            transform: "translate(-100px, 0) rotate(60deg)",
-            opacity: 0,
-          },
-          "20%": {
-            transform: "translate(-80px, 0) rotate(120deg)",
-            opacity: 0.2,
-          },
-          "40%": {
-            transform: "translate(-60px, 0) rotate(180deg)",
-            opacity: 0.4,
-          },
-          "60%": {
-            transform: "translate(-40px, 0) rotate(240deg)",
-            opacity: 0.6,
-          },
-          "80%": {
-            transform: "translate(-20px, 0) rotate(300deg)",
-            opacity: 0.8,
-          },
-          "100%": { transform: "translate(0px, 0) rotate(360deg)", opacity: 1 },
-        },
         fadeIn: {
           "0%": {
-            display: "block",
             width: "10%",
-            // opacity: 0.1,
           },
           "20%": {
             width: "20%",
-            // opacity: 0.2,
           },
           "40%": {
             width: "40%",
-            // opacity: 0.4,
           },
           "60%": {
             width: "60%",
-            opacity: 0.6,
           },
           "80%": {
             width: "80%",
-            opacity: 0.8,
           },
           "100%": {
             width: "100%",
-            opacity: 1,
           },
         },
         fadeOut: {
@@ -139,9 +82,8 @@ export default {
       animation: {
         swapeOut: "swapeOut 1.05s linear",
         swapeIn: "swapeIn 1.05s linear",
-        fadeIn: "fadeIn 1.05s linear",
-        fadeOut: "fadeOut 1.05s linear",
-        // typing: "typing 2s steps(20) infinite alternate, blink .7s infinite",
+        fadeIn: "fadeIn 1s linear",
+        fadeOut: "fadeOut 0.8s linear",
         typing: "typing 1s steps(40, end)",
       },
     },

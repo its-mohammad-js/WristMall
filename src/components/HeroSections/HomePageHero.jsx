@@ -32,29 +32,6 @@ function WatchSwiper({ topProucts }) {
   const [selectedWatch, setSelectedWatch] = useState(0);
   // animation status => loaded || onSwipe
   const [status, setStatus] = useState("loaded");
-  // background color state
-  const [bg, setBg] = useState({
-    currentBg: "",
-    nextBg: "",
-  });
-
-  // useEffect(() => {
-  //   if (topProucts.length && topProucts[selectedWatch.current]) {
-  //     setBg((prev) => {
-  //       if (selectedWatch.current >= 2) {
-  //         return {
-  //           currentBg: topProucts[selectedWatch.current].secondaryColor,
-  //           nextBg: topProucts[0].secondaryColor,
-  //         };
-  //       } else {
-  //         return {
-  //           currentBg: topProucts[selectedWatch.current].secondaryColor,
-  //           nextBg: topProucts[selectedWatch.current + 1].secondaryColor,
-  //         };
-  //       }
-  //     });
-  //   }
-  // }, [status]);
 
   // slick.js settings
   const settings = {
@@ -75,23 +52,28 @@ function WatchSwiper({ topProucts }) {
 
     setTimeout(() => {
       if (e === "left") {
-        if (selectedWatch === 2) setSelectedWatch(0);
-
-        setSelectedWatch((prev) => prev + 1);
+        if (selectedWatch === 2) {
+          setSelectedWatch(0);
+        } else {
+          setSelectedWatch((prev) => prev + 1);
+        }
       } else if (e === "right") {
-        if (selectedWatch === 0) setSelectedWatch(2);
-
-        setSelectedWatch((prev) => prev - 1);
+        if (selectedWatch === 0) {
+          setSelectedWatch(2);
+        } else {
+          setSelectedWatch((prev) => prev - 1);
+        }
       }
 
       setStatus("loaded");
     }, 1000);
   }
 
+  // customize pagination dots (jsx)
   function appendDotsFunc(e) {
     return (
       <>
-        <div className="bottom-5 -mt- ml- md:flex gap-x-2">
+        <div className="flex justify-center mt-2 gap-x-2">
           {e.map((p) => (
             <span
               key={p.key}
@@ -112,13 +94,13 @@ function WatchSwiper({ topProucts }) {
         autoPlay
         loop
         muted
-        className="h-screen w-screen md:h-full object-cover absolute"
+        className="h-screen w-screen md:w-1/3 md:h-full md:rounded-bl-md object-cover absolute"
       >
         <source src="./sample.webm" />
       </video>
 
       {/* typing text animation */}
-      <div className="absolute z-10 w-full flex justify-center items-center px-8">
+      <div className="absolute z-10 w-full flex justify-center items-center px-8 md:pl-36">
         <h1
           className={`${
             status === "onSwipe" ? "animate-typing duration-1000" : "hidden"
@@ -138,7 +120,7 @@ function WatchSwiper({ topProucts }) {
       >
         {topProucts.length > 0 && (
           <div>
-            {/* image container */}
+            {/* image slider */}
             <>
               <Slider
                 {...settings}
@@ -155,21 +137,6 @@ function WatchSwiper({ topProucts }) {
                   />
                 ))}
               </Slider>
-              {/* pagination dots */}
-              {/* <div className="bottom-5 -mt-3 ml-3 hidden md:flex gap-x-1.5">
-                {topProucts.map((p, index) => {
-                  console.log(index, selectedWatch);
-
-                  return (
-                    <span
-                      key={p.id}
-                      className={`${
-                        index === selectedWatch && "!bg-black"
-                      } p-1 bg-white-100 rounded-full`}
-                    ></span>
-                  );
-                })}
-              </div> */}
             </>
             {/* description  */}
             <div className="w-full text-center py-4 px-2 flex flex-col justify-center items-center gap-y-2 md:invisible">
@@ -197,6 +164,52 @@ function WatchSwiper({ topProucts }) {
               </button>
             </div>
           </div>
+        )}
+      </div>
+
+      {/*  */}
+      <div
+        className={`${
+          status === "onSwipe"
+            ? "bg-opacity-0"
+            : "bg-Buff-300 opacity-100 rounded-br-md"
+        } w-2/3 h-full hidden md:flex  items-center transition-all relative`}
+      >
+        {topProucts.length && (
+          <>
+            <div
+              style={{
+                backgroundColor: topProucts[selectedWatch].secondaryColor,
+              }}
+              className={`${
+                status === "onSwipe" && "animate-fadeIn opacity-40"
+              } h-full w-full opacity-0 transition-all rounded-br-md absolute z-0`}
+            ></div>
+
+            <div
+              className={`${
+                status === "onSwipe"
+                  ? "invisible opacity-0"
+                  : "visible opacity-100"
+              } z-10 bg-EerieBlack-600 w-full mx-16 transition-all`}
+            >
+              <h2 className="text-white-100">
+                {topProucts[selectedWatch].name}
+              </h2>
+
+              <p className="text-white-90">
+                {topProucts[selectedWatch].description}
+              </p>
+
+              <ul className="text-white-100">
+                {topProucts[selectedWatch].summaryDetails.map(
+                  (summary, index) => (
+                    <li key={index}>{summary}</li>
+                  )
+                )}
+              </ul>
+            </div>
+          </>
         )}
       </div>
     </div>

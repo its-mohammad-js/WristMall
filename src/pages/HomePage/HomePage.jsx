@@ -64,21 +64,35 @@ function OverviewSection({ productsData }) {
         <div className="md:w-1/3">
           <Slider
             {...settings}
-            className="rounded-tr-3xl rounded-bl-2xl custome-shadow"
+            className="rounded-tr-3xl rounded-bl-2xl custome-shadow bg-EerieBlack-400"
           >
-            {productsData[0].images.map((link, index) => (
-              <img
-                key={index}
-                src={link}
-                // alt={productsData[selectedProduct].name}
-                className="rounded-tr-3xl rounded-bl-2xl w-full h-60 object-cover transition-all"
-              />
-            ))}
+            {productsData[0].images.map(
+              (link, index) =>
+                index !== 0 && (
+                  <img
+                    key={index}
+                    src={link}
+                    className="rounded-tr-3xl rounded-bl-2xl w-full h-72 md:h-96 object-cover transition-all"
+                  />
+                )
+            )}
           </Slider>
         </div>
-        <div className="md:w-2/3 ">
-          <p className="text-white-100 mt-4 text-base ">
-            {productsData[selectedProduct].description}
+        <div className="md:w-2/3">
+          <p className="text-white-100 mt-4 text-base">
+            Welcome to Wrist Mall, where time meets style! ⌚️ Step into a world
+            of exquisite timepieces that redefine luxury and elegance. Our
+            collection boasts a fusion of classic and contemporary designs,
+            ensuring there's a watch for every taste.{" "}
+            <span className="hidden md:inline-block">
+              {" "}
+              Whether you're a horology enthusiast or seeking the perfect gift,
+              we've got you covered. Our expert staff is dedicated to providing
+              personalized service to help you find the perfect timepiece. At
+              Wrist Mall, every watch tells a story and becomes a cherished
+              companion. Visit us today and discover the art of keeping time in
+              style! ⏱️
+            </span>
           </p>
         </div>
       </div>

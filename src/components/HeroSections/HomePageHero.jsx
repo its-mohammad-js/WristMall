@@ -94,7 +94,7 @@ function WatchSwiper({ topProucts }) {
         autoPlay
         loop
         muted
-        className="h-screen w-screen md:w-1/3 md:h-full md:rounded-bl-md object-cover absolute"
+        className="h-screen w-screen md:w-1/3 md:h-full md:rounded-bl-md object-cover absolute z-10"
       >
         <source src="./sample.webm" />
       </video>
@@ -124,7 +124,7 @@ function WatchSwiper({ topProucts }) {
             <>
               <Slider
                 {...settings}
-                className="bg-white-100 backdrop-blur-sm bg-opacity-25 md:bg-opacity-10 rounded-md md:max-w-xs px-4 py-2 md:mt-40"
+                className="bg-Buff-100 md:bg-Buff-400 backdrop-blur-sm bg-opacity-25 md:bg-opacity-10 rounded-md md:max-w-xs px-4 py-2 md:mt-40"
               >
                 {topProucts.map((product) => (
                   <img
@@ -186,12 +186,33 @@ function WatchSwiper({ topProucts }) {
               } h-full w-full opacity-0 transition-all rounded-br-md absolute z-0`}
             ></div>
 
+            <div className="w-full h-full absolute">
+              <div id="wrapper" className="w-full h-full ">
+                <div
+                  style={{
+                    backgroundColor: topProucts[selectedWatch].secondaryColor,
+                  }}
+                  className={`${
+                    status === "onSwipe" && "animate-swapeOut"
+                  } w-52 h-52 rounded-full -z-20 -ml-20`}
+                ></div>
+                <div
+                  style={{
+                    backgroundColor: topProucts[selectedWatch].primaryColor,
+                  }}
+                  className={`${
+                    status === "onSwipe" && "animate-swapeIn"
+                  } w-52 h-52 rounded-full -z-20 float-right`}
+                ></div>
+              </div>
+            </div>
+
             <div
               className={`${
                 status === "onSwipe"
                   ? "invisible opacity-0"
                   : "visible opacity-100"
-              } z-10 bg-EerieBlack-600 mt-4 bg-opacity-75 backdrop-blur-md border-[2px] border-white-100 ring-[3px] ring-Buff-400 w-full mx-16 transition-all text-white-100 px-4 py-2 rounded-md`}
+              } z-20 bg-EerieBlack-600 mt-4 bg-opacity-75 backdrop-blur-md border-[2px] border-white-100 ring-[3px] ring-Buff-400 w-full mx-16 transition-all text-white-100 px-4 py-2 rounded-md`}
             >
               <h2 className="text-center text-xl">
                 {topProucts[selectedWatch].name}

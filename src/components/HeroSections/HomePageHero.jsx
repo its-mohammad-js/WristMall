@@ -100,7 +100,7 @@ function WatchSwiper({ topProucts }) {
       </video>
 
       {/* typing text animation */}
-      <div className="absolute z-10 w-full flex justify-center items-center px-8 md:pl-36">
+      <div className="absolute z-10 w-full flex justify-center items-center px-8 md:pl-52">
         <h1
           className={`${
             status === "onSwipe" ? "animate-typing duration-1000" : "hidden"
@@ -191,23 +191,27 @@ function WatchSwiper({ topProucts }) {
                 status === "onSwipe"
                   ? "invisible opacity-0"
                   : "visible opacity-100"
-              } z-10 bg-EerieBlack-600 w-full mx-16 transition-all`}
+              } z-10 bg-EerieBlack-600 mt-4 bg-opacity-75 backdrop-blur-md border-[2px] border-white-100 ring-[3px] ring-Buff-400 w-full mx-16 transition-all text-white-100 px-4 py-2 rounded-md`}
             >
-              <h2 className="text-white-100">
+              <h2 className="text-center text-xl">
                 {topProucts[selectedWatch].name}
               </h2>
 
-              <p className="text-white-90">
+              <p className="line-clamp-4">
                 {topProucts[selectedWatch].description}
               </p>
 
-              <ul className="text-white-100">
-                {topProucts[selectedWatch].summaryDetails.map(
-                  (summary, index) => (
-                    <li key={index}>{summary}</li>
-                  )
-                )}
-              </ul>
+              <div className="my-4">
+                <ul className="">
+                  {topProucts[selectedWatch].summaryDetails.map(
+                    (summary, index) => (
+                      <li key={index} className="border-b-2 border-white-99 ">
+                        {summary}
+                      </li>
+                    )
+                  )}
+                </ul>
+              </div>
             </div>
           </>
         )}

@@ -18,3 +18,9 @@ body {
     0 12px 0 #181818, 0 13px 0 #161616, 0 14px 0 #141414, 0 15px 0 #121212,
     0 22px 30px rgba(0, 0, 0, 0.9);
 }
+
+.custome-shadow {
+  -webkit-box-shadow: 25px -24px 0px -13px rgba(251, 249, 249, 0.75);
+  -moz-box-shadow: 25px -24px 0px -13px rgba(243, 241, 241, 0.75);
+  box-shadow: 25px -24px 0px -13px rgba(254, 253, 253, 0.75);
+}

@@ -88,7 +88,7 @@ function WatchSwiper({ topProucts }) {
   }
 
   return (
-    <div className="w-screen h-screen relative sm:container sm:mx-auto sm:h-[450px] 2xl:max-w-6xl flex items-center justify-center md:justify-start mb-16">
+    <div className="w-screen h-screen relative sm:container sm:mx-auto sm:h-[450px] 2xl:max-w-6xl flex items-center justify-center md:justify-start">
       {/* background video  */}
       <video
         autoPlay
@@ -239,7 +239,6 @@ function WatchSwiper({ topProucts }) {
                   </li>
                 </ul>
               </div>
-
               <button className="bg-Buff-500 px-2 py-1 rounded-md text-white-100 border-b-2 hover:border-Buff-500 text-sm transition-all">
                 Show Details
               </button>

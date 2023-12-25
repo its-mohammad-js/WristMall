@@ -36,7 +36,7 @@ function WatchSwiper({ topProucts }) {
   // slick.js settings
   const settings = {
     infinite: true,
-    speed: 1000,
+    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     onSwipe: onSwipe,

@@ -20,7 +20,7 @@ body {
 }
 
 .custome-shadow {
-  -webkit-box-shadow: 25px -24px 0px -13px #3d3d3d;
-  -moz-box-shadow: 25px -24px 0px -13px #3d3d3d;
-  box-shadow: 25px -24px 0px -13px #3d3d3d;
+  -webkit-box-shadow: 25px -24px 0px -13px #999999;
+  -moz-box-shadow: 25px -24px 0px -13px #999999;
+  box-shadow: 25px -24px 0px -13px #999999;
 }

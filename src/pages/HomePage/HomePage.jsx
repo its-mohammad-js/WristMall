@@ -5,7 +5,10 @@ import { fetchProducts } from "../../rudex/products/productActions";
 import Slider from "react-slick";
 import { TbTruckDelivery } from "react-icons/tb";
 import { BsWatch } from "react-icons/bs";
-import { FaMoneyBillWave } from "react-icons/fa";
+import { FaGift, FaMoneyBillWave } from "react-icons/fa";
+import { FaClock } from "react-icons/fa6";
+import { BiSupport } from "react-icons/bi";
+import { SiSpringsecurity } from "react-icons/si";
 
 function HomePage() {
   //  products state
@@ -31,21 +34,9 @@ function HomePage() {
 export default HomePage;
 
 function OverviewSection({ productsData }) {
-  const [selectedProduct, setSelelctedProduct] = useState(0);
-  // let selectedProduct = useRef(0);
-
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     const index = Math.ceil(Math.random() * productsData.length);
-
-  //     console.log(index);
-
-  //     setSelelctedProduct(index);
-  //   }, 5000);
-  // }, []);
-
   // slick.js settings
   const settings = {
+    speed: 1000,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -53,7 +44,6 @@ function OverviewSection({ productsData }) {
     arrows: false,
     vertical: true,
     touchMove: false,
-    fade: true,
     autoplay: true,
     autoplaySpeed: 3000,
   };
@@ -67,7 +57,7 @@ function OverviewSection({ productsData }) {
         <div className="md:w-1/3">
           <Slider
             {...settings}
-            className="rounded-tr-3xl rounded-bl-2xl custome-shadow bg-EerieBlack-400"
+            className="rounded-tr-3xl h-64 md:h-96 rounded-bl-2xl custome-shadow bg-EerieBlack-400"
           >
             {productsData[0].images.map(
               (link, index) =>
@@ -75,14 +65,14 @@ function OverviewSection({ productsData }) {
                   <img
                     key={index}
                     src={link}
-                    className="rounded-tr-3xl rounded-bl-2xl w-full h-72 md:h-96 object-cover transition-all"
+                    className="rounded-tr-3xl rounded-bl-2xl w-full h-64 md:h-96 object-cover transition-all"
                   />
                 )
             )}
           </Slider>
         </div>
         <div className="md:w-2/3 flex flex-col items-center">
-          <p className="text-white-100 mt-4 text-base ">
+          <p className="text-white-100 mt-4 text-base text-center md:text-start">
             Welcome to Wrist Mall, where time meets style! ⌚️ Step into a world
             of exquisite timepieces that redefine luxury and elegance. Our
             collection boasts a fusion of classic and contemporary designs,
@@ -99,18 +89,66 @@ function OverviewSection({ productsData }) {
           </p>
 
           <div className="w-full flex flex-col gap-y-4 md:flex-row items-center justify-between px-4 py-3 md:py-10 md:mt-5">
-            <p className="text-5xl flex flex-col md:flex-row text-Buff-300 items-center gap-x-2 cursor-pointer group">
+            <p className="text-5xl flex flex-col md:flex-row text-Buff-200 items-center gap-x-2 cursor-pointer group">
               <TbTruckDelivery className="group-hover:-translate-y-3 transition-all" />
               <span className="!text-lg">Delivery</span>
             </p>
-            <p className="text-5xl flex flex-col md:flex-row text-Buff-300 items-center gap-x-2 cursor-pointer group">
+            <p className="text-5xl flex flex-col md:flex-row text-Buff-200 items-center gap-x-2 cursor-pointer group">
               <BsWatch className="group-hover:-translate-y-3 transition-all" />
               <span className="!text-lg">Unique Products</span>
             </p>
-            <p className="text-5xl flex flex-col md:flex-row text-Buff-300 items-center gap-x-2 cursor-pointer group">
+            <p className="text-5xl flex flex-col md:flex-row text-Buff-200 items-center gap-x-2 cursor-pointer group">
               <FaMoneyBillWave className="group-hover:-translate-y-3 transition-all" />
               <span className="!text-lg">Expert Advice </span>
             </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-y-4">
+        {/* title */}
+        <h2 className="neon-title text-3xl my-1">Key Features</h2>
+        {/* description */}
+        <p className="text-white-100 text-center">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores
+          sint doloribus cum
+        </p>
+        {/* cards */}
+        <div className="flex flex-col md:flex-row gap-x-4 md:mx-4 items-center justify-center gap-y-4">
+          <div className="bg-Buff-100 rounded-md flex flex-col items-start justify-between px-2 py-1 w-3/4 h-32">
+            <p className="bg-Buff-400 p-1.5 text-3xl m-1 rounded-full">
+              <FaClock className="text-Buff-100" />
+            </p>
+            <span className="text-EerieBlack-600 font-semibold px-1">
+              24-hour car delivery
+            </span>
+          </div>
+
+          <div className="bg-Buff-100 rounded-md flex flex-col items-start justify-between px-2 py-1 w-3/4 h-32">
+            <p className="bg-Buff-400 p-1.5 text-3xl m-1 rounded-full">
+              <BiSupport className="text-Buff-100" />
+            </p>
+            <span className="text-EerieBlack-600 font-semibold px-1">
+              24-7 technical support
+            </span>
+          </div>
+
+          <div className="bg-Buff-100 rounded-md flex flex-col items-start justify-between px-2 py-1 w-3/4 h-32">
+            <p className="bg-Buff-400 p-1.5 text-3xl m-1 rounded-full">
+              <FaGift className="text-Buff-100" />
+            </p>
+            <span className="text-EerieBlack-600 font-semibold px-1">
+              All watches send with a gift
+            </span>
+          </div>
+
+          <div className="bg-Buff-100 rounded-md flex flex-col items-start justify-between px-2 py-1 w-3/4 h-32">
+            <p className="bg-Buff-400 p-1.5 text-3xl m-1 rounded-full">
+              <SiSpringsecurity className="text-Buff-100" />
+            </p>
+            <span className="text-EerieBlack-600 font-semibold px-1">
+              Absolute confidentiality
+            </span>
           </div>
         </div>
       </div>

@@ -8,7 +8,6 @@ import { BsWatch } from "react-icons/bs";
 import { FaGift, FaMoneyBillWave } from "react-icons/fa";
 import { FaClock } from "react-icons/fa6";
 import { BiSupport } from "react-icons/bi";
-import { SiSpringsecurity } from "react-icons/si";
 
 function HomePage() {
   //  products state
@@ -25,6 +24,7 @@ function HomePage() {
   return (
     <>
       <HomePageHero />
+      <SlidesSection />
       <SlidesSection />
       {/* {productsData.length && <OverviewSection productsData={productsData} />} */}
     </>
@@ -144,7 +144,7 @@ function OverviewSection({ productsData }) {
 
           <div className="bg-Buff-100 rounded-md flex flex-col items-start justify-between px-2 py-1 w-3/4 h-32">
             <p className="bg-Buff-400 p-1.5 text-3xl m-1 rounded-full">
-              <SiSpringsecurity className="text-Buff-100" />
+              {/* <SiSpringsecurity className="text-Buff-100" /> */}
             </p>
             <span className="text-EerieBlack-600 font-semibold px-1">
               Absolute confidentiality
@@ -157,23 +157,48 @@ function OverviewSection({ productsData }) {
 }
 
 function SlidesSection() {
+  const elementRef = useRef(null);
+  const [opacity, setOpacity] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (elementRef.current) {
+        const elementPosition = elementRef.current.getBoundingClientRect().top;
+
+        const scrollPosition = window.scrollY;
+
+        console.log(elementPosition < 0);
+
+        if (scrollPosition >= elementPosition) {
+          // setIsElementVisible(true);
+
+          setOpacity((prev) => prev + 0.1);
+        }
+        if (elementPosition < 0) {
+          // setIsElementVisible(false);
+
+          setOpacity(opacity - 0.1);
+        }
+      }
+    };
+
+    document.addEventListener("scroll", handleScroll);
+
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="container mx-auto">
-      <div>
+    <div ref={elementRef} className="container mx-auto transition-all">
+      <div style={{ opacity: opacity }} className="transition-all">
         <video
-          data-aos="fade-zoom-in"
-          data-aos-easing="ease-in-back"
-          data-aos-delay="300"
-          data-aos-offset="0"
+          id="targetElement"
           autoPlay
           muted
-          className="w-full h-full"
+          loop
+          className="w-screen h-screen"
         >
-          <source src="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fslide%20bg%2001.mp4?alt=media&token=e2a3fbfa-10ee-4260-a1fb-6de4bed82828" />
-        </video>
-      </div>
-      <div>
-        <video data-aos="flip-up" autoPlay muted className="w-full h-full">
           <source src="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fslide%20bg%2001.mp4?alt=media&token=e2a3fbfa-10ee-4260-a1fb-6de4bed82828" />
         </video>
       </div>

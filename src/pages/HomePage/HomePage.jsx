@@ -157,5 +157,26 @@ function OverviewSection({ productsData }) {
 }
 
 function SlidesSection() {
-  return <div className="bg-red-400 container mx-auto">slides</div>;
+  return (
+    <div className="container mx-auto">
+      <div>
+        <video
+          data-aos="fade-zoom-in"
+          data-aos-easing="ease-in-back"
+          data-aos-delay="300"
+          data-aos-offset="0"
+          autoPlay
+          muted
+          className="w-full h-full"
+        >
+          <source src="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fslide%20bg%2001.mp4?alt=media&token=e2a3fbfa-10ee-4260-a1fb-6de4bed82828" />
+        </video>
+      </div>
+      <div>
+        <video data-aos="flip-up" autoPlay muted className="w-full h-full">
+          <source src="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fslide%20bg%2001.mp4?alt=media&token=e2a3fbfa-10ee-4260-a1fb-6de4bed82828" />
+        </video>
+      </div>
+    </div>
+  );
 }

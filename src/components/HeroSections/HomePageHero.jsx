@@ -97,7 +97,7 @@ function WatchSwiper({ topProucts }) {
         muted
         className="h-screen w-screen md:w-1/3 md:h-full md:rounded-bl-md object-cover absolute z-10"
       >
-        <source src="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/hero%20bg.webm?alt=media&token=3429f5da-9dd0-4c43-b7ea-2a84ef8b6baa" />
+        <source src="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fhero%20bg.webm?alt=media&token=e9695373-b9d7-4786-8d44-5891095b0734" />
       </video>
 
       {/* typing text animation */}

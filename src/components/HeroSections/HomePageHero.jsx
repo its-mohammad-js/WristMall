@@ -4,6 +4,7 @@ import { fetchProducts } from "../../rudex/products/productActions";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { FaArrowDown } from "react-icons/fa";
 
 function HomePageHero() {
   //  products state
@@ -43,6 +44,7 @@ function WatchSwiper({ topProucts }) {
     appendDots: appendDotsFunc,
     dots: true,
     arrows: false,
+    useTransform: true,
   };
 
   // change selected watch state on swipe
@@ -78,7 +80,7 @@ function WatchSwiper({ topProucts }) {
               key={p.key}
               className={`${
                 p.props.className === "" && "!bg-EerieBlack-100"
-              } p-1 bg-Buff-400 rounded-full transition-all`}
+              } w-5 h-1 bg-Buff-400 transition-all`}
             ></span>
           ))}
         </div>
@@ -95,7 +97,7 @@ function WatchSwiper({ topProucts }) {
         muted
         className="h-screen w-screen md:w-1/3 md:h-full md:rounded-bl-md object-cover absolute z-10"
       >
-        <source src="./sample.webm" />
+        <source src="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/hero%20bg.webm?alt=media&token=3429f5da-9dd0-4c43-b7ea-2a84ef8b6baa" />
       </video>
 
       {/* typing text animation */}
@@ -117,7 +119,7 @@ function WatchSwiper({ topProucts }) {
             : "bg-opacity-60 backdrop-blur-sm"
         } bg-white-90 w-11/12 md:w-1/3 md:h-full md:flex items-center justify-center px-4 py-2 z-20 rounded-md md:bg-opacity-0 md:px-0 md:py-0 md:backdrop-blur-0`}
       >
-        {topProucts.length > 0 && (
+        {topProucts[selectedWatch] && (
           <div>
             {/* image slider */}
             <>
@@ -166,6 +168,11 @@ function WatchSwiper({ topProucts }) {
         )}
       </div>
 
+      {/* scroll button */}
+      <button className="text-EerieBlack-100 absolute bottom-5 z-10 text-3xl animate-pulse md:hidden">
+        <FaArrowDown />
+      </button>
+
       {/* details section (desktop vision) */}
       <div
         className={`${
@@ -174,7 +181,7 @@ function WatchSwiper({ topProucts }) {
             : "bg-Buff-300 opacity-100 rounded-br-md"
         } w-2/3 h-full hidden md:flex  items-center transition-all relative`}
       >
-        {topProucts.length && (
+        {topProucts[selectedWatch] && (
           <>
             <div
               style={{

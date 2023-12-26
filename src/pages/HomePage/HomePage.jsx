@@ -25,8 +25,8 @@ function HomePage() {
   return (
     <>
       <HomePageHero />
-
-      {productsData.length && <OverviewSection productsData={productsData} />}
+      <SlidesSection />
+      {/* {productsData.length && <OverviewSection productsData={productsData} />} */}
     </>
   );
 }
@@ -154,4 +154,8 @@ function OverviewSection({ productsData }) {
       </div>
     </div>
   );
+}
+
+function SlidesSection() {
+  return <div className="bg-red-400 container mx-auto">slides</div>;
 }

@@ -26,7 +26,8 @@ function HomePage() {
       <HomePageHero />
 
       {/* {productsData.length && <OverviewSection productsData={productsData} />} */}
-      <SlidesSection />
+      <Slide srcGif="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fslide%20bg%2001.mp4?alt=media&token=e2a3fbfa-10ee-4260-a1fb-6de4bed82828" />
+      <Slide srcGif="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fslide%20bg%2002.mp4?alt=media&token=9711c7c5-0d78-4e63-ae3f-13156e1a8b0e" />
     </>
   );
 }
@@ -156,7 +157,7 @@ function OverviewSection({ productsData }) {
   );
 }
 
-function SlidesSection() {
+function Slide({ srcGif }) {
   const elementRef = useRef(null);
   const [opacity, setOpacity] = useState(0);
 
@@ -173,7 +174,7 @@ function SlidesSection() {
 
         if (scrollEl <= 1) {
           console.log("ok");
-          setOpacity(0.5);
+          setOpacity(0.8);
         }
         if (scrollEl >= 1) {
           setOpacity((prev) => prev + 0.1);
@@ -209,12 +210,12 @@ function SlidesSection() {
           loop
           className="w-screen h-screen"
         >
-          <source src="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fslide%20bg%2001.mp4?alt=media&token=e2a3fbfa-10ee-4260-a1fb-6de4bed82828" />
+          <source src={srcGif} />
         </video>
       </div>
 
       <div
-        style={{ display: opacity === 0.5 ? "block" : "none" }}
+        style={{ display: opacity === 0.8 ? "none" : "block" }}
         className="w-full h-full bg-white-100 bg-opacity-0 backdrop-blur-sm absolute inset-0 transition-all"
       >
         glass

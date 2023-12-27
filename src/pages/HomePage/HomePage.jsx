@@ -26,8 +26,14 @@ function HomePage() {
       <HomePageHero />
 
       {/* {productsData.length && <OverviewSection productsData={productsData} />} */}
-      <Slide srcGif="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fslide%20bg%2001.mp4?alt=media&token=f47e3743-e490-4a41-94c6-bed6857d6cd9" />
-      <Slide srcGif="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fslide%20bg%2002.mp4?alt=media&token=6a801302-7d1d-4f21-bc0f-979404c73ff6" />
+      <Slide
+        check={false}
+        srcGif="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fslide%20bg%2001.mp4?alt=media&token=f47e3743-e490-4a41-94c6-bed6857d6cd9"
+      />
+      <Slide
+        check={true}
+        srcGif="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fslide%20bg%2002.mp4?alt=media&token=6a801302-7d1d-4f21-bc0f-979404c73ff6"
+      />
     </>
   );
 }
@@ -157,32 +163,28 @@ function OverviewSection({ productsData }) {
   );
 }
 
-function Slide({ srcGif }) {
+function Slide({ srcGif, check }) {
   const elementRef = useRef(null);
-  const [opacity, setOpacity] = useState(0);
+  const [opacity, setOpacity] = useState(1);
 
   useEffect(() => {
+    // if (!check) {
+    //   return;
+    // }
     const handleScroll = () => {
       if (elementRef.current) {
         const elementPosition = elementRef.current.getBoundingClientRect();
 
         const scrollPosition = window.scrollY;
 
-        const scrollEl = Math.ceil(scrollPosition / elementPosition.top);
+        const scrollEl = Math.ceil(scrollPosition / elementPosition.y);
 
         console.log(Math.ceil(scrollPosition / elementPosition.top));
 
-        if (scrollEl <= 1) {
-          setOpacity((prev) => {
-            if (prev <= 0.3) {
-              return;
-            } else {
-              return opacity - 0.1;
-            }
-          });
-        }
         if (scrollEl >= 1) {
-          setOpacity((prev) => prev + 0.1);
+          setOpacity(0.4);
+        } else {
+          setOpacity(opacity - 0.1);
         }
       }
     };
@@ -195,15 +197,8 @@ function Slide({ srcGif }) {
   }, []);
 
   return (
-    <div
-      ref={elementRef}
-      className="container mx-auto 2xl:max-w-6xl transition-all relative"
-    >
-      <div
-        data-aos="zoom-in-up"
-        style={{ opacity: opacity }}
-        className="transition-all"
-      >
+    <div className="container mx-auto 2xl:max-w-6xl transition-all relative">
+      <div data-aos="zoom-in-up" className="transition-all">
         <video
           id="targetElement"
           autoPlay
@@ -216,10 +211,11 @@ function Slide({ srcGif }) {
       </div>
 
       <div
+        ref={elementRef}
         style={{
-          visibility: opacity === 0.3 ? "visible" : "hidden",
+          opacity: opacity,
         }}
-        className="w-full h-full bg-Buff-300 bg-opacity-5 backdrop-blur-sm absolute inset-0 transition-all duration-1000"
+        className="w-full h-full bg-Buff-300 bg-opacity-25 backdrop-blur-xl absolute inset-0 transition-all duration-1000"
       >
         &nbsp;
       </div>

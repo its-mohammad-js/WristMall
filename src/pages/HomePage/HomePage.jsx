@@ -173,23 +173,14 @@ function Slide({ srcGif }) {
         console.log(Math.ceil(scrollPosition / elementPosition.top));
 
         if (scrollEl <= 1) {
-          console.log("ok");
-          setOpacity(0.8);
+          setOpacity((prev) => {
+            if (prev <= 0.3) return 0.3;
+            return opacity - 0.1;
+          });
         }
         if (scrollEl >= 1) {
           setOpacity((prev) => prev + 0.1);
         }
-
-        // if (scrollPosition >= elementPosition) {
-        //   // setIsElementVisible(true);
-
-        //   setOpacity((prev) => prev + 0.1);
-        // }
-        // if (elementPosition < 0) {
-        //   // setIsElementVisible(false);
-        //   // if (opacity <= 0.3) return;
-        //   setOpacity(0.2);
-        // }
       }
     };
 
@@ -208,17 +199,23 @@ function Slide({ srcGif }) {
           autoPlay
           muted
           loop
-          className="w-screen h-screen"
+          className="w-screen h-[600px] object-cover"
         >
           <source src={srcGif} />
         </video>
       </div>
 
       <div
-        style={{ display: opacity === 0.8 ? "none" : "block" }}
-        className="w-full h-full bg-white-100 bg-opacity-0 backdrop-blur-sm absolute inset-0 transition-all"
+        style={{
+          visibility: opacity === 0.3 ? "visible" : "hidden",
+        }}
+        className="w-full h-full bg-white-100 bg-opacity-0 backdrop-blur-sm absolute inset-0 transition-all duration-1000"
       >
-        glass
+        {" "}
+      </div>
+
+      <div className="w-full h-full text-white-90 absolute inset-0 flex justify-center items-center">
+        TITLE
       </div>
     </div>
   );

@@ -4,11 +4,14 @@ import HomePage from "./pages/HomePage/HomePage";
 import { Provider } from "react-redux";
 import store from "./rudex/store";
 import { Toaster } from "react-hot-toast";
-// import Aos from "aos";
-// import "aos/dist/aos.css";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 function App() {
-  // Aos.init({ mirror: true });
+  useEffect(() => {
+    Aos.init({ mirror: true });
+  }, []);
 
   return (
     <Provider store={store}>

@@ -26,8 +26,8 @@ function HomePage() {
       <HomePageHero />
 
       {/* {productsData.length && <OverviewSection productsData={productsData} />} */}
-      <Slide srcGif="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fslide%20bg%2001.mp4?alt=media&token=e2a3fbfa-10ee-4260-a1fb-6de4bed82828" />
-      <Slide srcGif="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fslide%20bg%2002.mp4?alt=media&token=9711c7c5-0d78-4e63-ae3f-13156e1a8b0e" />
+      <Slide srcGif="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fslide%20bg%2001.mp4?alt=media&token=f47e3743-e490-4a41-94c6-bed6857d6cd9" />
+      <Slide srcGif="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fslide%20bg%2002.mp4?alt=media&token=6a801302-7d1d-4f21-bc0f-979404c73ff6" />
     </>
   );
 }
@@ -174,8 +174,11 @@ function Slide({ srcGif }) {
 
         if (scrollEl <= 1) {
           setOpacity((prev) => {
-            if (prev <= 0.3) return 0.3;
-            return opacity - 0.1;
+            if (prev <= 0.3) {
+              return;
+            } else {
+              return opacity - 0.1;
+            }
           });
         }
         if (scrollEl >= 1) {
@@ -192,14 +195,21 @@ function Slide({ srcGif }) {
   }, []);
 
   return (
-    <div ref={elementRef} className="container mx-auto transition-all relative">
-      <div style={{ opacity: opacity }} className="transition-all">
+    <div
+      ref={elementRef}
+      className="container mx-auto 2xl:max-w-6xl transition-all relative"
+    >
+      <div
+        data-aos="zoom-in-up"
+        style={{ opacity: opacity }}
+        className="transition-all"
+      >
         <video
           id="targetElement"
           autoPlay
           muted
           loop
-          className="w-screen h-[600px] object-cover"
+          className="w-full h-[600px] md:h-screen object-cover"
         >
           <source src={srcGif} />
         </video>
@@ -209,13 +219,13 @@ function Slide({ srcGif }) {
         style={{
           visibility: opacity === 0.3 ? "visible" : "hidden",
         }}
-        className="w-full h-full bg-white-100 bg-opacity-0 backdrop-blur-sm absolute inset-0 transition-all duration-1000"
+        className="w-full h-full bg-Buff-300 bg-opacity-5 backdrop-blur-sm absolute inset-0 transition-all duration-1000"
       >
-        {" "}
+        &nbsp;
       </div>
 
       <div className="w-full h-full text-white-90 absolute inset-0 flex justify-center items-center">
-        TITLE
+        <p data-aos="fade-down">TITLE</p>
       </div>
     </div>
   );

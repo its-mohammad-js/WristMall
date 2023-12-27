@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <div className="flex w-screen fixed z-50">
+    <div className="flex w-screen fixed z-50 2xl:pr-6">
       <div
         id="wrapper"
-        className="container bg-EerieBlack-500 bg-opacity-50 backdrop-blur-sm mx-auto 2xl:max-w-6xl flex items-center justify-between px-4 py-2"
+        className="mx-auto w-full bg-Buff-100 bg-opacity-30 backdrop-blur-sm z-50 2xl:max-w-6xl flex items-center justify-between px-4 py-2"
       >
         <div className="flex-1">
           <img
@@ -18,7 +18,7 @@ function Navbar() {
           />
         </div>
 
-        <div className="flex items-center gap-x-6 text-white-100 px-2 lg:text-lg">
+        <div className="flex items-center gap-x-6 text-white-100 px-4 lg:text-lg">
           <Link to="/WristMall/" className="hover:text-white-90">
             Home
           </Link>

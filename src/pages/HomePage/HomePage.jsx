@@ -24,9 +24,9 @@ function HomePage() {
   return (
     <>
       <HomePageHero />
-      <SlidesSection />
-      <SlidesSection />
+
       {/* {productsData.length && <OverviewSection productsData={productsData} />} */}
+      <SlidesSection />
     </>
   );
 }
@@ -163,22 +163,32 @@ function SlidesSection() {
   useEffect(() => {
     const handleScroll = () => {
       if (elementRef.current) {
-        const elementPosition = elementRef.current.getBoundingClientRect().top;
+        const elementPosition = elementRef.current.getBoundingClientRect();
 
         const scrollPosition = window.scrollY;
 
-        console.log(elementPosition < 0);
+        const scrollEl = Math.ceil(scrollPosition / elementPosition.top);
 
-        if (scrollPosition >= elementPosition) {
-          // setIsElementVisible(true);
+        console.log(Math.ceil(scrollPosition / elementPosition.top));
 
+        if (scrollEl <= 1) {
+          console.log("ok");
+          setOpacity(0.5);
+        }
+        if (scrollEl >= 1) {
           setOpacity((prev) => prev + 0.1);
         }
-        if (elementPosition < 0) {
-          // setIsElementVisible(false);
 
-          setOpacity(opacity - 0.1);
-        }
+        // if (scrollPosition >= elementPosition) {
+        //   // setIsElementVisible(true);
+
+        //   setOpacity((prev) => prev + 0.1);
+        // }
+        // if (elementPosition < 0) {
+        //   // setIsElementVisible(false);
+        //   // if (opacity <= 0.3) return;
+        //   setOpacity(0.2);
+        // }
       }
     };
 
@@ -190,7 +200,7 @@ function SlidesSection() {
   }, []);
 
   return (
-    <div ref={elementRef} className="container mx-auto transition-all">
+    <div ref={elementRef} className="container mx-auto transition-all relative">
       <div style={{ opacity: opacity }} className="transition-all">
         <video
           id="targetElement"
@@ -201,6 +211,13 @@ function SlidesSection() {
         >
           <source src="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fslide%20bg%2001.mp4?alt=media&token=e2a3fbfa-10ee-4260-a1fb-6de4bed82828" />
         </video>
+      </div>
+
+      <div
+        style={{ display: opacity === 0.5 ? "block" : "none" }}
+        className="w-full h-full bg-white-100 bg-opacity-0 backdrop-blur-sm absolute inset-0 transition-all"
+      >
+        glass
       </div>
     </div>
   );

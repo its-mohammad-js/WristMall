@@ -4,7 +4,7 @@ import { fetchProducts } from "../../rudex/products/productActions";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { FaArrowDown } from "react-icons/fa";
+import { FaArrowCircleDown } from "react-icons/fa";
 
 function HomePageHero() {
   //  products state
@@ -88,6 +88,12 @@ function WatchSwiper({ topProucts }) {
     );
   }
 
+  // just scroll down :)
+  const scrollDownHandle = () => {
+    window.scrollTo({ top: 400 });
+    // console.log(window.scrollY);
+  };
+
   return (
     <div className="w-screen h-screen relative sm:container sm:mx-auto sm:h-[630px] 2xl:max-w-6xl flex items-center justify-center md:justify-start">
       {/* background video  */}
@@ -167,8 +173,11 @@ function WatchSwiper({ topProucts }) {
           </div>
         )}
         {/* scroll button */}
-        <button className="text-EerieBlack-100 absolute -bottom-10 bg-red-300 w-10/12 z-10 text-3xl animate-puls md:hidden flex items-center justify-center">
-          <FaArrowDown />
+        <button
+          onClick={scrollDownHandle}
+          className="text-Buff-300 absolute -bottom-10 animate-upDown w-10/12 z-10 text-3xl animate-puls md:hidden flex items-center justify-center"
+        >
+          <FaArrowCircleDown />
         </button>
       </div>
 

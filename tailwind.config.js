@@ -131,6 +131,32 @@ export default {
             width: "100%",
           },
         },
+        upDown: {
+          "0%": {
+            transform: "translate(10px, -40px)",
+            opacity: 1,
+          },
+          "20%": {
+            transform: "translate(10px, 10px)",
+            opacity: 0.8,
+          },
+          "40%": {
+            transform: "translate(10px, 20px)",
+            opacity: 0.6,
+          },
+          "60%": {
+            transform: "translate(10px, 30px)",
+            opacity: 0.6,
+          },
+          "80%": {
+            transform: "translate(10px, 40px)",
+            opacity: 0.4,
+          },
+          "100%": {
+            transform: "translate(10px, 40px)",
+            opacity: 0.2,
+          },
+        },
       },
       animation: {
         swapeOut: "swapeOut 0.8s linear",
@@ -138,6 +164,7 @@ export default {
         fadeIn: "fadeIn 0.8s linear",
         fadeOut: "fadeOut 0.8s linear",
         typing: "typing 1s steps(40, end)",
+        upDown: "upDown 1s linear infinite",
       },
     },
   },

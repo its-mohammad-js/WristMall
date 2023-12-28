@@ -8,6 +8,24 @@ import { BsWatch } from "react-icons/bs";
 import { FaGift, FaMoneyBillWave } from "react-icons/fa";
 import { FaClock } from "react-icons/fa6";
 import { BiSupport } from "react-icons/bi";
+import Slide from "../../components/Slides/Slide";
+
+const slidesInformation = [
+  {
+    id: 0,
+    backgroundUrl:
+      "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fslide%20bg%2001.mp4?alt=media&token=f47e3743-e490-4a41-94c6-bed6857d6cd9",
+    subTitle: "A Dramatic Change In",
+    title: "Your Style",
+  },
+  {
+    id: 1,
+    backgroundUrl:
+      "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fslide%20bg%2002.mp4?alt=media&token=6a801302-7d1d-4f21-bc0f-979404c73ff6",
+    subTitle: "All Our Products Are ",
+    title: "Unique...",
+  },
+];
 
 function HomePage() {
   //  products state
@@ -25,15 +43,11 @@ function HomePage() {
     <>
       <HomePageHero />
 
+      {slidesInformation.map((info) => (
+        <Slide key={info.id} {...info} />
+      ))}
+
       {/* {productsData.length && <OverviewSection productsData={productsData} />} */}
-      <Slide
-        check={false}
-        srcGif="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fslide%20bg%2001.mp4?alt=media&token=f47e3743-e490-4a41-94c6-bed6857d6cd9"
-      />
-      <Slide
-        check={true}
-        srcGif="https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/gifs%2Fslide%20bg%2002.mp4?alt=media&token=6a801302-7d1d-4f21-bc0f-979404c73ff6"
-      />
     </>
   );
 }
@@ -158,70 +172,6 @@ function OverviewSection({ productsData }) {
             </span>
           </div>
         </div>
-      </div>
-    </div>
-  );
-}
-
-function Slide({ srcGif, check }) {
-  const elementRef = useRef(null);
-  const [opacity, setOpacity] = useState(1);
-
-  useEffect(() => {
-    // if (!check) {
-    //   return;
-    // }
-    const handleScroll = () => {
-      if (elementRef.current) {
-        const elementPosition = elementRef.current.getBoundingClientRect();
-
-        const scrollPosition = window.scrollY;
-
-        const scrollEl = Math.ceil(scrollPosition / elementPosition.y);
-
-        console.log(Math.ceil(scrollPosition / elementPosition.top));
-
-        if (scrollEl >= 1) {
-          setOpacity(0.4);
-        } else {
-          setOpacity(opacity - 0.1);
-        }
-      }
-    };
-
-    document.addEventListener("scroll", handleScroll);
-
-    return () => {
-      document.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  return (
-    <div className="container mx-auto 2xl:max-w-6xl transition-all relative">
-      <div data-aos="zoom-in-up" className="transition-all">
-        <video
-          id="targetElement"
-          autoPlay
-          muted
-          loop
-          className="w-full h-[600px] md:h-screen object-cover"
-        >
-          <source src={srcGif} />
-        </video>
-      </div>
-
-      <div
-        ref={elementRef}
-        style={{
-          opacity: opacity,
-        }}
-        className="w-full h-full bg-Buff-300 bg-opacity-25 backdrop-blur-xl absolute inset-0 transition-all duration-1000"
-      >
-        &nbsp;
-      </div>
-
-      <div className="w-full h-full text-white-90 absolute inset-0 flex justify-center items-center">
-        <p data-aos="fade-down">TITLE</p>
       </div>
     </div>
   );

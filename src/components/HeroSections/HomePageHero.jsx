@@ -4,7 +4,7 @@ import { fetchProducts } from "../../rudex/products/productActions";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { FaArrowCircleDown } from "react-icons/fa";
+import { IoIosArrowDown } from "react-icons/io";
 
 function HomePageHero() {
   //  products state
@@ -175,9 +175,9 @@ function WatchSwiper({ topProucts }) {
         {/* scroll button */}
         <button
           onClick={scrollDownHandle}
-          className="text-Buff-300 absolute -bottom-10 animate-upDown w-10/12 z-10 text-3xl animate-puls md:hidden flex items-center justify-center"
+          className="text-Buff-300 absolute -bottom-10 animate-upDown w-10/12 z-10 text-4xl animate-puls md:hidden flex items-center justify-center"
         >
-          <FaArrowCircleDown />
+          <IoIosArrowDown />
         </button>
       </div>
 

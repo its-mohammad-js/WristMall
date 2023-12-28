@@ -9,7 +9,7 @@ import { FaGift, FaMoneyBillWave } from "react-icons/fa";
 import { FaClock } from "react-icons/fa6";
 import { BiSupport } from "react-icons/bi";
 import Slide from "../../components/Slides/Slide";
-import { slidesInformation } from "../../constants";
+import { categoriesInformation, slidesInformation } from "../../constants";
 
 function HomePage() {
   //  products state
@@ -25,12 +25,14 @@ function HomePage() {
 
   return (
     <>
+      {/* watch swiper */}
       <HomePageHero />
-
+      {/* top slides */}
       {slidesInformation.map((info) => (
         <Slide key={info.id} {...info} />
       ))}
-
+      {/* categories section */}
+      <CategoriesSection />
       {/* {productsData.length && <OverviewSection productsData={productsData} />} */}
     </>
   );
@@ -155,6 +157,52 @@ function OverviewSection({ productsData }) {
               Absolute confidentiality
             </span>
           </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CategoriesSection() {
+  return (
+    <div className="container mx-auto 2xl:max-w-6xl">
+      <div
+        id="wrapper"
+        className="w-full h-screen flex flex-col bg-white-100 bg-opacity-95 relative"
+      >
+        {/* background image & color */}
+        <div className="w-full h-full z-0 absolute">
+          <div id="imageWrapper" className="w-full h-full">
+            <img
+              src={categoriesInformation.backgorungUrl}
+              alt="categoreis-section-background"
+              className="w-full h-full object-cover opacity-30"
+            />
+          </div>
+        </div>
+
+        {/* title */}
+        <h2 className="z-10 neon-title text-center text-xl bg-Buff-500 backdrop-blur-sm bg-opacity-5 py-2 font-bold">
+          Category
+        </h2>
+
+        {/* category slides */}
+        <div className="flex flex-wrap items-center justify-evenly z-10 py-4 gap-y-4">
+          {categoriesInformation.listOfcategories.map((c, index) => (
+            <div key={index} className="w-36 h-32 relative group">
+              <img
+                src={c.bgUrl}
+                alt=""
+                className="object-cover w-full h-full rounded-md "
+              />
+
+              <div className="absolute inset-0 bg-Buff-500 bg-opacity-20 backdrop-blur-sm group-hover:backdrop-blur-none transition-all flex justify-center items-center rounded-md">
+                <h3 className="text-white-100 text-lg neon-title">
+                  {c.categoryTitle}
+                </h3>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

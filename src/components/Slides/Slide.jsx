@@ -16,8 +16,6 @@ function Slide({ backgroundUrl, title, subTitle }) {
 
         const scrollEl = Math.ceil(scrollPosition / elementPosition.y);
 
-        console.log(Math.ceil(scrollPosition / elementPosition.top));
-
         if (scrollEl >= 1) {
           setOpacity(0.4);
         } else {
@@ -61,12 +59,15 @@ function Slide({ backgroundUrl, title, subTitle }) {
 
       {/* title & subTitle */}
       <div className="w-full h-full text-white-90 absolute inset-0 flex flex-col justify-center items-center gap-y-6">
-        <span data-aos="fade-right" className="text-Buff-300 font-extrabold">
+        <span
+          data-aos="fade-right"
+          className="text-Buff-300 font-extrabold md:text-2xl"
+        >
           {subTitle}
         </span>
         <h2
           data-aos="fade-left"
-          className="text-xl text-white-100 bg-Buff-500 bg-opacity-50 font-bold px-2 py-1"
+          className="text-xl md:text-4xl text-white-100 bg-Buff-500 bg-opacity-50 font-bold px-2 py-1"
         >
           {title}
         </h2>
@@ -74,7 +75,7 @@ function Slide({ backgroundUrl, title, subTitle }) {
         <Link
           // to="Shop"
           data-aos="zoom-in"
-          className="bg-white-90 bg-opacity-20 backdrop-blur-md rounded-md text-white-100-500 px-4 py-2"
+          className="bg-white-90 bg-opacity-20 backdrop-blur-md rounded-md text-white-100-500 px-4 py-2 md:text-2xl"
         >
           Learn More...
         </Link>

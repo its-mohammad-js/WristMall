@@ -15,4 +15,26 @@ const slidesInformation = [
   },
 ];
 
-export { slidesInformation };
+const categoriesInformation = {
+  backgorungUrl:
+    "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/background%20images%2Fcategories%20bg.jpg?alt=media&token=c1a1e59a-4c7c-4a8e-8c9e-161e6f0db620",
+  listOfcategories: [
+    {
+      categoryTitle: "New",
+      bgUrl:
+        "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/background%20images%2Fcategory%20slide%20bg%2001.jpg?alt=media&token=7a797997-4123-40ad-9865-fbe77003c2f6",
+    },
+    {
+      categoryTitle: "Limited",
+      bgUrl:
+        "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/background%20images%2Fcategory%20slide%20bg%2002.jpg?alt=media&token=8820bbbe-ad68-438c-b3b8-c5808efbc012",
+    },
+    {
+      categoryTitle: "Divers",
+      bgUrl:
+        "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/background%20images%2Fcategory%20slide%20bg%2003.jpg?alt=media&token=011c8c45-3529-4cf7-9638-47f09dd319de",
+    },
+  ],
+};
+
+export { slidesInformation, categoriesInformation };

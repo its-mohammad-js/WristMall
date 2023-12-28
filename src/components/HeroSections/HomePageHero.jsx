@@ -117,7 +117,7 @@ function WatchSwiper({ topProucts }) {
           status === "onSwipe"
             ? "bg-opacity-40 backdrop-blur-0"
             : "bg-opacity-60 backdrop-blur-sm"
-        } bg-white-90 w-11/12 md:w-1/3 md:h-full md:flex items-center justify-center px-4 py-2 z-20 rounded-md md:bg-opacity-0 md:px-0 md:py-0 md:backdrop-blur-0`}
+        } bg-white-90 relative w-11/12 md:w-1/3 md:h-full md:flex items-center justify-center px-4 py-2 z-20 rounded-md md:bg-opacity-0 md:px-0 md:py-0 md:backdrop-blur-0`}
       >
         {topProucts[selectedWatch] && (
           <div>
@@ -166,12 +166,11 @@ function WatchSwiper({ topProucts }) {
             </div>
           </div>
         )}
+        {/* scroll button */}
+        <button className="text-EerieBlack-100 absolute -bottom-10 bg-red-300 w-10/12 z-10 text-3xl animate-puls md:hidden flex items-center justify-center">
+          <FaArrowDown />
+        </button>
       </div>
-
-      {/* scroll button */}
-      <button className="text-EerieBlack-100 absolute bottom-5 z-10 text-3xl animate-pulse md:hidden">
-        <FaArrowDown />
-      </button>
 
       {/* details section (desktop vision) */}
       <div

@@ -71,12 +71,16 @@ function ShopHeroSection() {
   return (
     <div className="container mx-auto 2xl:max-w-6xl relative">
       {/* hero background */}
-      <div className="h-full w-full absolute bg-red-600 -z-10">bg</div>
+      <div className="h-full w-full absolute -z-10">
+        <div className="w-52 h-52 bg-Buff-100 rounded-full -z-20 float-left"></div>
+        <div className="w-52 h-52 bg-Buff-200 rounded-full -z-20 float-right"></div>
+        <div className="w-52 h-52 bg-Buff-300 rounded-full -z-20 float-left"></div>
+      </div>
 
       {/* slides wrapper */}
       <div
         id="slide-wrapper"
-        className="h-screen py-20 px-2 w-full flex gap-x-2"
+        className="h-screen py-20 px-2 w-full flex gap-x-2 z-30 bg-Buff-300 bg-opacity-25 backdrop-blur-lg"
       >
         {/* slide text */}
         <div className="w-1/2 flex flex-col items-center justify-center gap-y-1">

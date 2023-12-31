@@ -89,14 +89,14 @@ function ShopHeroSection() {
           </div>
         </div>
         {/* slide images */}
-        <div className="w-1/2 flex flex-col gap-y-1 max-h-full overflow-hidden">
+        <div className="w-1/2 flex flex-col gap-y-1 max-h-full bg-red-700">
           {shopHeroSectionInfo.map((slide, index) => (
             <div
               key={index}
               onClick={() => changeSlideHandler(index)}
               className={`${
-                selectedSlide === index ? "flex-1" : "flex-none h-10"
-              }  flex-1 rounded-md transition-all duration-1000`}
+                selectedSlide === index ? "flex-1" : "h-10 flex-none"
+              }  rounded-md transition-all`}
             >
               <img
                 src={slide.bgUrl}

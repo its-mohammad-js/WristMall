@@ -43,8 +43,26 @@ function ShopHeroSection() {
         id="slide-wrapper"
         className="h-screen md:h-[450px] md:flex md:items-center md:justify-between md:gap-x-10 pt-20 md:pt-24 px-2 w-full z-30 bg-Buff-300 bg-opacity-25 backdrop-blur-lg"
       >
-        {/*  */}
-        <div className="hidden md:block w-2/3 h-full">hey</div>
+        {/* hero title wrapper (desktop vision)*/}
+        <div className="hidden md:flex flex-col w-2/3 h-full py-4">
+          <span className="w-1/5 text-center border-2 border-Buff-500 text-Buff-400 rounded-md relative font-semibold group">
+            Wrist Mall
+            <span className="w-0 h-full bg-Buff-100 absolute -z-10 left-0 group-hover:w-full duration-1000">
+              &nbsp;
+            </span>
+          </span>
+
+          <h2 className="text-4xl mt-4 text-white-90 font-extrabold cursor-pointer">
+            <span>Timepiece Treasures:</span> <br /> Explore Our Collection of
+            <br />
+            <span className="relative text-EerieBlack-500 group">
+              Legendary &nbsp;
+              <span className="absolute left-0 bottom-0 w-full h-1/3 bg-Buff-300 -z-10 group-hover:h-full duration-1000 ease-in-out"></span>
+            </span>
+            Watches
+          </h2>
+        </div>
+
         {/* slides wrapper */}
         <div className="flex gap-x-2 h-full md:w-1/3">
           {/* slide text */}

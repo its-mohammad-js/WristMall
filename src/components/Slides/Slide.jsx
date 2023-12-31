@@ -1,35 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import useScrollOpacityEffect from "../../hooks/useScrollOpacityEffect";
 
 function Slide({ backgroundUrl, title, subTitle }) {
   const elementRef = useRef(null);
-  //   opacity of glass background
-  const [opacity, setOpacity] = useState(1);
-
-  //   increase glass opacity on scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      if (elementRef.current) {
-        const elementPosition = elementRef.current.getBoundingClientRect();
-
-        const scrollPosition = window.scrollY;
-
-        const scrollEl = Math.ceil(scrollPosition / elementPosition.y);
-
-        if (scrollEl >= 1) {
-          setOpacity(0.4);
-        } else {
-          setOpacity(opacity - 0.1);
-        }
-      }
-    };
-
-    document.addEventListener("scroll", handleScroll);
-
-    return () => {
-      document.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const { opacity } = useScrollOpacityEffect(elementRef);
 
   return (
     <div className="container mx-auto 2xl:max-w-6xl transition-all relative">

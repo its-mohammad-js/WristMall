@@ -168,6 +168,8 @@ function CategoriesSection() {
     <div className="container mx-auto 2xl:max-w-6xl">
       <div
         id="wrapper"
+        data-aos="fade-right"
+        data-aos-duration="800"
         className="w-full h-screen flex flex-col bg-white-100 bg-opacity-95 relative"
       >
         {/* background image & color */}
@@ -182,7 +184,7 @@ function CategoriesSection() {
         </div>
 
         {/* title */}
-        <h2 className="z-10 text-center text-xl font-extrabold bg-opacity-5 py-4">
+        <h2 className="z-10 text-center text-xl md:text-4xl font-extrabold bg-opacity-5 py-4">
           Category
         </h2>
 
@@ -190,22 +192,22 @@ function CategoriesSection() {
         <div className="flex flex-wrap items-center justify-evenly z-10 py-4 gap-y-4">
           {categoriesInformation.listOfcategories.map((c, index) => (
             <div
-              data-aos="fade-right"
               key={index}
-              className="w-36 h-32 relative group"
+              className="w-36 h-32 md:w-72 md:h-64 relative group"
             >
+              {/* category background image */}
               <img
                 src={c.bgUrl}
                 alt={c.categoryTitle}
                 className="object-cover w-full h-full"
               />
-
+              {/* category title */}
               <div
-                data-aos="fade-left"
-                data-aos-duration="600"
+                data-aos="zoom-in"
+                data-aos-duration="900"
                 className="absolute inset-0 bg-Buff-500 bg-opacity-20  border-4 border-white-100 backdrop-blur-sm group-hover:backdrop-blur-none transition-all flex justify-center items-center"
               >
-                <h3 className="text-white-100 text-sm neon-title py-1 group-hover:-translate-y-4 transition-all duration-500">
+                <h3 className="text-white-100 text-sm md:text-lg neon-title py-1 group-hover:-translate-y-4 transition-all duration-500">
                   {c.categoryTitle}
                 </h3>
               </div>

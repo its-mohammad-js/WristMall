@@ -49,6 +49,7 @@ function WatchSwiper({ topProucts }) {
 
   // change selected watch state on swipe
   function onSwipe(e) {
+    if (status === "onSwipe") return;
     setStatus("onSwipe");
 
     setTimeout(() => {

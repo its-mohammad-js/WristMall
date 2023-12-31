@@ -31,21 +31,21 @@ function ShopHeroSection() {
           </div>
         </div>
         {/* slide images */}
-        <div className="w-1/2 flex flex-col gap-y-1 max-h-full">
+        <div className="w-1/2 flex flex-col items-center  gap-y-1 max-h-full overflow-hidden">
           {shopHeroSectionInfo.map((slide, index) => (
             <div
               key={index}
               onClick={() => changeSlideHandler(index)}
               className={`${
                 selectedSlide === index
-                  ? "bg-red-600 h-32"
-                  : "bg-gray-700 h-1/6"
-              }  flex-1 rounded-md transition-all !duration-500`}
+                  ? "bg-red-600 flex-1"
+                  : "bg-gray-700 flex-none h-10"
+              }  flex-1 rounded-md transition-all !duration-700`}
             >
               <img
                 src={slide.bgUrl}
                 alt="slide-bg"
-                className="max-h-full w-full object-cover"
+                className={`h-full w-full object-cover rounded-md duration-1000 transition-all`}
               />
             </div>
           ))}

@@ -192,7 +192,7 @@ function CategoriesSection() {
             <div
               data-aos="fade-right"
               key={index}
-              className="w-36 h-32 relative  group"
+              className="w-36 h-32 relative group"
             >
               <img
                 src={c.bgUrl}
@@ -202,7 +202,7 @@ function CategoriesSection() {
 
               <div
                 data-aos="fade-left"
-                data-aos-duration="500"
+                data-aos-duration="600"
                 className="absolute inset-0 bg-Buff-500 bg-opacity-20 border-4 border-white-100 backdrop-blur-sm group-hover:backdrop-blur-none duration-500 transition-all flex justify-center items-center"
               >
                 <h3 className="text-white-100 text-lg neon-title">

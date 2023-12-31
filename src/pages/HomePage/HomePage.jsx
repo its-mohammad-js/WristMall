@@ -127,7 +127,6 @@ function NewsSection() {
           </h2>
 
           {/* news slider */}
-
           <Slider {...settings} className="">
             {newsData.map((news, index) => {
               return (
@@ -135,12 +134,12 @@ function NewsSection() {
                   key={news.id}
                   className="text-EerieBlack-600 w-full h-full px-2"
                 >
-                  <h3 className="text-center line-clamp-1 text-lg text-white-100">
+                  <h3 className="text-center line-clamp-1 text-lg md:text-xl text-white-100">
                     {news.title}
                   </h3>
                   <p className="text-sm text-white-90">{news.description}</p>
 
-                  <div className="w-11/12 mx-auto my-2 flex items-center justify-between py-1">
+                  <div className="w-11/12 mx-auto my-2 md:text-lg flex items-center justify-between py-1">
                     <p className="bg-EerieBlack-400 rounded-md text-white-99 p-1">
                       {news.topic}
                     </p>

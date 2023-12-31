@@ -93,7 +93,7 @@ function ShopHeroSection() {
             </Slider>
             {/* slide description */}
             <div className="bg-EerieBlack-600 text-white-100 text-xs px-3 py-2 w-full h-1/3  md:h-1/2 rounded-md overflow-auto transition-all">
-              <span className="line-clamp-[9]">
+              <span className="md:line-clamp-[9]">
                 {shopHeroSectionInfo[selectedSlide].desc}
               </span>
             </div>
@@ -105,7 +105,7 @@ function ShopHeroSection() {
                 key={index}
                 onClick={() => changeSlideHandler(index)}
                 className={`${
-                  selectedSlide === index ? "flex-1 h-10" : "h-10 flex-none"
+                  selectedSlide === index ? "h-44" : "h-10"
                 }  rounded-md transition-all duration-1000 ease-linear`}
               >
                 <img

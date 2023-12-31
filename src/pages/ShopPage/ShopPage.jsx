@@ -21,7 +21,7 @@ function ShopHeroSection() {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    onSwipe: onSwipe,
+
     autoplay: true,
     autoplaySpeed: 3000,
   };
@@ -29,27 +29,6 @@ function ShopHeroSection() {
   const changeSlideHandler = (slideindex) => {
     setSelectedSlide(slideindex);
   };
-  //   on title slider change
-  function onSwipe(e) {
-    // on next slide
-    if (e === "right") {
-      // if its first slide turn to last
-      if (selectedSlide === 0) {
-        setSelectedSlide(3);
-      }
-      //   else display prev slide
-      else setSelectedSlide((prev) => prev - 1);
-    }
-    // on prev slide
-    if (e === "left") {
-      // if its last slide turn to first
-      if (selectedSlide === 3) {
-        setSelectedSlide(0);
-      }
-      //   else display next slide
-      else setSelectedSlide((prev) => prev + 1);
-    }
-  }
 
   return (
     <div className="container mx-auto 2xl:max-w-6xl relative">
@@ -73,6 +52,7 @@ function ShopHeroSection() {
           <div className="w-1/2 flex flex-col items-center justify-center gap-y-1">
             {/* title slider */}
             <Slider
+              afterChange={(e) => setSelectedSlide(e)}
               {...settings}
               className="bg-Buff-100 w-full h-1/3 md:h-1/2 rounded-md flex items-center md:px-4 md:py-2"
             >
@@ -83,7 +63,7 @@ function ShopHeroSection() {
               ))}
             </Slider>
             {/* slide description */}
-            <div className="bg-EerieBlack-600 text-white-100 text-xs px-3 py-2 w-full h-1/3  md:h-1/2 rounded-md overflow-auto">
+            <div className="bg-EerieBlack-600 text-white-100 text-xs px-3 py-2 w-full h-1/3  md:h-1/2 rounded-md overflow-auto md:overflow-hidden">
               {shopHeroSectionInfo[selectedSlide].desc}
             </div>
           </div>

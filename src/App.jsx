@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import ShopPage from "./pages/ShopPage/ShopPage";
 
 function App() {
   useEffect(() => {
@@ -19,6 +20,7 @@ function App() {
         <Toaster />
         <Routes>
           <Route path="/WristMall/" element={<HomePage />} />
+          <Route path="/WristMall/Shop" element={<ShopPage />} />
         </Routes>
       </AppLayout>
     </Provider>

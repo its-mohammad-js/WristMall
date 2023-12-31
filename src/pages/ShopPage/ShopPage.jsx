@@ -54,13 +54,13 @@ function ShopHeroSection() {
   function appendDotsFunc(e) {
     return (
       <>
-        <div className="flex justify-center gap-x-2">
+        <div className="flex justify-center gap-x-1">
           {e.map((p) => (
             <span
               key={p.key}
               className={`${
                 p.props.className === "" && "!bg-EerieBlack-100"
-              } p-1 bg-Buff-400 transition-all rounded-full`}
+              } p-1 bg-Buff-300 transition-all rounded-full`}
             ></span>
           ))}
         </div>
@@ -77,7 +77,7 @@ function ShopHeroSection() {
             {shopHeroSectionInfo.map((slide, index) => (
               <div
                 key={index}
-                className="text-center text-sm h-32 rounded-t-md py-8"
+                className="text-center text-sm h-28 rounded-t-md py-8"
               >
                 <span>{slide.title}</span>
               </div>
@@ -95,8 +95,8 @@ function ShopHeroSection() {
               key={index}
               onClick={() => changeSlideHandler(index)}
               className={`${
-                selectedSlide === index ? "flex-1" : "flex-none"
-              } h-10 flex-1 rounded-md transition-all duration-1000`}
+                selectedSlide === index ? "flex-1" : "flex-none h-10"
+              }  flex-1 rounded-md transition-all duration-1000`}
             >
               <img
                 src={slide.bgUrl}

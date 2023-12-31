@@ -127,7 +127,7 @@ function NewsSection() {
           </h2>
 
           {/* news slider */}
-          <Slider {...settings} className="">
+          <Slider {...settings}>
             {newsData.map((news, index) => {
               return (
                 <div

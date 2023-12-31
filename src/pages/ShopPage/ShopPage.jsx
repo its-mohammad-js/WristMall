@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { shopHeroSectionInfo } from "../../constants";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
 
 function ShopPage() {
   return (
@@ -45,13 +46,14 @@ function ShopHeroSection() {
       >
         {/* hero title wrapper (desktop vision)*/}
         <div className="hidden md:flex flex-col w-2/3 h-full py-4">
+          {/* header badge */}
           <span className="w-1/5 text-center border-2 border-Buff-500 text-Buff-400 rounded-md relative font-semibold group">
             Wrist Mall
             <span className="w-0 h-full bg-Buff-100 absolute -z-10 left-0 group-hover:w-full duration-1000">
               &nbsp;
             </span>
           </span>
-
+          {/* main title */}
           <h2 className="text-4xl mt-4 text-white-90 font-extrabold cursor-pointer">
             <span>Timepiece Treasures:</span> <br /> Explore Our Collection of
             <br />
@@ -61,6 +63,15 @@ function ShopHeroSection() {
             </span>
             Watches
           </h2>
+          {/* subTitle */}
+          <span className="mt-4 text-EerieBlack-600 text-xl">
+            Discover Timeless Elegance: Unveiling Our Distinctive Collection
+            ⌚️✨
+          </span>
+          {/* discover button */}
+          <Link className="mt-6 bg-EerieBlack-600 hover:bg-Buff-100 w-1/3 text-center px-4 py-2 text-Buff-100 hover:text-EerieBlack-600 rounded-md transition-all">
+            Discover Now
+          </Link>
         </div>
 
         {/* slides wrapper */}

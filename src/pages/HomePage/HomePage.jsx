@@ -182,21 +182,29 @@ function CategoriesSection() {
         </div>
 
         {/* title */}
-        <h2 className="z-10 neon-title text-center text-xl bg-Buff-500 backdrop-blur-sm bg-opacity-5 py-2 font-bold">
+        <h2 className="z-10 text-center text-xl font-extrabold bg-opacity-5 py-4">
           Category
         </h2>
 
         {/* category slides */}
         <div className="flex flex-wrap items-center justify-evenly z-10 py-4 gap-y-4">
           {categoriesInformation.listOfcategories.map((c, index) => (
-            <div key={index} className="w-36 h-32 relative group">
+            <div
+              data-aos="fade-right"
+              key={index}
+              className="w-36 h-32 relative  group"
+            >
               <img
                 src={c.bgUrl}
-                alt=""
-                className="object-cover w-full h-full rounded-md "
+                alt={c.categoryTitle}
+                className="object-cover w-full h-full"
               />
 
-              <div className="absolute inset-0 bg-Buff-500 bg-opacity-20 backdrop-blur-sm group-hover:backdrop-blur-none transition-all flex justify-center items-center rounded-md">
+              <div
+                data-aos="fade-left"
+                data-aos-duration="500"
+                className="absolute inset-0 bg-Buff-500 bg-opacity-20 border-4 border-white-100 backdrop-blur-sm group-hover:backdrop-blur-none duration-500 transition-all flex justify-center items-center"
+              >
                 <h3 className="text-white-100 text-lg neon-title">
                   {c.categoryTitle}
                 </h3>

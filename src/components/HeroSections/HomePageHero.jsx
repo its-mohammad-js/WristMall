@@ -138,9 +138,7 @@ function WatchSwiper({ topProucts }) {
                     key={product.id}
                     src={product.thumbnail}
                     alt={product.name}
-                    className={`${
-                      status !== "loaded" && "animate-spin duration-500"
-                    } w-44 h-44 object-contain md:h-56 md:w-fit`}
+                    className={`w-44 h-44 object-contain md:h-56 md:w-fit`}
                   />
                 ))}
               </Slider>

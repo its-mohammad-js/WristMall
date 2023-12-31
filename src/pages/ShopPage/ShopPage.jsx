@@ -22,8 +22,8 @@ function ShopHeroSection() {
     slidesToScroll: 1,
     dots: true,
     arrows: false,
-    onSwipe: onSwipe,
     appendDots: appendDotsFunc,
+    onSwipe: onSwipe,
   };
   //   handle slide image change
   const changeSlideHandler = (slideindex) => {
@@ -77,46 +77,54 @@ function ShopHeroSection() {
         <div className="w-52 h-52 bg-Buff-300 rounded-full -z-20 float-left"></div>
       </div>
 
-      {/* slides wrapper */}
+      {/* content wrapper */}
       <div
         id="slide-wrapper"
-        className="h-screen py-20 px-2 w-full flex gap-x-2 z-30 bg-Buff-300 bg-opacity-25 backdrop-blur-lg"
+        className="h-screen md:h-[450px] md:flex md:items-center md:justify-between md:gap-x-10 pt-20 md:pt-24 px-2 w-full z-30 bg-Buff-300 bg-opacity-25 backdrop-blur-lg"
       >
-        {/* slide text */}
-        <div className="w-1/2 flex flex-col items-center justify-center gap-y-1">
-          {/* title slider */}
-          <Slider {...settings} className="bg-Buff-100 w-full h-1/3 rounded-md">
+        {/*  */}
+        <div className="hidden md:block w-2/3 h-full bg-red-600">hey</div>
+        {/* slides wrapper */}
+        <div className="flex gap-x-2 h-full md:w-1/3">
+          {/* slide text */}
+          <div className="w-1/2 flex flex-col items-center justify-center gap-y-1">
+            {/* title slider */}
+            <Slider
+              {...settings}
+              className="bg-Buff-100 w-full h-1/3 md:h-1/2 rounded-md"
+            >
+              {shopHeroSectionInfo.map((slide, index) => (
+                <div
+                  key={index}
+                  className="text-center text-sm rounded-t-md py-8"
+                >
+                  <span>{slide.title}</span>
+                </div>
+              ))}
+            </Slider>
+            {/* slide description */}
+            <div className="bg-EerieBlack-600 text-white-100 text-xs px-3 py-2 w-full h-1/3  md:h-1/2 rounded-md overflow-auto">
+              {shopHeroSectionInfo[selectedSlide].desc}
+            </div>
+          </div>
+          {/* slide images */}
+          <div className="w-1/2 flex flex-col gap-y-1 max-h-full">
             {shopHeroSectionInfo.map((slide, index) => (
               <div
                 key={index}
-                className="text-center text-sm rounded-t-md py-8"
+                onClick={() => changeSlideHandler(index)}
+                className={`${
+                  selectedSlide === index ? "flex-1 h-10" : "h-10 flex-none"
+                }  rounded-md transition-all duration-1000`}
               >
-                <span>{slide.title}</span>
+                <img
+                  src={slide.bgUrl}
+                  alt="slide-bg"
+                  className={`h-full w-full object-cover rounded-md`}
+                />
               </div>
             ))}
-          </Slider>
-          {/* slide description */}
-          <div className="bg-EerieBlack-600 text-white-100 text-xs px-3 py-2 w-full h-1/3 rounded-md overflow-auto">
-            {shopHeroSectionInfo[selectedSlide].desc}
           </div>
-        </div>
-        {/* slide images */}
-        <div className="w-1/2 flex flex-col gap-y-1 max-h-full">
-          {shopHeroSectionInfo.map((slide, index) => (
-            <div
-              key={index}
-              onClick={() => changeSlideHandler(index)}
-              className={`${
-                selectedSlide === index ? "flex-1 h-10" : "h-10 flex-none"
-              }  rounded-md transition-all duration-1000`}
-            >
-              <img
-                src={slide.bgUrl}
-                alt="slide-bg"
-                className={`h-full w-full object-cover rounded-md`}
-              />
-            </div>
-          ))}
         </div>
       </div>
     </div>

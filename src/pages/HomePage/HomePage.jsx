@@ -33,7 +33,7 @@ function HomePage() {
       ))}
       {/* categories section */}
       <CategoriesSection />
-      {/* {productsData.length && <OverviewSection productsData={productsData} />} */}
+      {productsData.length && <OverviewSection productsData={productsData} />}
     </>
   );
 }
@@ -56,23 +56,20 @@ function OverviewSection({ productsData }) {
   };
 
   return (
-    <div className="container 2xl:max-w-6xl mx-auto flex flex-col mt-1 px-4 py-2 gap-y-4">
+    <div className="container 2xl:max-w-6xl mx-auto flex flex-col px-4 py-2 md:py-4 gap-y-4">
       <h2 className="text-4xl font-bold text-EerieBlack-100 neon-title">
         Overview
       </h2>
       <div className="md:flex md:gap-x-8">
-        <div className="md:w-1/3">
-          <Slider
-            {...settings}
-            className="rounded-tr-3xl h-64 md:h-96 rounded-bl-2xl custome-shadow bg-EerieBlack-400"
-          >
+        <div className="md:w-1/3" data-aos="fade-right">
+          <Slider {...settings} className="h-64 md:h-96 rounded-md">
             {productsData[0].images.map(
               (link, index) =>
                 index !== 0 && (
                   <img
                     key={index}
                     src={link}
-                    className="rounded-tr-3xl rounded-bl-2xl w-full h-64 md:h-96 object-cover transition-all"
+                    className="w-full h-64 md:h-96 object-cover transition-all"
                   />
                 )
             )}
@@ -96,66 +93,30 @@ function OverviewSection({ productsData }) {
           </p>
 
           <div className="w-full flex flex-col gap-y-4 md:flex-row items-center justify-between px-4 py-3 md:py-10 md:mt-5">
-            <p className="text-5xl flex flex-col md:flex-row text-Buff-200 items-center gap-x-2 cursor-pointer group">
+            <p
+              data-aos="fade-up"
+              data-aos-duration="400"
+              className="text-5xl flex flex-col md:flex-row text-Buff-200 items-center gap-x-2 cursor-pointer group"
+            >
               <TbTruckDelivery className="group-hover:-translate-y-3 transition-all" />
               <span className="!text-lg">Delivery</span>
             </p>
-            <p className="text-5xl flex flex-col md:flex-row text-Buff-200 items-center gap-x-2 cursor-pointer group">
+            <p
+              data-aos="fade-up"
+              data-aos-duration="700"
+              className="text-5xl flex flex-col md:flex-row text-Buff-200 items-center gap-x-2 cursor-pointer group"
+            >
               <BsWatch className="group-hover:-translate-y-3 transition-all" />
               <span className="!text-lg">Unique Products</span>
             </p>
-            <p className="text-5xl flex flex-col md:flex-row text-Buff-200 items-center gap-x-2 cursor-pointer group">
+            <p
+              data-aos="fade-up"
+              data-aos-duration="900"
+              className="text-5xl flex flex-col md:flex-row text-Buff-200 items-center gap-x-2 cursor-pointer group"
+            >
               <FaMoneyBillWave className="group-hover:-translate-y-3 transition-all" />
               <span className="!text-lg">Expert Advice </span>
             </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="flex flex-col gap-y-4">
-        {/* title */}
-        <h2 className="neon-title text-3xl my-1">Key Features</h2>
-        {/* description */}
-        <p className="text-white-100 text-center">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores
-          sint doloribus cum
-        </p>
-        {/* cards */}
-        <div className="flex flex-col md:flex-row gap-x-4 md:mx-4 items-center justify-center gap-y-4">
-          <div className="bg-Buff-100 rounded-md flex flex-col items-start justify-between px-2 py-1 w-3/4 h-32">
-            <p className="bg-Buff-400 p-1.5 text-3xl m-1 rounded-full">
-              <FaClock className="text-Buff-100" />
-            </p>
-            <span className="text-EerieBlack-600 font-semibold px-1">
-              24-hour car delivery
-            </span>
-          </div>
-
-          <div className="bg-Buff-100 rounded-md flex flex-col items-start justify-between px-2 py-1 w-3/4 h-32">
-            <p className="bg-Buff-400 p-1.5 text-3xl m-1 rounded-full">
-              <BiSupport className="text-Buff-100" />
-            </p>
-            <span className="text-EerieBlack-600 font-semibold px-1">
-              24-7 technical support
-            </span>
-          </div>
-
-          <div className="bg-Buff-100 rounded-md flex flex-col items-start justify-between px-2 py-1 w-3/4 h-32">
-            <p className="bg-Buff-400 p-1.5 text-3xl m-1 rounded-full">
-              <FaGift className="text-Buff-100" />
-            </p>
-            <span className="text-EerieBlack-600 font-semibold px-1">
-              All watches send with a gift
-            </span>
-          </div>
-
-          <div className="bg-Buff-100 rounded-md flex flex-col items-start justify-between px-2 py-1 w-3/4 h-32">
-            <p className="bg-Buff-400 p-1.5 text-3xl m-1 rounded-full">
-              {/* <SiSpringsecurity className="text-Buff-100" /> */}
-            </p>
-            <span className="text-EerieBlack-600 font-semibold px-1">
-              Absolute confidentiality
-            </span>
           </div>
         </div>
       </div>
@@ -204,8 +165,8 @@ function CategoriesSection() {
               {/* category title */}
               <div
                 data-aos="zoom-in"
-                data-aos-duration="900"
-                className="absolute inset-0 bg-Buff-500 bg-opacity-20  border-4 border-white-100 backdrop-blur-sm group-hover:backdrop-blur-none transition-all flex justify-center items-center"
+                data-aos-duration="950"
+                className="absolute inset-0 bg-Buff-500 bg-opacity-20  border-4 border-white-100 backdrop-blur-sm group-hover:backdrop-blur-none flex justify-center items-center"
               >
                 <h3 className="text-white-100 text-sm md:text-lg neon-title py-1 group-hover:-translate-y-4 transition-all duration-500">
                   {c.categoryTitle}
@@ -217,4 +178,8 @@ function CategoriesSection() {
       </div>
     </div>
   );
+}
+
+function Collection() {
+  return <div className="container mx-auto 2xl:max-w-6xl"></div>;
 }

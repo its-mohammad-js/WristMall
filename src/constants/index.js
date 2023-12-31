@@ -52,4 +52,10 @@ const categoriesInformation = {
   ],
 };
 
-export { slidesInformation, categoriesInformation };
+const stampToTime = (stamp) => {
+  const date = new Date(stamp * 1000);
+
+  return date.toLocaleDateString("en-US");
+};
+
+export { slidesInformation, categoriesInformation, stampToTime };

@@ -7,7 +7,11 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { BsWatch } from "react-icons/bs";
 import { FaMoneyBillWave } from "react-icons/fa";
 import Slide from "../../components/Slides/Slide";
-import { categoriesInformation, slidesInformation } from "../../constants";
+import {
+  categoriesInformation,
+  slidesInformation,
+  stampToTime,
+} from "../../constants";
 import { fetchNews } from "../../rudex/news/newsActions";
 
 function HomePage() {
@@ -50,7 +54,7 @@ function CategoriesSection() {
         id="wrapper"
         data-aos="fade-right"
         data-aos-duration="800"
-        className="w-full h-screen flex flex-col bg-white-100 bg-opacity-95 relative"
+        className="w-full h-[550px] md:h-screen flex flex-col bg-white-100 bg-opacity-95 relative"
       >
         {/* background image & color */}
         <div className="w-full h-full z-0 absolute">
@@ -69,7 +73,7 @@ function CategoriesSection() {
         </h2>
 
         {/* category slides */}
-        <div className="flex flex-wrap items-center justify-evenly z-10 py-4 gap-y-4">
+        <div className="flex flex-wrap items-center justify-evenly z-10 py-4 gap-y-6">
           {categoriesInformation.listOfcategories.map((c, index) => (
             <div
               key={index}
@@ -100,6 +104,8 @@ function CategoriesSection() {
 }
 
 function NewsSection() {
+  const { loading, newsData, error } = useSelector((state) => state.news);
+  // slick.js settings
   const settings = {
     speed: 1000,
     infinite: true,
@@ -108,7 +114,6 @@ function NewsSection() {
     dots: false,
     arrows: false,
   };
-  const { loading, newsData, error } = useSelector((state) => state.news);
 
   if (loading) return <p>Loading...</p>;
 
@@ -117,7 +122,7 @@ function NewsSection() {
       <div className="container mx-auto 2xl:max-w-6xl">
         <div id="wrapper" className="px-4 py-2 flex flex-col gap-y-4">
           {/* title  */}
-          <h2 className="neon-title text-center !text-Buff-300 text-xl font-extrabold">
+          <h2 className="neon-title !text-Buff-300 text-3xl font-extrabold">
             Last News
           </h2>
 
@@ -128,12 +133,22 @@ function NewsSection() {
               return (
                 <div
                   key={news.id}
-                  className="text-EerieBlack-600 w-full h-full"
+                  className="text-EerieBlack-600 w-full h-full px-2"
                 >
                   <h3 className="text-center line-clamp-1 text-lg text-white-100">
                     {news.title}
                   </h3>
                   <p className="text-sm text-white-90">{news.description}</p>
+
+                  <div className="w-11/12 mx-auto my-2 flex items-center justify-between py-1">
+                    <p className="bg-EerieBlack-400 rounded-md text-white-99 p-1">
+                      {news.topic}
+                    </p>
+
+                    <p className="text-white-100">
+                      date : {stampToTime(news.createdAt.seconds)}
+                    </p>
+                  </div>
                 </div>
               );
             })}

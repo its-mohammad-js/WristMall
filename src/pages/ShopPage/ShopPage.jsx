@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 function ShopPage() {
   return (
     <>
+      {/* hero section */}
       <ShopHeroSection />
     </>
   );
@@ -42,7 +43,7 @@ function ShopHeroSection() {
       {/* content wrapper */}
       <div
         id="slide-wrapper"
-        className="h-screen md:h-[450px] md:flex md:items-center md:justify-between md:gap-x-10 pt-20 md:pt-24 px-2 w-full z-30 bg-Buff-300 bg-opacity-25 backdrop-blur-lg"
+        className="h-screen md:h-[450px] md:flex md:items-center md:justify-between md:gap-x-10 pt-20 md:pt-24 px-4 w-full z-30 bg-Buff-300 bg-opacity-25 backdrop-blur-lg"
       >
         {/* hero title wrapper (desktop vision)*/}
         <div className="hidden md:flex flex-col w-2/3 h-full py-4">
@@ -105,7 +106,7 @@ function ShopHeroSection() {
                 onClick={() => changeSlideHandler(index)}
                 className={`${
                   selectedSlide === index ? "flex-1 h-10" : "h-10 flex-none"
-                }  rounded-md transition-all duration-1000`}
+                }  rounded-md transition-all duration-1000 ease-linear`}
               >
                 <img
                   src={slide.bgUrl}

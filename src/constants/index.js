@@ -34,6 +34,26 @@ const categoriesInformation = {
       bgUrl:
         "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/background%20images%2Fcategory%20slide%20bg%2003.jpg?alt=media&token=011c8c45-3529-4cf7-9638-47f09dd319de",
     },
+    {
+      categoryTitle: "Case Material",
+      bgUrl:
+        "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/background%20images%2Fcategory%20slide%20bg%2004.jpg?alt=media&token=bdd1991c-6abb-4855-b15c-b6aa5a9a4a9c",
+    },
+    {
+      categoryTitle: "Band Material",
+      bgUrl:
+        "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/background%20images%2Fcategory%20slide%20bg%2005.jpg?alt=media&token=824853e3-b3c7-4887-bc58-5f19e21da464",
+    },
+    {
+      categoryTitle: "Movement",
+      bgUrl:
+        "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/background%20images%2Fcategory%20slide%20bg%2006.jpg?alt=media&token=b799fca2-739e-4e1a-9f42-c6c59ac20ac0",
+    },
+    // {
+    //   categoryTitle: "Case size",
+    //   bgUrl:
+    //     "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/background%20images%2Fcategory%20slide%20bg%2007.jpg?alt=media&token=3e13d321-3935-4887-b124-bfe68a187423",
+    // },
   ],
 };
 

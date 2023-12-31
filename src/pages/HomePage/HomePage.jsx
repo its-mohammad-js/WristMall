@@ -203,9 +203,9 @@ function CategoriesSection() {
               <div
                 data-aos="fade-left"
                 data-aos-duration="600"
-                className="absolute inset-0 bg-Buff-500 bg-opacity-20 border-4 border-white-100 backdrop-blur-sm group-hover:backdrop-blur-none duration-500 transition-all flex justify-center items-center"
+                className="absolute inset-0 bg-Buff-500 bg-opacity-20  border-4 border-white-100 backdrop-blur-sm group-hover:backdrop-blur-none transition-all flex justify-center items-center"
               >
-                <h3 className="text-white-100 text-lg neon-title">
+                <h3 className="text-white-100 text-sm neon-title py-1 group-hover:-translate-y-4 transition-all duration-500">
                   {c.categoryTitle}
                 </h3>
               </div>

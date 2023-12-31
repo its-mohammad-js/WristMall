@@ -21,7 +21,6 @@ function ShopHeroSection() {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-
     autoplay: true,
     autoplaySpeed: 3000,
   };
@@ -33,10 +32,10 @@ function ShopHeroSection() {
   return (
     <div className="container mx-auto 2xl:max-w-6xl relative">
       {/* hero background */}
-      <div className="h-full w-full absolute -z-10">
-        <div className="w-52 h-52 bg-Buff-100 rounded-full -z-20 float-left"></div>
-        <div className="w-52 h-52 bg-Buff-200 rounded-full -z-20 float-right"></div>
-        <div className="w-52 h-52 bg-Buff-300 rounded-full -z-20 float-left"></div>
+      <div className="h-full w-full absolute -z-10 md:flex md:flex-col md:justify-between">
+        <div className="w-52 h-52 bg-Buff-100 rounded-full -z-20 float-left md:self-start"></div>
+        <div className="w-52 h-52 bg-Buff-200 rounded-full -z-20 float-right md:self-end"></div>
+        <div className="w-52 h-52 bg-Buff-300 rounded-full -z-20 float-left md:self-center"></div>
       </div>
 
       {/* content wrapper */}
@@ -45,7 +44,7 @@ function ShopHeroSection() {
         className="h-screen md:h-[450px] md:flex md:items-center md:justify-between md:gap-x-10 pt-20 md:pt-24 px-2 w-full z-30 bg-Buff-300 bg-opacity-25 backdrop-blur-lg"
       >
         {/*  */}
-        <div className="hidden md:block w-2/3 h-full bg-red-600">hey</div>
+        <div className="hidden md:block w-2/3 h-full">hey</div>
         {/* slides wrapper */}
         <div className="flex gap-x-2 h-full md:w-1/3">
           {/* slide text */}
@@ -63,8 +62,10 @@ function ShopHeroSection() {
               ))}
             </Slider>
             {/* slide description */}
-            <div className="bg-EerieBlack-600 text-white-100 text-xs px-3 py-2 w-full h-1/3  md:h-1/2 rounded-md overflow-auto md:overflow-hidden">
-              {shopHeroSectionInfo[selectedSlide].desc}
+            <div className="bg-EerieBlack-600 text-white-100 text-xs px-3 py-2 w-full h-1/3  md:h-1/2 rounded-md overflow-auto transition-all">
+              <span className="line-clamp-[9]">
+                {shopHeroSectionInfo[selectedSlide].desc}
+              </span>
             </div>
           </div>
           {/* slide images */}

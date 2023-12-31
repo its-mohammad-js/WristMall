@@ -105,8 +105,8 @@ function ShopHeroSection() {
                 key={index}
                 onClick={() => changeSlideHandler(index)}
                 className={`${
-                  selectedSlide === index ? "h-44" : "h-10"
-                }  rounded-md transition-all duration-1000 ease-linear`}
+                  selectedSlide === index ? "h-[60%]" : "h-[10%]"
+                }  rounded-md transition-all duration-700 ease-in`}
               >
                 <img
                   src={slide.bgUrl}

@@ -20,10 +20,10 @@ function ShopHeroSection() {
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    dots: true,
     arrows: false,
-    appendDots: appendDotsFunc,
     onSwipe: onSwipe,
+    autoplay: true,
+    autoplaySpeed: 3000,
   };
   //   handle slide image change
   const changeSlideHandler = (slideindex) => {
@@ -50,23 +50,6 @@ function ShopHeroSection() {
       else setSelectedSlide((prev) => prev + 1);
     }
   }
-  // customize pagination dots (jsx)
-  function appendDotsFunc(e) {
-    return (
-      <>
-        <div className="flex justify-center gap-x-1">
-          {e.map((p) => (
-            <span
-              key={p.key}
-              className={`${
-                p.props.className === "" && "!bg-EerieBlack-100"
-              } p-1 bg-Buff-300 transition-all rounded-full`}
-            ></span>
-          ))}
-        </div>
-      </>
-    );
-  }
 
   return (
     <div className="container mx-auto 2xl:max-w-6xl relative">
@@ -91,15 +74,12 @@ function ShopHeroSection() {
             {/* title slider */}
             <Slider
               {...settings}
-              className="bg-Buff-100 w-full h-1/3 md:h-1/2 rounded-md"
+              className="bg-Buff-100 w-full h-1/3 md:h-1/2 rounded-md flex items-center md:px-4 md:py-2"
             >
               {shopHeroSectionInfo.map((slide, index) => (
-                <div
-                  key={index}
-                  className="text-center text-sm rounded-t-md py-8"
-                >
-                  <span>{slide.title}</span>
-                </div>
+                <p key={index} className="text-center text-sm">
+                  {slide.title}
+                </p>
               ))}
             </Slider>
             {/* slide description */}

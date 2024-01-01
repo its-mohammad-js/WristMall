@@ -3,6 +3,7 @@ import ShopHeroSection from "../../components/HeroSections/ShopHeroSection";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../rudex/products/productActions";
 import { supportedProductFilters } from "../../constants";
+import SingleWatchCard from "../../components/SingleWatchCard/SingleWatchCard";
 
 function ShopPage() {
   //  products state
@@ -84,9 +85,18 @@ function FilterProductsSection() {
 }
 
 function ProductsSection() {
-  return (
-    <div className="container mx-auto 2xl:max-w-6xl bg-blue-600">
-      products section
-    </div>
+  const { loading, productsData, error } = useSelector(
+    (state) => state.products
   );
+
+  if (loading) return <p className="text-white-100">Loading ...</p>;
+
+  if (!loading)
+    return (
+      <div className="container mx-auto 2xl:max-w-6xl flex flex-col items-center gap-y-4 py-4">
+        {productsData.map((product) => (
+          <SingleWatchCard key={product.id} {...product} />
+        ))}
+      </div>
+    );
 }

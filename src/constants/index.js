@@ -91,36 +91,6 @@ const supportedProductFilters = {
   ),
 };
 
-const productstemplate = {
-  secondaryColor: "#FEE469",
-  isOnTop: true,
-  images: [
-    "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/Products_Image%2Folevs-9901-automatic-mechanical-watch.webp?alt=media&token=6c45b624-fa73-4f92-babd-562567698ac4",
-    "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/Products_Image%2Folevs-9901-automatic-mechanical-watch-12.jpeg?alt=media&token=8a96414e-054c-4987-b07c-891037e51ad0",
-    "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/Products_Image%2Folevs-9901-automatic-mechanical-watch-13.webp?alt=media&token=a78ca654-6375-4ea9-9193-ba5313ca80b5",
-    "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/Products_Image%2Folevs-9901-automatic-mechanical-watch-15.webp?alt=media&token=81d2ab3f-aed2-4b4b-8ed1-b8e9f63802ba",
-    "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/Products_Image%2Folevs-9901-automatic-mechanical-watch-16.jpeg?alt=media&token=e128d685-2ef1-46d8-8048-fa20b1e17ae9",
-    "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/Products_Image%2Folevs-9901-automatic-mechanical-watch-11.jpeg?alt=media&token=ba49f733-b66f-4931-8562-a80e5df45393",
-  ],
-  thumbnail:
-    "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/Products_Image%2Folevs-9901-automatic-mechanical-watch.webp?alt=media&token=6c45b624-fa73-4f92-babd-562567698ac4",
-  primaryColor: "#090909",
-  specifications: {
-    function: "Push Button Hidden Clasp",
-    metal: "Stainless Steel",
-    Brand: "OLEVS",
-    "Model Number": "9901",
-    Feature: "chronograph, Water Resistant, Waterproof, Luminous",
-  },
-  description:
-    "FULLY AUTOMATIC MECHANICAL MOVEMENT. “BE Yourself” Extraordinary free and easy personality more than one side. Tidal current, more colorful contrast unstoppable.  Easy handle the  splash challenge. The trend Hollowed out, new street style ‘be yourself.",
-  price: 70.76,
-  summaryDetails: ["CHARM", "Coin", "Luxury"],
-  name: "OLEVS 9901 Automatic",
-  category: "Movement",
-  id: "EhRzeF9AsmPJqbKRiALs",
-};
-
 export {
   slidesInformation,
   categoriesInformation,

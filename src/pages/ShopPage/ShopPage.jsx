@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import ShopHeroSection from "../../components/HeroSections/ShopHeroSection";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../rudex/products/productActions";
@@ -10,30 +10,63 @@ function ShopPage() {
   const { loading, productsData, error } = useSelector(
     (state) => state.products
   );
+  // redux dispatcher
   const dispatch = useDispatch();
+  // filter state
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  // filtered products state
+  const [filteredProducts, filterDispatcher] = useReducer(
+    filterPorductsReducer,
+    []
+  );
 
-  //   get all products
+  //   fetch all products
   useEffect(() => {
+    // fetch all products
     dispatch(fetchProducts());
   }, []);
+
+  // intilize filtered products
+  useEffect(() => {
+    filterDispatcher({ category: "All" });
+  }, [productsData]);
+
+  // change filter handler
+  const changeCategoryHandler = (category) => {
+    // change category on ui
+    setSelectedCategory(category);
+    // change filtered products
+    filterDispatcher({ category });
+  };
+
+  // filter category reducer
+  function filterPorductsReducer(state, action) {
+    if (action.category === "All") return productsData;
+    else {
+      return productsData.filter(
+        (product) => product.category === action.category
+      );
+    }
+  }
 
   return (
     <>
       {/* hero section */}
       <ShopHeroSection />
       {/* products filter section */}
-      <FilterProductsSection />
+      <FilterProductsSection
+        selectedCategory={selectedCategory}
+        onChangeCategory={changeCategoryHandler}
+      />
       {/* products card section */}
-      <ProductsSection />
+      <ProductsSection loading={loading} productsData={filteredProducts} />
     </>
   );
 }
 
 export default ShopPage;
 
-function FilterProductsSection() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-
+function FilterProductsSection({ selectedCategory, onChangeCategory }) {
   return (
     <div className="container mx-auto 2xl:max-w-6xl">
       <div
@@ -42,7 +75,7 @@ function FilterProductsSection() {
       >
         {/* all categories button */}
         <button
-          onClick={() => setSelectedCategory("All")}
+          onClick={() => onChangeCategory("All")}
           className={`${
             selectedCategory === "All"
               ? "text-EerieBlack-600 ring-2 ring-Buff-300"
@@ -61,7 +94,7 @@ function FilterProductsSection() {
         {/* categories button */}
         {supportedProductFilters.categories.map((c, index) => (
           <button
-            onClick={() => setSelectedCategory(c)}
+            onClick={() => onChangeCategory(c)}
             key={index}
             className={`${
               selectedCategory === c
@@ -84,11 +117,7 @@ function FilterProductsSection() {
   );
 }
 
-function ProductsSection() {
-  const { loading, productsData, error } = useSelector(
-    (state) => state.products
-  );
-
+function ProductsSection({ loading, productsData }) {
   if (loading) return <p className="text-white-100">Loading ...</p>;
 
   if (!loading)

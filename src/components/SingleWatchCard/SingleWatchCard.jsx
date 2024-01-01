@@ -32,7 +32,7 @@ function SingleWatchCard({ name, thumbnail, summaryDetails, price }) {
           </span>
 
           <button className="p-1.5 rounded-md bg-Buff-200 duration-500">
-            <FaCartPlus className="text-EerieBlack-600 text-lg group-hover:animate-bounce" />
+            <FaCartPlus className="text-EerieBlack-600 text-lg md:text-xl group-hover:animate-bounce" />
           </button>
         </div>
       </div>

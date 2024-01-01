@@ -1,3 +1,5 @@
+import * as Yup from "yup";
+
 const slidesInformation = [
   {
     id: 0,
@@ -98,6 +100,40 @@ const routesInfo = [
   { title: "َAbout Me", path: "/WristMall/AboutMe" },
 ];
 
+const signInPageBgUrl =
+  "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/background%20images%2Fsign%20in%20page%20bg.jpg?alt=media&token=78a77d6d-7959-4b0c-a838-54328b716c63";
+
+const signUpPageBgUrl =
+  "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/background%20images%2Fsign%20up%20page%20bg.jpg?alt=media&token=4dcb63f6-e7f5-4d81-9ee6-f513541c778d";
+
+const SignInValidationSchema = Yup.object({
+  name: Yup.string()
+    .required("Name is reduired")
+    .min(3, "Name length is not valid"),
+  email: Yup.string()
+    .email("Invaild email format")
+    .required("Email is required"),
+  password: Yup.string()
+    .required("Password is required")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+    ),
+  passwordConfirm: Yup.string()
+    .required("confirm your password")
+    .oneOf([Yup.ref("password"), null], "Passwords must match"),
+  gender: Yup.string().required("gender is required"),
+});
+
+const SignInInitialValues = {
+  name: "",
+  email: "",
+  password: "",
+  passwordConfirm: "",
+  gender: "",
+  remember: true,
+};
+
 export {
   slidesInformation,
   categoriesInformation,
@@ -105,4 +141,8 @@ export {
   shopHeroSectionInfo,
   supportedProductFilters,
   routesInfo,
+  signInPageBgUrl,
+  SignInValidationSchema,
+  SignInInitialValues,
+  signUpPageBgUrl,
 };

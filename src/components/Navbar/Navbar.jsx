@@ -48,8 +48,11 @@ function Navbar() {
               </Link>
             ))}
 
-            <Link className="w-full bg-Buff-400 text-white-100 px-4 py-2 rounded-md text-center">
-              Log in
+            <Link
+              to="/WristMall/SignIn"
+              className="w-full bg-Buff-400 text-white-100 px-4 py-2 rounded-md text-center"
+            >
+              SignIn
             </Link>
           </div>
         </div>
@@ -65,8 +68,11 @@ function Navbar() {
             </Link>
           ))}
 
-          <Link className="bg-Buff-300 text-white-100 p-1.5 rounded-md text-lg hover:text-EerieBlack-600 transition-all">
-            LogIn
+          <Link
+            to="/WristMall/SignIn"
+            className="bg-Buff-300 text-white-100 px-2 py-1 rounded-md text-lg hover:text-EerieBlack-600 transition-all"
+          >
+            SignIn
           </Link>
         </div>
       </div>

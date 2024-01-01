@@ -104,20 +104,39 @@ function ShopHeroSection() {
               <div
                 key={index}
                 onClick={() => changeSlideHandler(index)}
+                style={{
+                  backgroundImage: `url(${slide.bgUrl})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
                 className={`${
                   selectedSlide === index ? "h-[50%]" : "h-[10%]"
-                } rounded-md duration-700 bg-EerieBlack-300 overflow-hidden`}
-              >
-                <img
-                  src={slide.bgUrl}
-                  alt="slide-bg"
-                  className="w-full h-full object-cover rounded-md transform duration-700"
-                />
-              </div>
+                } rounded-md duration-700 overflow-hidden `}
+              ></div>
             ))}
           </div>
         </div>
       </div>
     </div>
   );
+}
+
+{
+  /* <div className="w-1/2 flex flex-col justify-center gap-y-1 max-h-full">
+  {shopHeroSectionInfo.map((slide, index) => (
+    <div
+      key={index}
+      onClick={() => changeSlideHandler(index)}
+      className={`${
+        selectedSlide === index ? "h-[50%]" : "h-[10%]"
+      } rounded-md duration-700 bg-EerieBlack-300 overflow-hidden`}
+    >
+      <img
+        src={slide.bgUrl}
+        alt="slide-bg"
+        className="w-full h-full object-cover rounded-md transform duration-700"
+      />
+    </div>
+  ))}
+</div>; */
 }

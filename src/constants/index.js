@@ -91,10 +91,18 @@ const supportedProductFilters = {
   ),
 };
 
+const routesInfo = [
+  { title: "Home", path: "/WristMall/" },
+  { title: "Shop", path: "/WristMall/Shop" },
+  { title: "Blogs", path: "/WristMall/Blogs" },
+  { title: "َAbout Me", path: "/WristMall/AboutMe" },
+];
+
 export {
   slidesInformation,
   categoriesInformation,
   stampToTime,
   shopHeroSectionInfo,
   supportedProductFilters,
+  routesInfo,
 };

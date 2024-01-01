@@ -1,11 +1,5 @@
 import { Link } from "react-router-dom";
-
-const routes = [
-  { title: "Home", path: "" },
-  { title: "Shop", path: "" },
-  { title: "Blogs", path: "" },
-  { title: "َAbout Me", path: "" },
-];
+import { routesInfo } from "../../constants";
 
 function Footer() {
   return (
@@ -22,8 +16,10 @@ function Footer() {
 
         {/* route links */}
         <div className="w-full flex flex-wrap items-center justify-center text-Buff-100 text-lg gap-x-4">
-          {routes.map((route, index) => (
-            <Link key={index}>{route.title}</Link>
+          {routesInfo.map((route, index) => (
+            <Link to={route.path} key={index}>
+              {route.title}
+            </Link>
           ))}
         </div>
       </div>

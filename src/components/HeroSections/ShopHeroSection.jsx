@@ -67,7 +67,7 @@ function ShopHeroSection() {
         {/* slides wrapper */}
         <div className="flex gap-x-2 h-full md:w-1/3">
           {/* slide text */}
-          <div className="w-1/2 flex flex-col items-center justify-center gap-y-1">
+          <div className="w-1/2 flex flex-col items-center justify-center gap-y-1 md:py-2">
             {/* title slider */}
             <Slider
               afterChange={(e) => setSelectedSlide(e)}

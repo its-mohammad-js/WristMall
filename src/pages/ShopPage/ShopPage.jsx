@@ -5,6 +5,9 @@ import { fetchProducts } from "../../rudex/products/productActions";
 import { supportedProductFilters } from "../../constants";
 import SingleWatchCard from "../../components/SingleWatchCard/SingleWatchCard";
 import LoaderSpinner from "../../components/Loaders/LoaderSpinner";
+import { MdOutlinePayment } from "react-icons/md";
+import { FaShippingFast } from "react-icons/fa";
+import { GiReturnArrow } from "react-icons/gi";
 
 function ShopPage() {
   //  products state
@@ -61,6 +64,8 @@ function ShopPage() {
       />
       {/* products card section */}
       <ProductsSection loading={loading} productsData={filteredProducts} />
+      {/* our services */}
+      <Services />
     </>
   );
 }
@@ -136,4 +141,33 @@ function ProductsSection({ loading, productsData }) {
         ))}
       </div>
     );
+}
+
+function Services() {
+  return (
+    <div className="container mx-auto 2xl:max-w-6xl h-[250px] my-4">
+      <div id="wrapper" className="flex flex-col items-center">
+        <span className="text-Buff-400 font-thin text-sm">Services</span>
+        <h2 className="text-4xl text-center text-Buff-100">
+          When You Buy <br /> Online
+        </h2>
+        <hr className="text-Buff-500 w-1/4 my-3" />
+
+        <div className="flex justify-center items-center flex-wrap gap-x-10 w-full px-2 py-1">
+          <span className="text-Buff-300 text-4xl flex flex-col items-center justify-center">
+            <MdOutlinePayment />
+            <span className="text-sm line-clamp-1">Secure payment</span>
+          </span>
+          <span className="text-Buff-300 text-4xl flex flex-col items-center justify-center">
+            <FaShippingFast />
+            <span className="text-sm line-clamp-1">Free shipping</span>
+          </span>
+          <span className="text-Buff-300 text-4xl flex flex-col items-center justify-center">
+            <GiReturnArrow />
+            <span className="text-sm line-clamp-1">Returns</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  );
 }

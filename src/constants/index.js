@@ -85,9 +85,16 @@ const shopHeroSectionInfo = [
   },
 ];
 
+const supportedProductFilters = {
+  categories: categoriesInformation.listOfcategories.map(
+    (c) => c.categoryTitle
+  ),
+};
+
 export {
   slidesInformation,
   categoriesInformation,
   stampToTime,
   shopHeroSectionInfo,
+  supportedProductFilters,
 };

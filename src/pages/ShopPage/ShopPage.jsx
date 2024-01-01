@@ -52,7 +52,7 @@ function FilterProductsSection() {
               selectedCategory === "All"
                 ? "bg-Buff-300 w-full h-full"
                 : "bg-none w-0 h-0 invisible"
-            } absolute left-0 bottom-0 rounded-xl -z-10 transition-all duration-400`}
+            } absolute left-0 bottom-0 rounded-xl -z-10 transition-all duration-500 `}
           ></span>
           All
         </button>
@@ -72,7 +72,7 @@ function FilterProductsSection() {
                 selectedCategory === c
                   ? "bg-Buff-300 w-full h-full"
                   : "bg-none w-0 h-0 invisible"
-              } absolute left-0 bottom-0 rounded-xl -z-10 transition-all duration-400`}
+              } absolute left-0 bottom-0 rounded-xl -z-10 transition-all duration-500`}
             ></span>
             {c}
           </button>

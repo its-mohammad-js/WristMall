@@ -39,6 +39,7 @@ function FilterProductsSection() {
         id="wrapper"
         className="w-full h-full px-3 py-2 overflow-auto flex items-center gap-x-2 md:justify-center"
       >
+        {/* all categories button */}
         <button
           onClick={() => setSelectedCategory("All")}
           className={`${
@@ -52,11 +53,11 @@ function FilterProductsSection() {
               selectedCategory === "All"
                 ? "bg-Buff-300 w-full h-full"
                 : "bg-none w-0 h-0 invisible"
-            } absolute left-0 bottom-0 rounded-xl -z-10 transition-all duration-500 `}
+            } absolute left-0 bottom-0 rounded-xl -z-10 transition-all duration-1000 `}
           ></span>
           All
         </button>
-
+        {/* categories button */}
         {supportedProductFilters.categories.map((c, index) => (
           <button
             onClick={() => setSelectedCategory(c)}
@@ -72,7 +73,7 @@ function FilterProductsSection() {
                 selectedCategory === c
                   ? "bg-Buff-300 w-full h-full"
                   : "bg-none w-0 h-0 invisible"
-              } absolute left-0 bottom-0 rounded-xl -z-10 transition-all duration-500`}
+              } absolute left-0 bottom-0 rounded-xl -z-10 transition-all duration-1000`}
             ></span>
             {c}
           </button>

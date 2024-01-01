@@ -4,7 +4,7 @@ function SingleWatchCard({ name, thumbnail, summaryDetails, price }) {
   return (
     <div
       id="card-wrapper"
-      className="w-44 h-72 flex flex-col items-center bg-Buff-300 bg-opacity-50 backdrop-blur-sm rounded-md group hover:ring-2 ring-EerieBlack-100"
+      className="w-1/2 sm:w-1/4 h-72 flex flex-col items-center bg-Buff-300 bg-opacity-50 backdrop-blur-sm rounded-md group hover:ring-2 ring-EerieBlack-100"
     >
       {/* product cover */}
       <div className="h-3/4 w-full px-4 py-2 rounded-t-md">

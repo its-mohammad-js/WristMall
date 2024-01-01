@@ -93,7 +93,7 @@ function ProductsSection() {
 
   if (!loading)
     return (
-      <div className="container mx-auto 2xl:max-w-6xl flex flex-col md:flex-row md:justify-evenly items-center gap-y-4 py-4">
+      <div className="container mx-auto 2xl:max-w-6xl flex flex-row flex-wrap gap-x-1 justify-center sm:justify-evenly items-center gap-y-4 py-4">
         {productsData.map((product) => (
           <SingleWatchCard key={product.id} {...product} />
         ))}

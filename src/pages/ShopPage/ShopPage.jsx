@@ -37,7 +37,7 @@ function FilterProductsSection() {
     <div className="container mx-auto 2xl:max-w-6xl">
       <div
         id="wrapper"
-        className="w-full h-full px-3 py-2 overflow-auto flex items-center gap-x-2 md:justify-center"
+        className="w-full h-full px-3 py-2 md:py-3 overflow-auto flex items-center gap-x-2 md:justify-center"
       >
         {/* all categories button */}
         <button
@@ -46,14 +46,14 @@ function FilterProductsSection() {
             selectedCategory === "All"
               ? "text-EerieBlack-600 ring-2 ring-Buff-300"
               : "text-Buff-300 bg-none border-2 border-Buff-300"
-          }  px-3 py-1.5 text-sm rounded-xl relative`}
+          }  px-3 py-1.5 text-sm md:text-base rounded-xl relative`}
         >
           <span
             className={`${
               selectedCategory === "All"
                 ? "bg-Buff-300 w-full h-full"
                 : "bg-none w-0 h-0 invisible"
-            } absolute left-0 bottom-0 rounded-xl -z-10 transition-all duration-1000 `}
+            } absolute left-0 bottom-0 rounded-xl -z-10 duration-1000 `}
           ></span>
           All
         </button>
@@ -66,14 +66,14 @@ function FilterProductsSection() {
               selectedCategory === c
                 ? "text-EerieBlack-600 ring-2 ring-Buff-300"
                 : "text-Buff-300 bg-none border-2 border-Buff-300"
-            } text-Buff-300 px-3 py-1.5 text-sm rounded-xl whitespace-nowrap relative`}
+            } text-Buff-300 px-3 py-1.5 text-sm md:text-base rounded-xl whitespace-nowrap relative`}
           >
             <span
               className={`${
                 selectedCategory === c
                   ? "bg-Buff-300 w-full h-full"
                   : "bg-none w-0 h-0 invisible"
-              } absolute left-0 bottom-0 rounded-xl -z-10 transition-all duration-1000`}
+              } absolute left-0 bottom-0 rounded-xl -z-10 duration-1000`}
             ></span>
             {c}
           </button>

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../rudex/products/productActions";
 import { supportedProductFilters } from "../../constants";
 import SingleWatchCard from "../../components/SingleWatchCard/SingleWatchCard";
+import LoaderSpinner from "../../components/Loaders/LoaderSpinner";
 
 function ShopPage() {
   //  products state
@@ -118,11 +119,18 @@ function FilterProductsSection({ selectedCategory, onChangeCategory }) {
 }
 
 function ProductsSection({ loading, productsData }) {
-  if (loading) return <p className="text-white-100">Loading ...</p>;
+  if (!productsData.length && !loading)
+    return (
+      <p className="h-screen flex items-center justify-center text-center text-lg font-bold text-Buff-300">
+        There are no products with this specification ...
+      </p>
+    );
+
+  if (loading) return <LoaderSpinner />;
 
   if (!loading)
     return (
-      <div className="container mx-auto 2xl:max-w-6xl flex flex-row flex-wrap gap-x-1 justify-center sm:justify-evenly items-center gap-y-4 py-4">
+      <div className="container mx-auto min-h-screen 2xl:max-w-6xl flex flex-row flex-wrap gap-x-1 justify-center sm:justify-evenly items-start gap-y-4 py-4">
         {productsData.map((product) => (
           <SingleWatchCard key={product.id} {...product} />
         ))}

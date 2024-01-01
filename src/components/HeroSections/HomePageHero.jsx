@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { IoIosArrowDown } from "react-icons/io";
+import LoaderSpinner from "../Loaders/LoaderSpinner";
 
 function HomePageHero() {
   //  products state
@@ -18,7 +19,7 @@ function HomePageHero() {
     dispatch(fetchProducts());
   }, []);
 
-  if (loading) return <p className="text-white-100">Loading ...</p>;
+  if (loading) return <LoaderSpinner />;
 
   if (!loading && productsData)
     return (

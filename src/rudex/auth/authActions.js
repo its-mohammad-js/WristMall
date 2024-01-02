@@ -10,6 +10,7 @@ import { doc, setDoc } from "firebase/firestore";
 
 // create new user account and database collection with email and pwassword
 export function signInWithEmail(userData) {
+  console.log(userData);
   return (dispatch) => {
     // dispatch request
     dispatch({ type: AUTH_USER_REQUEST });
@@ -43,6 +44,7 @@ export function signInWithEmail(userData) {
         });
         toast.success("Welcome To Wrist Mall");
       } catch (error) {
+        console.log(error);
         // dispatch failure
         toast.error("something went wrong");
         dispatch({ type: AUTH_USER_FAILURE, payload: error });

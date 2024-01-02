@@ -10,8 +10,10 @@ import { useEffect } from "react";
 import ShopPage from "./pages/ShopPage/ShopPage";
 import SignInPage from "./pages/SignInPage/SignInPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
+import { auth } from "./config/firebase";
 
 function App() {
+  // aos library init
   useEffect(() => {
     Aos.init({ mirror: true });
   }, []);

@@ -1,4 +1,8 @@
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth, db, googleProvider } from "../../config/firebase";
 import {
   AUTH_USER_FAILURE,
@@ -97,4 +101,47 @@ export function signInWithGamil() {
     // call sigIn with gmail function
     signInGmail();
   };
+}
+
+// signUp with email & password
+export function signUpWithEmail(userData) {
+  return (dispatch) => {
+    // dispatch request
+    dispatch({ type: AUTH_USER_REQUEST });
+
+    // async signUp with email function
+    const signInEmail = async () => {
+      try {
+        // signIn popUp
+        const signInRes = await signInWithEmailAndPassword(
+          auth,
+          userData.email,
+          userData.password
+        );
+        console.log(signInRes);
+        //fetch userData from server :
+        //
+        // disptach success after two requests
+        dispatch({
+          type: AUTH_USER_SUCCESS,
+          payload: { email: signInRes?.user?.email },
+          uid: signInRes?.user?.uid,
+        });
+        toast.success("Welcome Back");
+      } catch (error) {
+        console.log(error);
+        // dispatch failure
+        toast.error("something went wrong");
+        dispatch({ type: AUTH_USER_FAILURE, payload: error });
+      }
+    };
+
+    // call sigIn with gmail function
+    signInEmail();
+  };
+}
+
+// inital user on app mount
+export function initialUser(userData) {
+  return { type: AUTH_USER_SUCCESS, payload: userData };
 }

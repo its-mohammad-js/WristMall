@@ -26,6 +26,7 @@ function SignInPage() {
   );
   const dispatch = useDispatch();
 
+  // formik options
   const formik = useFormik({
     initialValues: SignInInitialValues,
     onSubmit,
@@ -46,6 +47,7 @@ function SignInPage() {
     }
   }
 
+  // sigIn with gmail popup
   function signInwithGoogle() {
     dispatch(signInWithGamil());
   }

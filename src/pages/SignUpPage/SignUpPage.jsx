@@ -4,6 +4,10 @@ import * as Yup from "yup";
 import { CheckBoxInput, Input } from "../../components/Inputs/Inputs";
 import { useNavigate } from "react-router-dom";
 import { signUpPageBgUrl } from "../../constants";
+import { useDispatch, useSelector } from "react-redux";
+import { signUpWithEmail } from "../../rudex/auth/authActions";
+import { auth } from "../../config/firebase";
+import toast from "react-hot-toast";
 
 const initialValues = {
   email: "",
@@ -28,7 +32,10 @@ const validationSchema = Yup.object({
 
 function SignUpPage() {
   const navigate = useNavigate();
-  //   const { isAuthenticated, authUser } = useAuth();
+  const { loading, userData, userUid, isAuthenticated } = useSelector(
+    (state) => state.authData
+  );
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -38,14 +45,16 @@ function SignUpPage() {
     enableReinitialize: true,
   });
 
-  function onSubmit(values) {
-    console.log(values);
-    // authUser(values);
+  function onSubmit(formData) {
+    dispatch(signUpWithEmail(formData));
   }
 
-  //   useEffect(() => {
-  //     if (isAuthenticated) navigate("/Your-Currency/");
-  //   }, [isAuthenticated]);
+  useEffect(() => {
+    if (isAuthenticated || auth?.currentUser || auth?.currentUser?.email)
+      navigate("/WristMall/");
+
+    toast("You are currently a member.");
+  }, [isAuthenticated, auth]);
 
   return (
     <div

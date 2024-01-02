@@ -21,9 +21,11 @@ function HomePage() {
   );
   const dispatch = useDispatch();
 
-  //   get all products
+  //   fetch data onMount
   useEffect(() => {
+    // fetch all products
     dispatch(fetchProducts());
+    // fetch all news
     dispatch(fetchNews());
   }, []);
 

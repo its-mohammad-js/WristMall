@@ -15,9 +15,9 @@ export function fetchNews() {
     dispatch({ type: FETCH_NEWS_REQUEST });
 
     // async get function
-    const getAllProducts = async () => {
+    const getAllNews = async () => {
       try {
-        // get all products from firebase
+        // get all news from firebase
         const data = await getDocs(NewsCollectionRef);
         const filteredData = data.docs.map((doc) => ({
           ...doc.data(),
@@ -32,6 +32,6 @@ export function fetchNews() {
       }
     };
 
-    getAllProducts();
+    getAllNews();
   };
 }

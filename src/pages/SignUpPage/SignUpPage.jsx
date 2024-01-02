@@ -62,7 +62,7 @@ function SignUpPage() {
         className="bg-Buff-300 bg-opacity-50 hover:bg-opacity-95 backdrop-blur-sm transition-all shadow-sm rounded-md px-4 py-2 md:px-6 md:py-4 w-11/12 md:w-1/2"
       >
         {/* title */}
-        <h2 className="text-secondary-100 text-center my-3 text-lg font-bold cursor-pointer">
+        <h2 className="neon-title text-center my-3 text-lg font-bold cursor-pointer">
           Welcome Back
         </h2>
         {/* email input */}
@@ -87,10 +87,7 @@ function SignUpPage() {
           >
             SignUp
           </button>
-          <button
-            type="button"
-            onClick={() => navigate("/Your-Currency/SignUp")}
-          >
+          <button type="button" onClick={() => navigate("/WristMall/SignIn")}>
             Don't have an account?
           </button>
         </div>

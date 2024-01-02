@@ -7,6 +7,11 @@ import {
   SignInValidationSchema,
   signInPageBgUrl,
 } from "../../constants";
+import { signInWithEmail, signInWithGamil } from "../../rudex/auth/authActions";
+import { useDispatch, useSelector } from "react-redux";
+import { auth } from "../../config/firebase";
+import toast from "react-hot-toast";
+import { FaGoogle } from "react-icons/fa";
 
 const radioOptions = [
   { label: "male", value: "0" },
@@ -15,7 +20,10 @@ const radioOptions = [
 
 function SignInPage() {
   const navigate = useNavigate();
-  // const { isAuthenticated, authUser } = useAuth();
+  const { loading, userData, userUid, isAuthenticated } = useSelector(
+    (state) => state.authData
+  );
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: SignInInitialValues,
@@ -25,14 +33,30 @@ function SignInPage() {
     enableReinitialize: true,
   });
 
-  function onSubmit(values) {
-    console.log(values);
-    // authUser(values);
+  // signIn with formData (email,password)
+  function onSubmit(formData) {
+    // If he has already created an account on firestore
+    if (auth?.currentUser && auth?.currentUser?.email) {
+      toast("You are currently a member. Please login");
+
+      navigate("/WristMall/SignUp");
+    } else {
+      dispatch(signInWithEmail(formData));
+    }
   }
 
-  // useEffect(() => {
-  //   if (isAuthenticated) navigate("/Your-Currency/");
-  // }, [isAuthenticated]);
+  function signInwithGoogle() {
+    dispatch(signInWithGamil());
+  }
+
+  // navigate registered users
+  useEffect(() => {
+    if (isAuthenticated) {
+      toast("You are currently a member.");
+
+      navigate("/WristMall/");
+    }
+  }, [isAuthenticated]);
 
   return (
     <div
@@ -72,12 +96,24 @@ function SignInPage() {
         />
 
         {/* buttons section */}
-        <div id="form-control" className="flex flex-col items-center gap-y-3">
+        <div
+          id="form-control"
+          className="flex flex-col items-center gap-y-1.5 my-2"
+        >
           <button
+            disabled={loading}
             type="submit"
-            className="bg-EerieBlack-600 text-white-100 px-4 py-2 rounded-md hover:bg-primary-100 hover:text-secondary-100 transition-all outline-none"
+            className="bg-EerieBlack-600 w-full text-white-100 px-4 py-2 rounded-md hover:bg-primary-100 hover:text-secondary-100 transition-all outline-none"
           >
             SignIn
+          </button>
+          <button
+            onClick={signInwithGoogle}
+            disabled={loading}
+            type="button"
+            className="bg-red-600 w-full text-white-100 px-4 py-2 rounded-md hover:bg-red-400 flex items-center justify-center gap-x-2 transition-all outline-none"
+          >
+            <FaGoogle /> SignIn With Gmail
           </button>
           <button
             type="button"

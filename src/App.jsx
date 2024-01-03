@@ -10,7 +10,6 @@ import { useEffect } from "react";
 import ShopPage from "./pages/ShopPage/ShopPage";
 import SignInPage from "./pages/SignInPage/SignInPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
-import { auth } from "./config/firebase";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 function App() {

@@ -164,6 +164,7 @@ export default {
         fadeIn: "fadeIn 0.8s linear",
         fadeOut: "fadeOut 0.8s linear",
         typing: "typing 1s steps(40, end)",
+        infinityType: "typing 1s steps(40, end) infinite",
         upDown: "upDown 1s linear infinite",
       },
     },

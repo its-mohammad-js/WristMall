@@ -14,6 +14,8 @@ function ShopPage() {
   const { loading, productsData, error } = useSelector(
     (state) => state.products
   );
+  // cart state
+  // const { loading, cartData } = useSelector((state) => state.products);
   // redux dispatcher
   const dispatch = useDispatch();
   // filter state

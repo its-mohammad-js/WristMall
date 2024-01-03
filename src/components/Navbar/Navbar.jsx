@@ -2,9 +2,12 @@ import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { routesInfo } from "../../constants";
+import { useSelector } from "react-redux";
+import { FaCartShopping } from "react-icons/fa6";
 
 function Navbar() {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const { isAuthenticated } = useSelector((state) => state.authData);
 
   return (
     <div className="flex w-screen fixed z-50 2xl:pr-6">
@@ -12,6 +15,7 @@ function Navbar() {
         id="wrapper"
         className="mx-auto w-full bg-Buff-100 bg-opacity-30 backdrop-blur-sm z-50 2xl:max-w-6xl flex items-center justify-between px-4 py-2 relative"
       >
+        {/* logo */}
         <div className="flex-1">
           <img
             src="./logo/logo-no-background.svg"
@@ -20,19 +24,29 @@ function Navbar() {
           />
         </div>
 
+        {/* mobile menu btn */}
         <div
           onClick={() => setMenuIsOpen(!menuIsOpen)}
-          className="flex items-center gap-x-6 text-Buff-300 md:hidden"
+          className="flex items-center gap-x-4 text-Buff-300 md:hidden"
         >
-          <GiHamburgerMenu className="text-3xl" />
+          <div className="">
+            <Link to="/WristMall/Cart">
+              <FaCartShopping className="text-2xl" />
+            </Link>
+          </div>
+          {/* link to cart page */}
+          <div className="">
+            <GiHamburgerMenu className="text-3xl" />
+          </div>
         </div>
 
+        {/* mobile menu */}
         <div
           className={`${
             menuIsOpen
               ? "visible h-full w-full opacity-100"
               : "invisible h-0 w-0 opacity-0"
-          } absolute -bottom-32 right-0 flex items-center justify-center duration-300`}
+          } absolute -bottom-[135px] right-0 flex items-center justify-center duration-300`}
         >
           <div
             id="wrapper"
@@ -49,14 +63,15 @@ function Navbar() {
             ))}
 
             <Link
-              to="/WristMall/SignIn"
+              to={isAuthenticated ? "/WristMall/Profile" : "/WristMall/SignIn"}
               className="w-full bg-Buff-400 text-white-100 px-4 py-2 rounded-md text-center"
             >
-              SignIn
+              {isAuthenticated ? "Profile" : "SignIn"}
             </Link>
           </div>
         </div>
 
+        {/*  desktop menu */}
         <div className="items-center justify-center gap-x-4 px-4 hidden md:flex">
           {routesInfo.map((route, index) => (
             <Link

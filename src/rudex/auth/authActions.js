@@ -141,7 +141,7 @@ export function signUpWithEmail(userData) {
   };
 }
 
-// inital user on app mount
+// initalize user data
 export function initialUser(userData) {
   return { type: AUTH_USER_SUCCESS, payload: userData };
 }

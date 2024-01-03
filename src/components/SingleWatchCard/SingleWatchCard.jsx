@@ -1,6 +1,31 @@
 import { FaCartPlus } from "react-icons/fa";
+import { AddProductToCart } from "../../rudex/cart/cartActions";
+import { useDispatch, useSelector } from "react-redux";
+import { auth } from "../../config/firebase";
+import { useEffect, useState } from "react";
 
-function SingleWatchCard({ name, thumbnail, summaryDetails, price }) {
+function SingleWatchCard({ name, thumbnail, summaryDetails, price, id }) {
+  // user local data
+  const { isAuthenticated } = useSelector((state) => state.authData);
+  // cart data
+  const { cartData, loading } = useSelector((state) => state.cartData);
+  // selcted product id
+  const [selectedProduct, setSlectedProduct] = useState("");
+
+  const dispatch = useDispatch();
+  
+  // add to cart function
+  function addToCart() {
+    //
+    setSlectedProduct(`${id}`);
+    // redux action
+    dispatch(AddProductToCart(id, isAuthenticated, auth?.currentUser?.uid));
+  }
+
+  useEffect(() => {
+    if (!loading) setSlectedProduct("");
+  }, [loading]);
+
   return (
     <div
       id="card-wrapper"
@@ -31,8 +56,21 @@ function SingleWatchCard({ name, thumbnail, summaryDetails, price }) {
             ${price}
           </span>
 
-          <button className="p-1.5 rounded-md bg-Buff-200 duration-500">
-            <FaCartPlus className="text-EerieBlack-600 text-lg md:text-xl group-hover:animate-bounce" />
+          <button
+            onClick={() => addToCart()}
+            className={`${
+              loading &&
+              selectedProduct === id &&
+              "flex-1 ml-1.5 md:ml-2 duration-1000 animate-pulse"
+            } p-1.5 rounded-md bg-Buff-200 duration-500`}
+          >
+            {loading && selectedProduct === id ? (
+              <p className="text-EerieBlack-600 text-xs md:text-sm animate-bounce">
+                adding...
+              </p>
+            ) : (
+              <FaCartPlus className="text-EerieBlack-600 text-lg md:text-xl group-hover:animate-bounce" />
+            )}
           </button>
         </div>
       </div>

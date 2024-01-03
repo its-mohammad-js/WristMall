@@ -28,7 +28,7 @@ function App() {
           <Route path="/WristMall/SignIn" element={<SignInPage />} />
           <Route path="/WristMall/SignUp" element={<SignUpPage />} />
           <Route path="/WristMall/Profile" element={<ProfilePage />} />
-          <Route path="/WristMall/Cart" element={<ProfilePage />} />
+          {/* <Route path="/WristMall/Cart" element={<CartPage />} /> */}
         </Routes>
       </AppLayout>
     </Provider>

@@ -11,9 +11,7 @@ import LoaderSpinner from "../components/Loaders/LoaderSpinner";
 function AppLayout({ children }) {
   // loading state
   const [loading, setLoading] = useState(true);
-
   const { isAuthenticated } = useSelector((state) => state.authData);
-  const { cartData } = useSelector((state) => state.cartData);
   const dispatch = useDispatch();
 
   // check user states on app mount

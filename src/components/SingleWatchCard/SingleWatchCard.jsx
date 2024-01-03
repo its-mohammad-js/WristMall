@@ -1,8 +1,12 @@
 import { FaCartPlus } from "react-icons/fa";
-import { AddProductToCart } from "../../rudex/cart/cartActions";
+import {
+  addProductToCart,
+  removeProductFromCart,
+} from "../../rudex/cart/cartActions";
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../../config/firebase";
 import { useEffect, useState } from "react";
+import { FaTrash } from "react-icons/fa6";
 
 function SingleWatchCard({ name, thumbnail, summaryDetails, price, id }) {
   // user local data
@@ -11,17 +15,34 @@ function SingleWatchCard({ name, thumbnail, summaryDetails, price, id }) {
   const { cartData, loading } = useSelector((state) => state.cartData);
   // selcted product id
   const [selectedProduct, setSlectedProduct] = useState("");
-
+  // check product is in cart
+  const productinCart = cartData.find((p) => p.productId === id);
   const dispatch = useDispatch();
-  
+
   // add to cart function
   function addToCart() {
-    //
+    // set product status
     setSlectedProduct(`${id}`);
     // redux action
-    dispatch(AddProductToCart(id, isAuthenticated, auth?.currentUser?.uid));
+    dispatch(addProductToCart(id, isAuthenticated, auth?.currentUser?.uid));
   }
 
+  // remove product from cart
+  function removeFromCart() {
+    // set product status
+    setSlectedProduct(`${id}`);
+    // redux action
+    dispatch(
+      removeProductFromCart(
+        id,
+        isAuthenticated,
+        auth?.currentUser?.uid,
+        cartData
+      )
+    );
+  }
+
+  // clean button status after each req
   useEffect(() => {
     if (!loading) setSlectedProduct("");
   }, [loading]);
@@ -56,22 +77,41 @@ function SingleWatchCard({ name, thumbnail, summaryDetails, price, id }) {
             ${price}
           </span>
 
-          <button
-            onClick={() => addToCart()}
-            className={`${
-              loading &&
-              selectedProduct === id &&
-              "flex-1 ml-1.5 md:ml-2 duration-1000 animate-pulse"
-            } p-1.5 rounded-md bg-Buff-200 duration-500`}
-          >
-            {loading && selectedProduct === id ? (
-              <p className="text-EerieBlack-600 text-xs md:text-sm animate-bounce">
-                adding...
-              </p>
-            ) : (
-              <FaCartPlus className="text-EerieBlack-600 text-lg md:text-xl group-hover:animate-bounce" />
-            )}
-          </button>
+          {productinCart?.productId === id ? (
+            <button
+              onClick={removeFromCart}
+              className={`${
+                loading &&
+                selectedProduct === id &&
+                "flex-1 ml-1.5 md:ml-2 duration-1000 animate-pulse"
+              } p-1.5 rounded-md bg-Buff-200 text-xs md:text-sm`}
+            >
+              {loading && selectedProduct === id ? (
+                <p className="text-EerieBlack-600 text-xs md:text-sm animate-bounce transition-all">
+                  remove...
+                </p>
+              ) : (
+                <FaTrash className="group-hover:animate-bounce group-hover:text-lg transition-all" />
+              )}
+            </button>
+          ) : (
+            <button
+              onClick={() => addToCart()}
+              className={`${
+                loading &&
+                selectedProduct === id &&
+                "flex-1 ml-1.5 md:ml-2 duration-1000 animate-pulse"
+              } p-1.5 rounded-md bg-Buff-200 duration-500`}
+            >
+              {loading && selectedProduct === id ? (
+                <p className="text-EerieBlack-600 text-xs md:text-sm animate-bounce">
+                  adding...
+                </p>
+              ) : (
+                <FaCartPlus className="text-EerieBlack-600 text-lg md:text-xl group-hover:animate-bounce" />
+              )}
+            </button>
+          )}
         </div>
       </div>
     </div>

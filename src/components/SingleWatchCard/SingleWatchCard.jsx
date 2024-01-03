@@ -8,7 +8,9 @@ import { auth } from "../../config/firebase";
 import { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa6";
 
-function SingleWatchCard({ name, thumbnail, summaryDetails, price, id }) {
+function SingleWatchCard(productData) {
+  // destructure product data object
+  let { name, thumbnail, summaryDetails, price, id } = productData;
   // user local data
   const { isAuthenticated } = useSelector((state) => state.authData);
   // cart data
@@ -24,7 +26,9 @@ function SingleWatchCard({ name, thumbnail, summaryDetails, price, id }) {
     // set product status
     setSlectedProduct(`${id}`);
     // redux action
-    dispatch(addProductToCart(id, isAuthenticated, auth?.currentUser?.uid));
+    dispatch(
+      addProductToCart(id, isAuthenticated, auth?.currentUser?.uid, productData)
+    );
   }
 
   // remove product from cart

@@ -96,6 +96,7 @@ const supportedProductFilters = {
 const routesInfo = [
   { title: "Home", path: "/WristMall/" },
   { title: "Shop", path: "/WristMall/Shop" },
+  { title: "Cart", path: "/WristMall/Cart" },
   { title: "Blogs", path: "/WristMall/Blogs" },
   { title: "َAbout Me", path: "/WristMall/AboutMe" },
 ];
@@ -105,6 +106,9 @@ const signInPageBgUrl =
 
 const signUpPageBgUrl =
   "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/background%20images%2Fsign%20up%20page%20bg.jpg?alt=media&token=4dcb63f6-e7f5-4d81-9ee6-f513541c778d";
+
+const cartPageBgUrl =
+  "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/background%20images%2Fcart%20page%20bg.jpg?alt=media&token=a71bc5ea-938e-4dfc-a3f5-b4ccffe62639";
 
 const SignInValidationSchema = Yup.object({
   name: Yup.string()
@@ -145,4 +149,5 @@ export {
   SignInValidationSchema,
   SignInInitialValues,
   signUpPageBgUrl,
+  cartPageBgUrl,
 };

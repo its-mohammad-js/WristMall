@@ -7,7 +7,10 @@ import { FaCartShopping } from "react-icons/fa6";
 
 function Navbar() {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  // get auth data to display signIn methods button or Profile button on navbar
   const { isAuthenticated } = useSelector((state) => state.authData);
+  // get cart data to dispaly length on cart icon in navbar
+  const { cartData } = useSelector((state) => state.cartData);
 
   return (
     <div className="flex w-screen fixed z-50 2xl:pr-6">
@@ -25,17 +28,19 @@ function Navbar() {
         </div>
 
         {/* mobile menu btn */}
-        <div
-          onClick={() => setMenuIsOpen(!menuIsOpen)}
-          className="flex items-center gap-x-4 text-Buff-300 md:hidden"
-        >
-          <div className="">
-            <Link to="/WristMall/Cart">
-              <FaCartShopping className="text-2xl" />
-            </Link>
-          </div>
+        <div className="flex items-center gap-x-4 text-Buff-300 md:hidden">
           {/* link to cart page */}
           <div className="">
+            <Link to="/WristMall/Cart" className="relative">
+              <FaCartShopping className="text-2xl" />
+
+              <p className="text-sm bg-Buff-100 text-EerieBlack-600 font-extrabold px-1.5 rounded-full bottom-3 left-3 absolute">
+                {cartData.length || 0}
+              </p>
+            </Link>
+          </div>
+          {/* menu icon */}
+          <div onClick={() => setMenuIsOpen(!menuIsOpen)} className="">
             <GiHamburgerMenu className="text-3xl" />
           </div>
         </div>
@@ -52,15 +57,18 @@ function Navbar() {
             id="wrapper"
             className={`w-11/12 bg-white-100 rounded-md flex flex-col items-center justify-center gap-y-2 px-2 py-1`}
           >
-            {routesInfo.map((route, index) => (
-              <Link
-                key={index}
-                to={route.path}
-                className="text-lg text-EerieBlack-600 border-b-2 border-Buff-200"
-              >
-                {route.title}
-              </Link>
-            ))}
+            {routesInfo.map(
+              (route, index) =>
+                route.title !== "Cart" && (
+                  <Link
+                    key={index}
+                    to={route.path}
+                    className="text-lg text-EerieBlack-600 border-b-2 border-Buff-200"
+                  >
+                    {route.title}
+                  </Link>
+                )
+            )}
 
             <Link
               to={isAuthenticated ? "/WristMall/Profile" : "/WristMall/SignIn"}

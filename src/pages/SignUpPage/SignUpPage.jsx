@@ -50,10 +50,11 @@ function SignUpPage() {
   }
 
   useEffect(() => {
-    if (isAuthenticated || auth?.currentUser || auth?.currentUser?.email)
+    if (isAuthenticated || auth?.currentUser || auth?.currentUser?.email) {
       navigate("/WristMall/");
 
-    toast("You are currently a member.");
+      toast("You are currently a member.");
+    }
   }, [isAuthenticated, auth]);
 
   return (

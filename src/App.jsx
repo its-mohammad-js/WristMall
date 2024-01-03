@@ -11,6 +11,7 @@ import ShopPage from "./pages/ShopPage/ShopPage";
 import SignInPage from "./pages/SignInPage/SignInPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import CartPage from "./pages/CartPage/CartPage";
 
 function App() {
   // aos library init
@@ -28,7 +29,7 @@ function App() {
           <Route path="/WristMall/SignIn" element={<SignInPage />} />
           <Route path="/WristMall/SignUp" element={<SignUpPage />} />
           <Route path="/WristMall/Profile" element={<ProfilePage />} />
-          {/* <Route path="/WristMall/Cart" element={<CartPage />} /> */}
+          <Route path="/WristMall/Cart" element={<CartPage />} />
         </Routes>
       </AppLayout>
     </Provider>

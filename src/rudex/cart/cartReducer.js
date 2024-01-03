@@ -29,7 +29,7 @@ export default function cartReducer(state = initialState, action) {
     case REMOVE_PRODUCT_FROM_CART:
       return { ...state, cartData: action.payload, loading: false };
     case INCREASE_PRODUCT_QUANTITY:
-      return {};
+      return { ...state, cartData: action.payload, loading: false };
     case DECRASE_PRODUCT_QUANTITY:
       return {};
     case CLEAN_CART: {

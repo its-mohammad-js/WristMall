@@ -9,10 +9,11 @@ import {
 } from "../../constants";
 import { signInWithEmail, signInWithGamil } from "../../rudex/auth/authActions";
 import { useDispatch, useSelector } from "react-redux";
-import { auth } from "../../config/firebase";
+import { auth, googleProvider } from "../../config/firebase";
 import toast from "react-hot-toast";
 import { FaGoogle } from "react-icons/fa";
 import LoaderSpinner from "../../components/Loaders/LoaderSpinner";
+import { signInWithRedirect } from "firebase/auth";
 
 const radioOptions = [
   { label: "male", value: "0" },
@@ -49,7 +50,17 @@ function SignInPage() {
 
   // sigIn with gmail popup
   function signInwithGoogle() {
-    dispatch(signInWithGamil());
+    const signInTest = async () => {
+      try {
+        const signInRes = await signInWithRedirect(auth, googleProvider);
+      } catch (error) {
+        toast.error(error.message);
+      }
+    };
+
+    signInTest();
+
+    // dispatch(signInWithGamil());
   }
 
   // navigate registered users

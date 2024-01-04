@@ -32,16 +32,20 @@ function AppLayout({ children }) {
           dispatch(initialUser({ email: loggedInUser.email }));
           // dispatch user cart data
           const fetchCartData = async () => {
-            // refrence to user data on firebase
-            const cartRef = doc(db, "UsersData", loggedInUser.uid);
-            // fetch userData
-            const cartRes = await getDoc(cartRef);
-            // get userData from userData
-            const userData = cartRes.data((d) => d);
-            // dispatch success
-            dispatch(userCartDataInit(userData.userCart));
+            try {
+              // refrence to user data on firebase
+              const cartRef = doc(db, "UsersData", loggedInUser.uid);
+              // fetch userData
+              const cartRes = await getDoc(cartRef);
+              // get userData from userData
+              const userData = cartRes.data((d) => d);
+              // dispatch success
+              dispatch(userCartDataInit(userData.userCart));
 
-            setLoading(false);
+              setLoading(false);
+            } catch (error) {
+              setLoading(false);
+            }
           };
           // call fetch cart
           fetchCartData();

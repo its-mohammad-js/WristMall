@@ -9,12 +9,12 @@ import {
 } from "../../constants";
 import { signInWithEmail, signInWithGamil } from "../../rudex/auth/authActions";
 import { useDispatch, useSelector } from "react-redux";
-import { auth, googleProvider } from "../../config/firebase";
+import { auth } from "../../config/firebase";
 import toast from "react-hot-toast";
 import { FaGoogle } from "react-icons/fa";
 import LoaderSpinner from "../../components/Loaders/LoaderSpinner";
-import { signInWithRedirect } from "firebase/auth";
 
+// form radio options
 const radioOptions = [
   { label: "male", value: "0" },
   { label: "female", value: "1" },
@@ -50,7 +50,7 @@ function SignInPage() {
 
   // sigIn with gmail popup
   function signInwithGoogle() {
-    // dispatch redux actions 
+    // dispatch redux actions
     dispatch(signInWithGamil());
   }
 

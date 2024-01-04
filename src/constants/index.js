@@ -97,7 +97,7 @@ const routesInfo = [
   { title: "Home", path: "/WristMall/" },
   { title: "Shop", path: "/WristMall/Shop" },
   { title: "Cart", path: "/WristMall/Cart" },
-  { title: "Blogs", path: "/WristMall/Blogs" },
+  // { title: "Blogs", path: "/WristMall/Blogs" },
   { title: "َAbout Me", path: "/WristMall/AboutMe" },
 ];
 

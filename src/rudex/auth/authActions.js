@@ -1,6 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   signInWithPopup,
+  signInWithRedirect,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth, db, googleProvider } from "../../config/firebase";
@@ -72,7 +73,7 @@ export function signInWithGamil() {
     const signInGmail = async () => {
       try {
         // signIn popUp
-        const signInRes = await signInWithPopup(auth, googleProvider);
+        const signInRes = await signInWithRedirect(auth, googleProvider);
         console.log(signInRes);
         // // user collection sample :
         const newUserCollection = {
@@ -96,7 +97,7 @@ export function signInWithGamil() {
       } catch (error) {
         console.log(error);
         // dispatch failure
-        toast.error("something went wrong");
+        toast.error(error.message);
         dispatch({ type: AUTH_USER_FAILURE, payload: error });
       }
     };

@@ -2,6 +2,7 @@ import {
   ADD_PRODUCT_TO_CART,
   CART_INIT,
   CART_ON_REQUEST,
+  CLEAN_CART,
   INCREASE_PRODUCT_QUANTITY,
   REMOVE_PRODUCT_FROM_CART,
 } from "./cartTypes";
@@ -130,6 +131,41 @@ export function updateCartData(updatedCartData, isAuthenticated, userUid) {
 
       // call update function
       increaseProductQuantity();
+    };
+  }
+}
+
+// clean all products data from local cart and firebase
+export function cleanCartAction(isAuthenticated, userUid) {
+  //  clean local cart if user is not logged in
+  if (!isAuthenticated) {
+    return { type: CLEAN_CART };
+  }
+  // if user is logged in
+  else if (isAuthenticated) {
+    return (dispatch) => {
+      // dispatch loading
+      dispatch({ type: CART_ON_REQUEST });
+
+      // update user data cart in firebase
+      const clearCartData = async () => {
+        try {
+          // refrence to user data on data base
+          const userDataRef = doc(db, "UsersData", userUid);
+          // update user cart data with updated cart
+          await updateDoc(userDataRef, {
+            userCart: [],
+          });
+          console.log("data base cart is clear");
+          // dispatch success
+          dispatch({ type: CLEAN_CART });
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      // call clear data function
+      clearCartData();
     };
   }
 }

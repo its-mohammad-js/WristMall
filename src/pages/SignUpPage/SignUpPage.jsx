@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signUpWithEmail } from "../../rudex/auth/authActions";
 import { auth } from "../../config/firebase";
 import toast from "react-hot-toast";
+import LoaderSpinner from "../../components/Loaders/LoaderSpinner";
 
 const initialValues = {
   email: "",
@@ -32,9 +33,7 @@ const validationSchema = Yup.object({
 
 function SignUpPage() {
   const navigate = useNavigate();
-  const { loading, userData, userUid, isAuthenticated } = useSelector(
-    (state) => state.authData
-  );
+  const { loading, isAuthenticated } = useSelector((state) => state.authData);
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -67,41 +66,47 @@ function SignUpPage() {
       className="container mx-auto 2xl:max-w-6xl h-screen flex justify-center items-center relative"
     >
       {/* main form */}
-      <form
-        onSubmit={formik.handleSubmit}
-        className="bg-Buff-300 bg-opacity-50 hover:bg-opacity-95 backdrop-blur-sm transition-all shadow-sm rounded-md px-4 py-2 md:px-6 md:py-4 w-11/12 md:w-1/2"
-      >
-        {/* title */}
-        <h2 className="neon-title text-center my-3 text-lg font-bold cursor-pointer">
-          Welcome Back
-        </h2>
-        {/* email input */}
-        <Input formik={formik} name={"email"} label={"Email"} />
-        {/* password input */}
-        <Input formik={formik} name={"password"} label={"Password"} />
-        {/*  remember me checkbox */}
-        <CheckBoxInput
-          checkOptions={checkBoxOptions}
-          formik={formik}
-          name={"remember"}
-        />
-
-        {/* buttons section */}
-        <div
-          id="form-control"
-          className="flex flex-col items-center gap-y-1.5 my-2"
+      {!loading ? (
+        <form
+          onSubmit={formik.handleSubmit}
+          className="bg-Buff-300 bg-opacity-50 hover:bg-opacity-95 backdrop-blur-sm transition-all shadow-sm rounded-md px-4 py-2 md:px-6 md:py-4 w-11/12 md:w-1/2"
         >
-          <button
-            type="submit"
-            className="bg-EerieBlack-600 text-white-100 px-4 py-2 rounded-md hover:bg-primary-100 hover:text-secondary-100 transition-all"
+          {/* title */}
+          <h2 className="neon-title text-center my-3 text-lg font-bold cursor-pointer">
+            Welcome Back
+          </h2>
+          {/* email input */}
+          <Input formik={formik} name={"email"} label={"Email"} />
+          {/* password input */}
+          <Input formik={formik} name={"password"} label={"Password"} />
+          {/*  remember me checkbox */}
+          <CheckBoxInput
+            checkOptions={checkBoxOptions}
+            formik={formik}
+            name={"remember"}
+          />
+
+          {/* buttons section */}
+          <div
+            id="form-control"
+            className="flex flex-col items-center gap-y-1.5 my-2"
           >
-            SignUp
-          </button>
-          <button type="button" onClick={() => navigate("/WristMall/SignIn")}>
-            Don't have an account?
-          </button>
+            <button
+              type="submit"
+              className="bg-EerieBlack-600 text-white-100 px-4 py-2 rounded-md hover:bg-primary-100 hover:text-secondary-100 transition-all"
+            >
+              SignUp
+            </button>
+            <button type="button" onClick={() => navigate("/WristMall/SignIn")}>
+              Don't have an account?
+            </button>
+          </div>
+        </form>
+      ) : (
+        <div className="h-full w-full">
+          <LoaderSpinner />
         </div>
-      </form>
+      )}
       {/* background picture */}
       <img
         src="./images/logIn-backround.jpg"

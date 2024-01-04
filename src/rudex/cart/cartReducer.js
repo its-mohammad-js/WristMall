@@ -33,7 +33,7 @@ export default function cartReducer(state = initialState, action) {
     case DECRASE_PRODUCT_QUANTITY:
       return {};
     case CLEAN_CART: {
-      return {};
+      return { ...state, cartData: [], loading: false };
     }
     default:
       return state;

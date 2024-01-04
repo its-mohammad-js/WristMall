@@ -14,7 +14,6 @@ import { doc, setDoc } from "firebase/firestore";
 
 // create new user account and database collection with email and pwassword
 export function signInWithEmail(userData) {
-  console.log(userData);
   return (dispatch) => {
     // dispatch request
     dispatch({ type: AUTH_USER_REQUEST });
@@ -48,10 +47,14 @@ export function signInWithEmail(userData) {
         });
         toast.success("Welcome To Wrist Mall");
       } catch (error) {
-        console.log(error);
         // dispatch failure
-        toast.error("something went wrong");
-        dispatch({ type: AUTH_USER_FAILURE, payload: error });
+        if (error.message === "Firebase: Error (auth/email-already-in-use).") {
+          toast.error("email is already in use");
+          dispatch({ type: AUTH_USER_FAILURE, payload: error });
+        } else {
+          toast.error(error.message || "something went wrong");
+          dispatch({ type: AUTH_USER_FAILURE, payload: error });
+        }
       }
     };
     // call signIn function
@@ -129,10 +132,14 @@ export function signUpWithEmail(userData) {
         });
         toast.success("Welcome Back");
       } catch (error) {
-        console.log(error);
         // dispatch failure
-        toast.error("something went wrong");
-        dispatch({ type: AUTH_USER_FAILURE, payload: error });
+        if (error.message === "Firebase: Error (auth/invalid-credential).") {
+          toast.error("Email Or Password Is Incorrect");
+          dispatch({ type: AUTH_USER_FAILURE, payload: error });
+        } else {
+          toast.error(error.message || "something went wrong");
+          dispatch({ type: AUTH_USER_FAILURE, payload: error });
+        }
       }
     };
 

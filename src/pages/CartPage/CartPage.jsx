@@ -3,6 +3,7 @@ import { cartPageBgUrl } from "../../constants";
 import { FaPlus, FaTrash } from "react-icons/fa6";
 import { FiMinus } from "react-icons/fi";
 import {
+  cleanCartAction,
   removeProductFromCart,
   updateCartData,
 } from "../../rudex/cart/cartActions";
@@ -12,6 +13,18 @@ import toast from "react-hot-toast";
 function CartPage() {
   // get cart data from redux
   const { cartData } = useSelector((state) => state.cartData);
+  // get user data from redux
+  const { isAuthenticated } = useSelector((state) => state.authData);
+  const dispatch = useDispatch();
+
+  // claen cart data
+  const cleanCartData = () => {
+    if (!cartData.length) {
+      toast("Cart Is Already Clean");
+    } else {
+      dispatch(cleanCartAction(isAuthenticated, auth?.currentUser?.uid));
+    }
+  };
 
   return (
     <div
@@ -27,9 +40,16 @@ function CartPage() {
         className="w-full min-h-full flex items-start py-20 md:py-28 px-2"
       >
         <div className="w-full bg-white-100 bg-opacity-20 backdrop-blur-md rounded-md">
-          <div className="px-4">
+          <div className="px-4 flex items-center justify-between">
             <h2 className="text-xl neon-title py-4">My Cart</h2>
-            <hr className="w-full text-black font-extrabold" />
+
+            <button
+              onClick={cleanCartData}
+              className="text-lg text-white-100 py-4 flex items-center justify-center gap-x-1"
+            >
+              <span>Clean Cart</span>
+              <FaTrash className="text-Buff-200" />
+            </button>
           </div>
 
           {cartData.length ? (
@@ -100,7 +120,7 @@ function ProductRowCard({ productData, quantity }) {
       let updatedCart = [...cartData];
 
       updatedCart[indexOfProduct] = updatedProduct;
-
+      // redux action (update cart state with new cart data)
       dispatch(
         updateCartData(updatedCart, isAuthenticated, auth?.currentUser?.uid)
       );
@@ -124,7 +144,7 @@ function ProductRowCard({ productData, quantity }) {
     let updatedCart = [...cartData];
 
     updatedCart[indexOfProduct] = updatedProduct;
-
+    // redux action (update cart state with new cart data)
     dispatch(
       updateCartData(updatedCart, isAuthenticated, auth?.currentUser?.uid)
     );

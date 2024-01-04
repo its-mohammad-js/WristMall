@@ -50,17 +50,8 @@ function SignInPage() {
 
   // sigIn with gmail popup
   function signInwithGoogle() {
-    const signInTest = async () => {
-      try {
-        const signInRes = await signInWithRedirect(auth, googleProvider);
-      } catch (error) {
-        toast.error(error.message);
-      }
-    };
-
-    signInTest();
-
-    // dispatch(signInWithGamil());
+    // dispatch redux actions 
+    dispatch(signInWithGamil());
   }
 
   // navigate registered users

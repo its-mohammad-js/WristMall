@@ -1,11 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../rudex/products/productActions";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { IoIosArrowDown } from "react-icons/io";
-import LoaderSpinner from "../Loaders/LoaderSpinner";
 import WatchSwiperLoader from "../Loaders/WatchSwiperLoader";
 
 function HomePageHero() {
@@ -42,7 +41,6 @@ function WatchSwiper({ topProucts }) {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    onSwipe: onSwipe,
     appendDots: appendDotsFunc,
     dots: true,
     arrows: false,
@@ -50,26 +48,14 @@ function WatchSwiper({ topProucts }) {
   };
 
   // change selected watch state on swipe
-  function onSwipe(e) {
+  function afterSwipe(e) {
     // Preventing unnecessary and unexpected re-rendering
     if (status === "onSwipe") return;
 
     setStatus("onSwipe");
 
     setTimeout(() => {
-      if (e === "left") {
-        if (selectedWatch === 2) {
-          setSelectedWatch(0);
-        } else {
-          setSelectedWatch((prev) => prev + 1);
-        }
-      } else if (e === "right") {
-        if (selectedWatch === 0) {
-          setSelectedWatch(2);
-        } else {
-          setSelectedWatch((prev) => prev - 1);
-        }
-      }
+      setSelectedWatch(e);
 
       setStatus("loaded");
     }, 1000);
@@ -136,6 +122,7 @@ function WatchSwiper({ topProucts }) {
             <>
               <Slider
                 {...settings}
+                afterChange={(e) => afterSwipe(e)}
                 className="bg-Buff-100 md:bg-Buff-400 backdrop-blur-sm bg-opacity-25 md:bg-opacity-10 rounded-md md:max-w-xs px-4 py-2 md:mt-40"
               >
                 {topProucts.map((product) => (

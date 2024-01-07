@@ -16,7 +16,7 @@ function Navbar() {
     <div className="flex w-screen fixed z-50 2xl:pr-6">
       <div
         id="wrapper"
-        className="mx-auto w-full bg-Buff-100 bg-opacity-30 backdrop-blur-sm z-50 2xl:max-w-6xl flex items-center justify-between px-4 py-2 relative"
+        className="mx-auto w-full bg-Buff-100 bg-opacity-30 md:bg-opacity-70 backdrop-blur-sm z-50 2xl:max-w-6xl flex items-center justify-between px-4 py-2 relative"
       >
         {/* logo */}
         <div className="flex-1">

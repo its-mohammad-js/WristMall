@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { IoIosArrowDown } from "react-icons/io";
 import WatchSwiperLoader from "../Loaders/WatchSwiperLoader";
+import { Link } from "react-router-dom";
 
 function HomePageHero() {
   //  products state
@@ -156,9 +157,12 @@ function WatchSwiper({ topProucts }) {
             </div>
             {/* card buttons */}
             <div className="flex items-center justify-center md:justify-between gap-x-2 md:invisible">
-              <button className="bg-black text-white-100 px-4 py-2 rounded-md flex-1 ">
+              <Link
+                to={`/WristMall/SingleWatch/${topProucts[selectedWatch].id}`}
+                className="bg-black text-white-100 px-4 py-2 rounded-md flex-1 text-center"
+              >
                 Show Detail
-              </button>
+              </Link>
             </div>
           </div>
         )}
@@ -243,9 +247,12 @@ function WatchSwiper({ topProucts }) {
                   </li>
                 </ul>
               </div>
-              <button className="bg-Buff-500 px-2 py-1 rounded-md text-white-100 border-b-2 hover:border-Buff-500 text-sm transition-all">
+              <Link
+                to={`/WristMall/SingleWatch/${topProucts[selectedWatch].id}`}
+                className="bg-Buff-500 px-2 py-1 rounded-md text-white-100 border-b-2 hover:border-Buff-500 text-sm transition-all"
+              >
                 Show Details
-              </button>
+              </Link>
             </div>
           </>
         )}

@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import {
   FETCH_PRODUCTS_FAILURE,
   FETCH_PRODUCTS_REQUEST,
@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 
 const productsCollectionRef = collection(db, "Products");
 
+// get all products from data base
 export function fetchProducts() {
   return (dispatch) => {
     // dispatch request
@@ -31,7 +32,7 @@ export function fetchProducts() {
         dispatch({ type: FETCH_PRODUCTS_FAILURE, payload: error });
       }
     };
-
+    // call fetch function
     getAllProducts();
   };
 }

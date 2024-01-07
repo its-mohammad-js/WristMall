@@ -138,6 +138,15 @@ const SignInInitialValues = {
   remember: true,
 };
 
+const developerInfo = {
+  picUrl:
+    "https://firebasestorage.googleapis.com/v0/b/wristmall-6f3a3.appspot.com/o/photo_2024-01-07_17-28-44.jpg?alt=media&token=5a86e1db-1c36-4c7c-a137-f0d8cdb727b3",
+  biography:
+    "I am a junior front-end developer with strong skills in developing responsive web pages using HTML/CSS, Tailwind CSS, and Bootstrap. I also have experience in building dynamic applications and working with React and React hooks. JavaScript is the foundation of my programming skills, and I have a good understanding of its core concepts and deeper aspects. Additionally, I am skilled in interacting and communicating with the backend using various libraries such as Axios.",
+  firstName: "Mohammad",
+  lastName: "Arab",
+};
+
 export {
   slidesInformation,
   categoriesInformation,
@@ -150,4 +159,5 @@ export {
   SignInInitialValues,
   signUpPageBgUrl,
   cartPageBgUrl,
+  developerInfo,
 };

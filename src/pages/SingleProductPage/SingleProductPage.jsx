@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { doc, getDoc } from "firebase/firestore";
@@ -11,6 +11,7 @@ function SingleProductPage() {
   const [productData, setProductData] = useState({});
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
+  const sliderRef = useRef();
 
   // slick.js settings
   const settings = {
@@ -18,11 +19,34 @@ function SingleProductPage() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // appendDots: appendDotsFunc,
+    appendDots: appendDotsFunc,
     dots: true,
-    arrows: true,
-    useTransform: true,
+    arrows: false,
   };
+
+  function appendDotsFunc(e) {
+    // change slide when click on image
+    const goToSlide = (key) => {
+      sliderRef.current.slickGoTo(key);
+    };
+
+    return (
+      <>
+        <div className="flex overflow-y-auto mt-4 items-center gap-x-1 px-2">
+          {productData.images.map((image, index) => (
+            <img
+              onClick={() => goToSlide(e[index].key)}
+              key={index}
+              src={image}
+              className={`${
+                e[index].props.className === "" && "opacity-25"
+              } h-20 w-20 border-[1px] border-EerieBlack-300`}
+            />
+          ))}
+        </div>
+      </>
+    );
+  }
 
   // get product data from firebase
   useEffect(() => {
@@ -62,9 +86,17 @@ function SingleProductPage() {
           className="w-full min-h-full py-20 bg-white-100 bg-opacity-80"
         >
           <div className="">
-            <Slider {...settings}>
+            <Slider
+              ref={sliderRef}
+              {...settings}
+              className="min-h-[300px] relative"
+            >
               {productData.images.map((image, index) => (
-                <img key={index} src={image}></img>
+                <img
+                  key={index}
+                  src={image}
+                  className="max-h-72 object-cover"
+                />
               ))}
             </Slider>
           </div>

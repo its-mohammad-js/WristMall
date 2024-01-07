@@ -103,9 +103,15 @@ function Navbar() {
             <Link
               key={index}
               to={route.path}
-              className="text-white-100 text-lg hover:text-EerieBlack-600 transition-all"
+              className="text-white-100 text-lg hover:text-EerieBlack-600 transition-all relative"
             >
               {route.title}
+
+              {route.title === "Cart" && (
+                <p className="text-sm bg-Buff-100 text-EerieBlack-600 font-extrabold px-1.5 rounded-full bottom-3.5 left-7 absolute">
+                  {cartData.length || 0}
+                </p>
+              )}
             </Link>
           ))}
 

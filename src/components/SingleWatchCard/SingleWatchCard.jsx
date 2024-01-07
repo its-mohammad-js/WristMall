@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../../config/firebase";
 import { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 function SingleWatchCard(productData) {
   // destructure product data object
@@ -58,11 +59,13 @@ function SingleWatchCard(productData) {
     >
       {/* product cover */}
       <div className="h-2/3 w-full px-4 py-2 rounded-t-md">
-        <img
-          src={thumbnail}
-          alt={name}
-          className="w-full h-full object-contain py-2 group-hover:-translate-y-2 duration-500 ease-in-out"
-        />
+        <Link to={`/WristMall/SingleWatch/${productData.id}`}>
+          <img
+            src={thumbnail}
+            alt={name}
+            className="w-full h-full object-contain py-2 group-hover:-translate-y-2 duration-500 ease-in-out"
+          />
+        </Link>
       </div>
       {/* product details */}
       <div className="w-full px-2">

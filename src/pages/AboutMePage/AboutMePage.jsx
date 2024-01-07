@@ -7,7 +7,7 @@ import { FiGithub } from "react-icons/fi";
 
 function AboutMePage() {
   return (
-    <div className="container mx-auto 2xl:max-w-6xl min-h-screen bg-white-99">
+    <div className="container mx-auto 2xl:max-w-6xl min-h-screen bg-Buff-400">
       <div
         id="wrapper"
         className="min-h-full w-full flex items-center justify-center px-4 py-2"

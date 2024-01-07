@@ -54,8 +54,6 @@ function CategoriesSection() {
     <div className="container mx-auto 2xl:max-w-6xl">
       <div
         id="wrapper"
-        data-aos="fade-right"
-        data-aos-duration="800"
         className="w-full h-[550px] md:h-screen flex flex-col bg-white-100 bg-opacity-95 relative"
       >
         {/* background image & color */}

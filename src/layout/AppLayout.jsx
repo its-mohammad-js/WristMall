@@ -14,7 +14,7 @@ function AppLayout({ children }) {
   const { isAuthenticated } = useSelector((state) => state.authData);
   const dispatch = useDispatch();
 
-  // check user states on app mount
+  // check user data on app mount
   useEffect(() => {
     // if user is authenticated return
     if (isAuthenticated) {

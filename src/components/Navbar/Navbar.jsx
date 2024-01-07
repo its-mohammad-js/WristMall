@@ -51,7 +51,7 @@ function Navbar() {
             menuIsOpen
               ? "visible h-full w-full opacity-100"
               : "invisible h-0 w-0 opacity-0"
-          } absolute -bottom-[135px] right-0 flex items-center justify-center duration-300`}
+          } absolute -bottom-[115px] right-0 flex items-center justify-center duration-300`}
         >
           <div
             id="wrapper"
@@ -71,10 +71,10 @@ function Navbar() {
             )}
 
             <Link
-              to={isAuthenticated ? "/WristMall/Profile" : "/WristMall/SignIn"}
+              to={isAuthenticated ? "/WristMall/Profile" : "/WristMall/SignUp"}
               className="w-full bg-Buff-400 text-white-100 px-4 py-2 rounded-md text-center"
             >
-              {isAuthenticated ? "Profile" : "SignIn"}
+              {isAuthenticated ? "Profile" : "SignUp"}
             </Link>
           </div>
         </div>

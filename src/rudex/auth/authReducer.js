@@ -2,6 +2,7 @@ import {
   AUTH_USER_FAILURE,
   AUTH_USER_REQUEST,
   AUTH_USER_SUCCESS,
+  SIGN_OUT_USER,
 } from "./authTypes";
 
 const initialState = {
@@ -27,6 +28,8 @@ export default function authReducer(state = initialState, action) {
         error: "",
       };
     }
+    case SIGN_OUT_USER:
+      return { initialState };
     case AUTH_USER_FAILURE: {
       return {
         ...state,

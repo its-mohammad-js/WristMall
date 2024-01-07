@@ -2,8 +2,9 @@ import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { routesInfo } from "../../constants";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaCartShopping } from "react-icons/fa6";
+import { SignOutUser } from "../../rudex/auth/authActions";
 
 function Navbar() {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -11,6 +12,12 @@ function Navbar() {
   const { isAuthenticated } = useSelector((state) => state.authData);
   // get cart data to dispaly length on cart icon in navbar
   const { cartData } = useSelector((state) => state.cartData);
+  // redux dispatcher
+  const dispatch = useDispatch();
+
+  const signOutHandle = () => {
+    dispatch(SignOutUser());
+  };
 
   return (
     <div className="flex w-screen fixed z-50 2xl:pr-6">
@@ -70,12 +77,23 @@ function Navbar() {
                 )
             )}
 
-            <Link
-              to={isAuthenticated ? "/WristMall/Profile" : "/WristMall/SignUp"}
-              className="w-full bg-Buff-400 text-white-100 px-4 py-2 rounded-md text-center"
-            >
-              {isAuthenticated ? "Profile" : "SignUp"}
-            </Link>
+            <>
+              {!isAuthenticated ? (
+                <Link
+                  to="/WristMall/SignUp"
+                  className="w-full bg-Buff-400 text-white-100 px-4 py-2 rounded-md text-center"
+                >
+                  SignUp
+                </Link>
+              ) : (
+                <button
+                  onClick={signOutHandle}
+                  className="w-full bg-Buff-400 text-white-100 px-4 py-2 rounded-md text-center"
+                >
+                  SignOut
+                </button>
+              )}
+            </>
           </div>
         </div>
 
@@ -91,12 +109,21 @@ function Navbar() {
             </Link>
           ))}
 
-          <Link
-            to="/WristMall/SignIn"
-            className="bg-Buff-300 text-white-100 px-2 py-1 rounded-md text-lg hover:text-EerieBlack-600 transition-all"
-          >
-            SignIn
-          </Link>
+          {!isAuthenticated ? (
+            <Link
+              to="/WristMall/SignUp"
+              className="bg-Buff-400 text-white-100 px-4 py-2 rounded-md text-center"
+            >
+              SignUp
+            </Link>
+          ) : (
+            <button
+              onClick={signOutHandle}
+              className="bg-Buff-400 text-white-100 px-4 py-2 rounded-md text-center"
+            >
+              SignOut
+            </button>
+          )}
         </div>
       </div>
     </div>

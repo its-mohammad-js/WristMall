@@ -3,12 +3,14 @@ import {
   signInWithPopup,
   signInWithRedirect,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { auth, db, googleProvider } from "../../config/firebase";
 import {
   AUTH_USER_FAILURE,
   AUTH_USER_REQUEST,
   AUTH_USER_SUCCESS,
+  SIGN_OUT_USER,
 } from "./authTypes";
 import toast from "react-hot-toast";
 import { doc, setDoc } from "firebase/firestore";
@@ -152,4 +154,30 @@ export function signUpWithEmail(userData) {
 // initalize user data
 export function initialUser(userData) {
   return { type: AUTH_USER_SUCCESS, payload: userData };
+}
+
+// log out user
+export function SignOutUser() {
+  return (dispatch) => {
+    // dispatch request
+    dispatch({ type: AUTH_USER_REQUEST });
+
+    // log out dunction
+    const signOutUserHandle = async () => {
+      try {
+        await signOut(auth);
+        // dispatch user signed out
+        dispatch({ type: SIGN_OUT_USER });
+        toast.success("You have logged out of your account");
+      } catch (error) {
+        console.log(error);
+        // dispatch error
+        dispatch({ type: AUTH_USER_FAILURE, payload: error });
+        toast.error(error.message || "Something Went Wrong");
+      }
+    };
+
+    // call sign out function
+    signOutUserHandle();
+  };
 }

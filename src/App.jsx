@@ -8,11 +8,11 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import ShopPage from "./pages/ShopPage/ShopPage";
-import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import CartPage from "./pages/CartPage/CartPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import SignInPage from "./pages/SignInPage/SignInPage";
 import SingleProductPage from "./pages/SingleProductPage/SingleProductPage";
+import AboutMePage from "./pages/AboutMePage/AboutMePage";
 
 function App() {
   // aos library init
@@ -34,7 +34,7 @@ function App() {
             element={<SingleProductPage />}
           />
           <Route path="/WristMall/Cart" element={<CartPage />} />
-          <Route path="/WristMall/Profile" element={<ProfilePage />} />
+          <Route path="/WristMall/AboutMe" element={<AboutMePage />} />
         </Routes>
       </AppLayout>
     </Provider>

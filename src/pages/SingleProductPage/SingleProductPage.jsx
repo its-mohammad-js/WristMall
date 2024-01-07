@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../config/firebase";
+import { auth, db } from "../../config/firebase";
 import LoaderSpinner from "../../components/Loaders/LoaderSpinner";
 import Slider from "react-slick";
 import {
@@ -13,12 +13,18 @@ import {
 } from "react-icons/fa6";
 import { MdArrowForwardIos } from "react-icons/md";
 import { FaMailBulk } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { addProductToCart } from "../../rudex/cart/cartActions";
 
 function SingleProductPage() {
   const [productData, setProductData] = useState({});
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const sliderRef = useRef();
+  const { isAuthenticated } = useSelector((state) => state.authData);
+  const dispatch = useDispatch();
+  const { cartData } = useSelector((state) => state.cartData);
+  const productInCart = cartData.find((p) => p.productId === id);
 
   // slick.js settings
   const settings = {
@@ -56,6 +62,15 @@ function SingleProductPage() {
     );
   }
 
+  function addToCart() {
+    dispatch(
+      addProductToCart(id, isAuthenticated, auth?.currentUser?.uid, {
+        ...productData,
+        id,
+      })
+    );
+  }
+
   // get product data from firebase
   useEffect(() => {
     // fetch product function
@@ -67,6 +82,7 @@ function SingleProductPage() {
         // get single doc (product) from firebase
         const productRes = await getDoc(doc(db, "Products", id));
         // set product data with response
+
         setProductData(productRes?.data((product) => product));
       } catch (error) {
         console.log();
@@ -147,8 +163,19 @@ function SingleProductPage() {
               {/* product description */}
               <ProductDescMenu productData={productData} />
               {/* add to cart btn */}
-              <button className="w-full bg-EerieBlack-600 py-4 text-white-100 rounded-md my-3 flex items-center gap-x-2 justify-center">
-                <FaCartShopping className="text-xl" /> Add To Cart
+              <button
+                onClick={addToCart}
+                className={`${
+                  productInCart ? "bg-EerieBlack-100" : "bg-EerieBlack-600"
+                } w-full  py-4 text-white-100 rounded-md my-3 flex items-center gap-x-2 justify-center transition-all`}
+              >
+                {productInCart ? (
+                  "Already In Cart"
+                ) : (
+                  <>
+                    <FaCartShopping className="text-xl" /> Add To Cart
+                  </>
+                )}
               </button>
             </div>
           </div>
@@ -179,7 +206,7 @@ function SingleProductPage() {
               alt={productData.name}
             />
 
-            <div className="md:flex flex-col items-center justify-center md:justify-between">
+            <div className="flex flex-col items-center justify-center md:justify-between">
               <p className="text-lg py-2 text-center">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Delectus ipsam sunt numquam qui accusamus eum, aliquam nesciunt

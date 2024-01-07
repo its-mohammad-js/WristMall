@@ -9,6 +9,7 @@ import {
 } from "../../rudex/cart/cartActions";
 import { auth } from "../../config/firebase";
 import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
 
 function CartPage() {
   // get cart data from redux
@@ -37,7 +38,7 @@ function CartPage() {
     >
       <div
         id="wrapper"
-        className="w-full min-h-full flex items-start py-20 md:py-28 px-2"
+        className="w-full md:w-4/6 md:mx-auto min-h-full flex items-start py-20 md:py-28 px-2"
       >
         <div className="w-full bg-white-100 bg-opacity-20 backdrop-blur-md rounded-md">
           <div className="px-4 flex items-center justify-between">
@@ -80,8 +81,8 @@ export default CartPage;
 function ProductRowCard({ productData, quantity }) {
   const { isAuthenticated } = useSelector((state) => state.authData);
   const { cartData, loading } = useSelector((state) => state.cartData);
-
-  console.log(cartData);
+  // set increase decrease buttons animating : inc|dec
+  const [operation, setOperation] = useState("");
 
   const dispatch = useDispatch();
 
@@ -99,6 +100,8 @@ function ProductRowCard({ productData, quantity }) {
 
   // decrease product quantity
   const decreaseQuantity = () => {
+    // make decrease button animate
+    setOperation("dec");
     // in case quantity is 1 remove it from cart
     if (quantity === 1) {
       removeProduct();
@@ -129,6 +132,8 @@ function ProductRowCard({ productData, quantity }) {
 
   // incerease product quantity
   const increaseQuantity = () => {
+    // make increase button animate
+    setOperation("inc");
     // update cart data before dispatch increase quantity
     // find index of product data in cart data
     const indexOfProduct = cartData.findIndex(
@@ -161,12 +166,15 @@ function ProductRowCard({ productData, quantity }) {
       </div>
 
       <div className="flex flex-col flex-1 justify-start">
-        <p className="line-clamp-1 text-sm text-center pb-2 font-bold -mt-6">
+        <p className="line-clamp-1 text-sm md:text-lg text-center pb-2 font-bold -mt-6">
           {productData.name}
         </p>
-        <p className="flex items-center justify-evenly gap-x-1 py-1.5">
+        <p className="flex items-center justify-evenly md:justify-center md:gap-x-2 gap-x-1 py-1.5">
           {productData.summaryDetails.map((summary, index) => (
-            <span key={index} className="text-xs line-clamp-1 text-center">
+            <span
+              key={index}
+              className="text-xs md:text-sm line-clamp-1 text-center"
+            >
               {summary}
             </span>
           ))}
@@ -174,12 +182,18 @@ function ProductRowCard({ productData, quantity }) {
 
         <div className="w-full h-10 -mb-8 px-4">
           <div className="flex items-center justify-between text-base py-2">
-            <div className="flex items-center gap-x-3 px-1">
+            <div className="flex items-center gap-x-3 px-1 md:text-lg">
               <button
                 onClick={increaseQuantity}
-                className="bg-Buff-400 p-1.5 rounded-xl"
+                className={`${
+                  loading && operation === "inc" && "animate-ping"
+                } bg-Buff-400 p-1.5 rounded-xl`}
               >
-                <FaPlus />
+                <FaPlus
+                  className={`${
+                    loading && operation === "inc" && "animate-spin"
+                  }`}
+                />
               </button>
 
               <div className="border-2 border-EerieBlack-200 px-1">
@@ -188,13 +202,22 @@ function ProductRowCard({ productData, quantity }) {
 
               <button
                 onClick={decreaseQuantity}
-                className="bg-EerieBlack-100 p-1 rounded-xl"
+                className={`${
+                  loading && operation === "dec" && "animate-ping"
+                } bg-EerieBlack-100 p-1 rounded-xl`}
               >
-                <FiMinus />
+                <FiMinus
+                  className={`${
+                    loading && operation === "dec" && "animate-spin"
+                  }`}
+                />
               </button>
             </div>
 
-            <button onClick={removeProduct} className="justify-self-start">
+            <button
+              onClick={removeProduct}
+              className="justify-self-start md:text-lg"
+            >
               <FaTrash />
             </button>
           </div>

@@ -3,7 +3,7 @@ import { routesInfo } from "../../constants";
 
 function Footer() {
   return (
-    <div className="container mx-auto 2xl:max-w-6xl">
+    <div className="container mx-auto 2xl:max-w-screen-2xl">
       <div id="wrapper" className="w-full h-full bg-EerieBlack-400 px-4 py-2">
         {/* logo */}
         <div className="w-full flex justify-center items-center">

@@ -87,7 +87,7 @@ function WatchSwiper({ topProucts }) {
   };
 
   return (
-    <div className="w-screen h-screen relative sm:container sm:mx-auto sm:h-[630px] 2xl:max-w-6xl flex items-center justify-center md:justify-start">
+    <div className="w-screen h-screen relative sm:container sm:mx-auto sm:h-[630px] 2xl:max-w-screen-2xl flex items-center justify-center md:justify-start">
       {/* background video  */}
       <video
         autoPlay

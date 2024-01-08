@@ -51,7 +51,7 @@ export default HomePage;
 
 function CategoriesSection() {
   return (
-    <div className="container mx-auto 2xl:max-w-6xl">
+    <div className="container mx-auto 2xl:max-w-screen-2xl">
       <div
         id="wrapper"
         className="w-full h-[550px] md:h-screen flex flex-col bg-white-100 bg-opacity-95 relative"
@@ -119,7 +119,7 @@ function NewsSection() {
 
   if (!loading)
     return (
-      <div className="container mx-auto 2xl:max-w-6xl">
+      <div className="container mx-auto 2xl:max-w-screen-2xl">
         <div id="wrapper" className="px-4 py-2 flex flex-col gap-y-4">
           {/* title  */}
           <h2 className="neon-title !text-Buff-300 text-3xl font-extrabold">
@@ -173,7 +173,7 @@ function OverviewSection({ productsData }) {
   };
 
   return (
-    <div className="container 2xl:max-w-6xl mx-auto flex flex-col px-4 py-2 md:py-4 gap-y-4">
+    <div className="container 2xl:max-w-screen-2xl mx-auto flex flex-col px-4 py-2 md:py-4 gap-y-4">
       <h2 className="text-4xl font-bold text-EerieBlack-100 neon-title">
         Overview
       </h2>

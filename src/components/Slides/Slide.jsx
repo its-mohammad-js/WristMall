@@ -7,7 +7,7 @@ function Slide({ backgroundUrl, title, subTitle }) {
   const { opacity } = useScrollOpacityEffect(elementRef);
 
   return (
-    <div className="container mx-auto 2xl:max-w-6xl transition-all relative">
+    <div className="container mx-auto 2xl:max-w-screen-2xl transition-all relative">
       {/* background gif */}
       <div data-aos="zoom-in-up" className="transition-all">
         <video
